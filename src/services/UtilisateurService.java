@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author ASUS
  */
-public class UtilisateurService implements IService<Utilisateur>{
+public class UtilisateurService implements IServiceUtilisateur{
 
     @Override
     public void ajouter(Utilisateur t) {
@@ -31,6 +31,31 @@ public class UtilisateurService implements IService<Utilisateur>{
 
     @Override
     public List<Utilisateur> selectAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Utilisateur selectOne(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean existId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int lastIdAdded() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Utilisateur> selectByName(String nom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Utilisateur> selectByEmail(String email) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

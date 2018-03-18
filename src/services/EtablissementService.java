@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author ASUS
  */
-public class EtablissementService implements IService<Etablissement>{
+public class EtablissementService implements IServiceEtablissement{
     
     private Connection con = DataSource.getInstance().getCon();
     private Statement ste=null;
@@ -117,6 +117,51 @@ public class EtablissementService implements IService<Etablissement>{
             Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
         }		
 		return etablissements;
+    }
+
+    @Override
+    public Etablissement selectOne(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean existId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int lastIdAdded() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Etablissement> selectByNom() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Etablissement> selectByGouvernorat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Etablissement> selectByVille() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Etablissement> selectBest() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Etablissement> selectBestByType(String type) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Etablissement> selectNear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
   
