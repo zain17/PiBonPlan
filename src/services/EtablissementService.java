@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author ASUS
  */
 public class EtablissementService implements IServiceEtablissement{
-    
+    public static int lastInsertedId=0;
     private Connection con = DataSource.getInstance().getCon();
     private Statement ste=null;
     public EtablissementService() {
