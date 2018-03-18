@@ -13,7 +13,7 @@ import java.util.List;
  * @author ASUS
  */
 public class RevueService implements IService<Revue>{
-    
+    //this file not staged 
     @Override
     public void ajouter(Revue t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -31,6 +31,21 @@ public class RevueService implements IService<Revue>{
 
     @Override
     public List<Revue> selectAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Revue selectOne(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean existId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int lastIdAdded() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
