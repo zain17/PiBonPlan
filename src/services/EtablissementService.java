@@ -128,10 +128,9 @@ public class EtablissementService implements IServiceEtablissement{
         try {
             ste=con.createStatement();
             final ResultSet rs=ste.executeQuery("SELECT * from etablissement where id="+id);
-            System.out.println(rs.getRow());
             if(rs.next())
-            {etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13));
-                System.out.println("Etablissement construite");}
+            etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13));
+
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }

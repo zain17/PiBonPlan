@@ -56,7 +56,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             pre.executeUpdate();
             System.out.println("Utilisateur ajouter avec succés");
         } catch (SQLException ex) {
-            Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -96,25 +96,27 @@ public class UtilisateurService implements IServiceUtilisateur{
             pre.setString(11,user.getRoles());
             pre.setInt(12,id);
         } catch (SQLException ex) {
-            Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public ArrayList<Utilisateur> selectAll() {
-        List<Utilisateur> users = new ArrayList<>();
+        ArrayList<Utilisateur> users = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT (id,nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,est_active,type,description,photo) FROM Utilisateur");
+
+            //rs = ste.executeQuery("SELECT (id,photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password) FROM `utilisateur`");
+            rs = ste.executeQuery("SELECT * FROM Utilisateur");
             users = new ArrayList<>();
             while (rs.next()){
 
-                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getShort(9),rs.getString(10),rs.getString(11),rs.getString(12)));
+                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),rs.getString(16)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (ArrayList<Utilisateur>) users;
+        return  users;
     }
 
     @Override
@@ -124,9 +126,9 @@ public class UtilisateurService implements IServiceUtilisateur{
         ResultSet rs=null;
         try {
             ste=connection.createStatement();
-            rs=ste.executeQuery("SELECT * from Etablissement where id="+id);
+            rs=ste.executeQuery("SELECT * from Utilisateur where id="+id);
             if(rs.next())
-                user=new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getShort(9),rs.getString(10),rs.getString(11),rs.getString(12));
+                user=new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),rs.getString(16));
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
