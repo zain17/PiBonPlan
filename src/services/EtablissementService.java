@@ -7,6 +7,8 @@ package services;
 
 import Util.DataSource;
 import entites.Etablissement;
+import entites.Utilisateur;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -121,7 +123,18 @@ public class EtablissementService implements IServiceEtablissement{
 
     @Override
     public Etablissement selectOne(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Statement ste=null;
+        Etablissement etab=new Etablissement();
+        ResultSet rs=null;
+        try {
+            ste=con.createStatement();
+            rs=ste.executeQuery("SELECT * from Etablissement where id="+id);
+            if(rs.next())
+                etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13));
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        }
+        return etab;
     }
 
     @Override

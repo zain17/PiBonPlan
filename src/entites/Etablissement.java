@@ -14,7 +14,6 @@ import java.util.List;
  */
 
 public class Etablissement   {
-    
     private Integer id;
     private String nom;
     private String adresse;

@@ -7,6 +7,7 @@ package entites;
 
 import java.util.Date;
 
+
 /**
  *
  * @author ASUS
@@ -35,17 +36,31 @@ public class Utilisateur   {
     public Utilisateur() {
     }
 
-    public Utilisateur(Integer id) {
+    public Utilisateur(Integer id, String photoProfil, Double langitude, Double latitude, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String salt, String password, String roles) {
         this.id = id;
-    }
-
-    public Utilisateur(Integer id, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String password, String roles) {
-        this.id = id;
+        this.photoProfil = photoProfil;
+        this.langitude = langitude;
+        this.latitude = latitude;
         this.username = username;
         this.usernameCanonical = usernameCanonical;
         this.email = email;
         this.emailCanonical = emailCanonical;
         this.enabled = enabled;
+        this.salt = salt;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public Utilisateur(String photoProfil, Double langitude, Double latitude, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String salt, String password, String roles) {
+        this.photoProfil = photoProfil;
+        this.langitude = langitude;
+        this.latitude = latitude;
+        this.username = username;
+        this.usernameCanonical = usernameCanonical;
+        this.email = email;
+        this.emailCanonical = emailCanonical;
+        this.enabled = enabled;
+        this.salt = salt;
         this.password = password;
         this.roles = roles;
     }

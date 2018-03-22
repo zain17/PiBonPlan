@@ -5,6 +5,10 @@
  */
 package pibonplan;
 
+
+import entites.Etablissement;
+import services.EtablissementService;
+
 /**
  *
  * @author ASUS
@@ -15,7 +19,11 @@ public class PiBonPlan {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        EtablissementService etab_serv=new EtablissementService();
+        Etablissement etablissement = new Etablissement();
+        etablissement=etab_serv.selectOne(4);
+
+
     }
     
 }
