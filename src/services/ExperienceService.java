@@ -6,6 +6,8 @@
 package services;
 
 import entites.Experience;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ public class ExperienceService implements IService<Experience>{
     }
 
     @Override
-    public List<Experience> selectAll() {
+    public ArrayList<Experience> selectAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

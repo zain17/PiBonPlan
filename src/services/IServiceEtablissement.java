@@ -6,6 +6,8 @@
 package services;
 
 import entites.Etablissement;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,10 +15,10 @@ import java.util.List;
  * @author ASUS
  */
 public interface IServiceEtablissement extends IService<Etablissement>{
-    public List<Etablissement> selectByNom();
-    public List<Etablissement> selectByGouvernorat();
-    public List<Etablissement> selectByVille();
-    public List<Etablissement> selectBest();
-    public List<Etablissement> selectBestByType(String type);//Select les 5 meilleurs etablissement par type(café,loisir.etc..)
-    public List<Etablissement> selectNear();//Select les établissements qui sont proches de cordonnés de l'utilisateur
+    public ArrayList<Etablissement> selectByNom();
+    public ArrayList<Etablissement> selectByGouvernorat();
+    public ArrayList<Etablissement> selectByVille();
+    public ArrayList<Etablissement> selectBest();
+    public ArrayList<Etablissement> selectBestByType(String type);//Select les 5 meilleurs etablissement par type(café,loisir.etc..)
+    public ArrayList<Etablissement> selectNear();//Select les établissements qui sont proches de cordonnés de l'utilisateur
 }

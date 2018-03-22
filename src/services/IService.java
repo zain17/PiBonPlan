@@ -5,6 +5,7 @@
  */
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public interface IService<T> {
      public void ajouter(T t);
      public void supprimer(int id);
      public void modifier(int id,T t);
-     public List<T> selectAll();
+     public ArrayList<T> selectAll();
      public T selectOne(int id);
     public boolean existId(int id);
     public  int  lastIdAdded();

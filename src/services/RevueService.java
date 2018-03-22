@@ -6,6 +6,8 @@
 package services;
 
 import entites.Revue;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ public class RevueService implements IService<Revue>{
     }
 
     @Override
-    public List<Revue> selectAll() {
+    public ArrayList<Revue> selectAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
