@@ -24,8 +24,7 @@ public class DataSource {
 	private DataSource() {          
 		try {                    
                     Class.forName("com.mysql.jdbc.Driver");                     
-                    con = DriverManager.getConnection(url, user, password);                    
-                    System.out.println("Connexion établie!");
+                    con = DriverManager.getConnection(url, user, password);
                     }
                     catch (ClassNotFoundException e)  {
                         System.out.println("Connexion Failed ClassNotFoundException");
