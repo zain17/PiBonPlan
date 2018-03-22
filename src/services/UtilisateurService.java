@@ -101,20 +101,20 @@ public class UtilisateurService implements IServiceUtilisateur{
     }
 
     @Override
-    public List<Utilisateur> selectAll() {
-        List<Utilisateur> etablissements = new ArrayList<>();
+    public ArrayList<Utilisateur> selectAll() {
+        List<Utilisateur> users = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT (id,nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,estActive,type,description,photo) FROM Etablissement");
-            etablissements = new ArrayList<>();
+            rs = ste.executeQuery("SELECT (id,nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,est_active,type,description,photo) FROM Utilisateur");
+            users = new ArrayList<>();
             while (rs.next()){
 
-                etablissements.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getShort(9),rs.getString(10),rs.getString(11),rs.getString(12)));
+                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getShort(9),rs.getString(10),rs.getString(11),rs.getString(12)));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return etablissements;
+        return (ArrayList<Utilisateur>) users;
     }
 
     @Override
