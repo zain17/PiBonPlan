@@ -14,6 +14,7 @@ import java.util.List;
  */
 
 public class Etablissement   {
+
     private Integer id;
     private String nom;
     private String adresse;
@@ -229,7 +230,24 @@ public class Etablissement   {
 
     @Override
     public String toString() {
-        return "bonplan.entities.Etablissement[ id=" + id + " ]";
+        return "Etablissement{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", gouvernorat='" + gouvernorat + '\'' +
+                ", ville='" + ville + '\'' +
+                ", note=" + note +
+                ", horraire=" + horraire +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", estActive=" + estActive +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
+                ", photo='" + photo + '\'' +
+                ", revue=" + revue +
+                ", utilisateurList=" + utilisateurList +
+                ", experience=" + experience +
+                ", catalogue=" + catalogue +
+                '}';
     }
-    
 }

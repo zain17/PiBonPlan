@@ -7,7 +7,12 @@ package pibonplan;
 
 
 import entites.Etablissement;
+import entites.Utilisateur;
 import services.EtablissementService;
+import services.UtilisateurService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,9 +24,13 @@ public class PiBonPlan {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        EtablissementService etab_serv=new EtablissementService();
-        Etablissement etablissement = new Etablissement();
-        etablissement=etab_serv.selectOne(4);
+        UtilisateurService user_serv=new UtilisateurService();
+        Utilisateur us = new Utilisateur();
+        //ArrayList<Utilisateur> uss= new ArrayList<>();
+         //uss= (ArrayList<Utilisateur>) user_serv.selectAll();
+        //System.out.println(uss);
+
+        //etab_serv.ajouter(new Etablissement("pino","Rue","ariana","ville",""));
 
 
     }
