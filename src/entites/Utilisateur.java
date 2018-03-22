@@ -5,6 +5,7 @@
  */
 package entites;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -29,9 +30,9 @@ public class Utilisateur   {
     private String confirmationToken;
     private Date passwordRequestedAt;
     private String roles;
-    private Revue revue;
-    private Etablissement etablissementId;
-    private Experience experience;
+    private ArrayList<Revue> revues;
+    private Etablissement etablissement;
+    private ArrayList<Experience> experiences;
 
     public Utilisateur() {
     }
@@ -50,8 +51,7 @@ public class Utilisateur   {
         this.password = password;
         this.roles = roles;
     }
-
-    public Utilisateur(String photoProfil, Double langitude, Double latitude, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String salt, String password, String roles) {
+    public Utilisateur(String photoProfil, Double langitude, Double latitude, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String salt, String password/*, String roles*/) {
         this.photoProfil = photoProfil;
         this.langitude = langitude;
         this.latitude = latitude;
@@ -63,6 +63,26 @@ public class Utilisateur   {
         this.salt = salt;
         this.password = password;
         this.roles = roles;
+    }
+
+    public Utilisateur(Integer id, String photoProfil, Double langitude, Double latitude, int etablissement_id, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String salt, String password, Date lastLogin, String confirmationToken, Date passwordRequestedAt, String roles) {
+        this.id = id;
+        this.photoProfil = photoProfil;
+        this.langitude = langitude;
+        this.latitude = latitude;
+        this.username = username;
+        this.usernameCanonical = usernameCanonical;
+        this.email = email;
+        this.emailCanonical = emailCanonical;
+        this.enabled = enabled;
+        this.salt = salt;
+        this.password = password;
+        this.lastLogin = lastLogin;
+        this.confirmationToken = confirmationToken;
+        this.passwordRequestedAt = passwordRequestedAt;
+        this.roles = roles;
+        etablissement=new Etablissement();
+        this.etablissement.setId(etablissement_id);
     }
 
     public Integer getId() {
@@ -185,28 +205,30 @@ public class Utilisateur   {
         this.roles = roles;
     }
 
-    public Revue getRevue() {
-        return revue;
+
+
+    public Etablissement getEtablissement() {
+        return etablissement;
     }
 
-    public void setRevue(Revue revue) {
-        this.revue = revue;
+    public void setEtablissement(Etablissement etablissement) {
+        this.etablissement = etablissement;
     }
 
-    public Etablissement getEtablissementId() {
-        return etablissementId;
+    public ArrayList<Revue> getRevues() {
+        return revues;
     }
 
-    public void setEtablissementId(Etablissement etablissementId) {
-        this.etablissementId = etablissementId;
+    public void setRevues(ArrayList<Revue> revues) {
+        this.revues = revues;
     }
 
-    public Experience getExperience() {
-        return experience;
+    public ArrayList<Experience> getExperiences() {
+        return experiences;
     }
 
-    public void setExperience(Experience experience) {
-        this.experience = experience;
+    public void setExperiences(ArrayList<Experience> experiences) {
+        this.experiences = experiences;
     }
 
     @Override
@@ -231,7 +253,22 @@ public class Utilisateur   {
 
     @Override
     public String toString() {
-        return "bonplan.entities.Utilisateur[ id=" + id + " ]";
+        return "Utilisateur{" +
+                "id=" + id +
+                ", photoProfil='" + photoProfil + '\'' +
+                ", langitude=" + langitude +
+                ", latitude=" + latitude +
+                ", username='" + username + '\'' +
+                ", usernameCanonical='" + usernameCanonical + '\'' +
+                ", email='" + email + '\'' +
+                ", emailCanonical='" + emailCanonical + '\'' +
+                ", enabled=" + enabled +
+                ", salt='" + salt + '\'' +
+                ", password='" + password + '\'' +
+                ", lastLogin=" + lastLogin +
+                ", revues=" + revues +
+                ", etablissement=" + etablissement +
+                ", experiences=" + experiences +
+                '}';
     }
-    
 }

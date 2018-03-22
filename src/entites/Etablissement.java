@@ -6,6 +6,7 @@
 package entites;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 /**
@@ -28,11 +29,9 @@ public class Etablissement   {
     private String type;    
     private String description;
     private String photo;    
-    private Revue revue;
-
-    private List<Utilisateur> utilisateurList;
-    private Experience experience;
-    private Catalogue catalogue;
+    private ArrayList<Revue> revues;
+    private ArrayList<Experience> experiences;
+    private ArrayList<Catalogue> catalogues;
 
     public Etablissement() {
     }
@@ -176,36 +175,28 @@ public class Etablissement   {
         this.photo = photo;
     }
 
-    public Revue getRevue() {
-        return revue;
+    public ArrayList<Revue> getRevues() {
+        return revues;
     }
 
-    public void setRevue(Revue revue) {
-        this.revue = revue;
+    public void setRevues(ArrayList<Revue> revues) {
+        this.revues = revues;
     }
 
-    public List<Utilisateur> getUtilisateurList() {
-        return utilisateurList;
+    public ArrayList<Experience> getExperiences() {
+        return experiences;
     }
 
-    public void setUtilisateurList(List<Utilisateur> utilisateurList) {
-        this.utilisateurList = utilisateurList;
+    public void setExperiences(ArrayList<Experience> experiences) {
+        this.experiences = experiences;
     }
 
-    public Experience getExperience() {
-        return experience;
+    public ArrayList<Catalogue> getCatalogues() {
+        return catalogues;
     }
 
-    public void setExperience(Experience experience) {
-        this.experience = experience;
-    }
-
-    public Catalogue getCatalogue() {
-        return catalogue;
-    }
-
-    public void setCatalogue(Catalogue catalogue) {
-        this.catalogue = catalogue;
+    public void setCatalogues(ArrayList<Catalogue> catalogues) {
+        this.catalogues = catalogues;
     }
 
     @Override
@@ -244,10 +235,9 @@ public class Etablissement   {
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 ", photo='" + photo + '\'' +
-                ", revue=" + revue +
-                ", utilisateurList=" + utilisateurList +
-                ", experience=" + experience +
-                ", catalogue=" + catalogue +
+                ", revues=" + revues +
+                ", experiences=" + experiences +
+                ", catalogues=" + catalogues +
                 '}';
     }
 }
