@@ -7,7 +7,6 @@ package services;
 
 import Util.DataSource;
 import entites.Etablissement;
-import entites.Utilisateur;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -26,7 +25,7 @@ import java.util.logging.Logger;
  */
 public class EtablissementService implements IServiceEtablissement{
     public static int lastInsertedId=0;
-    private Connection con = DataSource.getInstance().getCon();
+    private final Connection con=DataSource.getInstance().getCon();
     private Statement ste=null;
     public EtablissementService() {
         System.out.println("EtablissementService");
@@ -105,11 +104,11 @@ public class EtablissementService implements IServiceEtablissement{
     }
 
     @Override
-    public List<Etablissement> selectAll() {
-        List<Etablissement> etablissements = new ArrayList<>();
+    public ArrayList<Etablissement> selectAll() {
+        ArrayList<Etablissement> etablissements = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT (id,nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,estActive,type,description,photo) FROM Etablissement");
+            rs = ste.executeQuery("SELECT (id,nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,est_active,type,description,photo) FROM Etablissement");
             etablissements = new ArrayList<>();
 		while (rs.next()){
 		
@@ -125,12 +124,14 @@ public class EtablissementService implements IServiceEtablissement{
     public Etablissement selectOne(int id) {
         Statement ste=null;
         Etablissement etab=new Etablissement();
-        ResultSet rs=null;
+
         try {
             ste=con.createStatement();
-            rs=ste.executeQuery("SELECT * from Etablissement where id="+id);
+            final ResultSet rs=ste.executeQuery("SELECT * from etablissement where id="+id);
+            System.out.println(rs.getRow());
             if(rs.next())
-                etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13));
+            {etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13));
+                System.out.println("Etablissement construite");}
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
@@ -148,32 +149,32 @@ public class EtablissementService implements IServiceEtablissement{
     }
 
     @Override
-    public List<Etablissement> selectByNom() {
+    public ArrayList<Etablissement> selectByNom() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Etablissement> selectByGouvernorat() {
+    public ArrayList<Etablissement> selectByGouvernorat() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Etablissement> selectByVille() {
+    public ArrayList<Etablissement> selectByVille() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Etablissement> selectBest() {
+    public ArrayList<Etablissement> selectBest() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Etablissement> selectBestByType(String type) {
+    public ArrayList<Etablissement> selectBestByType(String type) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Etablissement> selectNear() {
+    public ArrayList<Etablissement> selectNear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
