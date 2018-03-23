@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="483.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.views.utilisateur.FormulaireController">
    <children>
       <AnchorPane id="anchorPane1" layoutX="28.0" layoutY="15.0" prefHeight="399.0" prefWidth="614.0" styleClass="top-segment">
