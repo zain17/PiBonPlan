@@ -1,4 +1,5 @@
-package gui.controllers.utilisateur;
+package gui.views.etablissement;
 
 public class FormulaireController {
+
 }

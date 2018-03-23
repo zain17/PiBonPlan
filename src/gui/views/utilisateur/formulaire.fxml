@@ -1,9 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx"
-            fx:controller="gui.controllers.utilisateur.FormulaireController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
+
+<AnchorPane prefHeight="483.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.views.utilisateur.FormulaireController">
+   <children>
+      <AnchorPane id="anchorPane1" layoutX="28.0" layoutY="15.0" prefHeight="399.0" prefWidth="614.0" styleClass="top-segment">
+         <children>
+            <VBox id="VBox" alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="32.5" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <GridPane id="GridPane" hgap="15.0" prefHeight="344.0" prefWidth="532.0" vgap="15.0">
+                     <children>
+                        <Label id="Label" styleClass="profileTitle" text="Créer votre compte" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="20.0" fx:id="x1" />
+                           </font>
+                        </Label>
+                        <Hyperlink fx:id="logout" onAction="#processLogout" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                        <Label id="Label" font="$x1" text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets top="2.0" fx:id="x3" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="user" editable="false" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label id="Label" font="$x1" text="Prenom:" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="3" />
+                        <TextField fx:id="email" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label id="Label" font="$x1" text="Email:" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="4" />
+                        <TextField fx:id="phone" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label id="Label" font="$x1" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets top="8.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label id="Label" font="$x1" text="Etablissement" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets left="28.0" top="3.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <CheckBox id="" fx:id="subscribed1" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font size="16.0" fx:id="x21" />
+                           </font>
+                        </CheckBox>
+                        <TextField fx:id="phone1" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label id="Label" text="Role:" GridPane.rowIndex="7">
+                           <font>
+                              <Font size="20.0" fx:id="x11" />
+                           </font>
+                        </Label>
+                        <CheckBox id="" fx:id="subscribed11" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font size="16.0" fx:id="x211" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="160.0" />
+                           </GridPane.margin>
+                        </CheckBox>
+                        <Label id="Label" contentDisplay="CENTER" text="Client" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font size="20.0" fx:id="x13" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="190.0" top="3.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label id="Label" text="Password Confirm:" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="20.0" fx:id="x12" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="phone11" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="60.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Button layoutX="249.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
+      <Button layoutX="433.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
+   </children>
 </AnchorPane>
