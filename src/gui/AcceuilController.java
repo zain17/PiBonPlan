@@ -1,4 +1,4 @@
-package gui.GestionProfil;
+package gui;
 
 
 import javafx.fxml.Initializable;

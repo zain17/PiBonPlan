@@ -1,4 +1,4 @@
-package gui.GestionProfil;
+package gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FormUserController implements Initializable{
+public class RegisterController implements Initializable{
     private Main application;
     public void processLogout(ActionEvent actionEvent) {
 
