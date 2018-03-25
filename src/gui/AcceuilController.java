@@ -12,7 +12,7 @@ public class AcceuilController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LoginController login = (LoginController) replaceSceneContent("/login.fxml");
+       // LoginController login = (LoginController) replaceSceneContent("/login.fxml");
     }
 
 

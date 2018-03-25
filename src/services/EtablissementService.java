@@ -108,7 +108,7 @@ public class EtablissementService implements IServiceEtablissement{
         ArrayList<Etablissement> etablissements = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT (id,nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,est_active,type,description,photo) FROM Etablissement");
+            rs = ste.executeQuery("SELECT * from etablissement");
             etablissements = new ArrayList<>();
 		while (rs.next()){
 		
@@ -116,7 +116,8 @@ public class EtablissementService implements IServiceEtablissement{
 		}
         } catch (SQLException ex) {
             Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
-        }		
+        }
+
 		return etablissements;
     }
 

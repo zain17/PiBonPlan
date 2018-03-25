@@ -7,6 +7,8 @@ package entites;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -15,6 +17,15 @@ import java.util.Date;
  */
 
 public class Utilisateur   {
+    private static final Map<String, Utilisateur> USERS = new HashMap<String, Utilisateur>();
+    public static Utilisateur of(String userIdentity) {
+        Utilisateur user = USERS.get(userIdentity);
+        if (user == null) {
+            user = new Utilisateur(userIdentity);
+            USERS.put(userIdentity, user);
+        }
+        return user;
+    }
     private Integer id;
     private String photoProfil;
     private Double langitude;
@@ -35,6 +46,9 @@ public class Utilisateur   {
     private ArrayList<Experience> experiences;
 
     public Utilisateur() {
+    }
+    public Utilisateur(String userIdentity ) {
+        this.id=id;
     }
 
     public Utilisateur(Integer id, String photoProfil, Double langitude, Double latitude, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String salt, String password, String roles) {
@@ -271,4 +285,6 @@ public class Utilisateur   {
                 ", experiences=" + experiences +
                 '}';
     }
+
+
 }

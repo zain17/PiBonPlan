@@ -6,13 +6,8 @@
 package pibonplan;
 
 
-import entites.Etablissement;
-import entites.Utilisateur;
 import services.EtablissementService;
-import services.UtilisateurService;
-
-import java.util.ArrayList;
-import java.util.List;
+import services.IServiceEtablissement;
 
 /**
  *
@@ -24,7 +19,8 @@ public class PiBonPlan {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        EtablissementService etablissementService= new EtablissementService();
+        System.out.println(etablissementService.selectAll());
     }
     
 }
