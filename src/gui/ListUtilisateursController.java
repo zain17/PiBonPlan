@@ -1,10 +1,15 @@
 package gui;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class ListUtilisateursController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ListUtilisateursController implements Initializable{
     
     @FXML private TableView tabview_users;
     @FXML private TableColumn tabcol_id;
@@ -17,4 +22,10 @@ public class ListUtilisateursController {
     @FXML private TableColumn tabcol_email;
     @FXML private TableColumn tabcol_lastlogin;
     @FXML private TableColumn tabcol_role;
+
+    private Application main;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }
