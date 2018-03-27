@@ -11,14 +11,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="577.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListUtilisateursController">
    <children>
-      <TableView layoutX="14.0" layoutY="89.0" prefHeight="460.0" prefWidth="227.0">
+      <TableView fx:id="tab" layoutX="14.0" layoutY="98.0" prefHeight="451.0" prefWidth="215.0">
         <columns>
-            <TableColumn prefWidth="75.0" text="Id" />
-          <TableColumn prefWidth="75.0" text="Nom" />
-          <TableColumn prefWidth="75.0" text="Prenom" />
+            <TableColumn prefWidth="33.0" text="Id" />
+            <TableColumn prefWidth="33.0" text="Photo" />
+            <TableColumn prefWidth="36.0" text="Langitude" />
+            <TableColumn prefWidth="36.0" text="Latitude" />
+            <TableColumn prefWidth="36.0" text="idEtab" />
+            <TableColumn prefWidth="37.0" text="Nom" />
+            <TableColumn prefWidth="56.0" text="Prenom" />
+            <TableColumn minWidth="0.0" prefWidth="18.0" text="Email" />
+            <TableColumn minWidth="0.0" prefWidth="18.0" text="LastLogin" />
+            <TableColumn prefWidth="18.0" text="Role" />
+            <TableColumn prefWidth="36.0" text="Prenom" />
         </columns>
       </TableView>
       <ImageView fitHeight="196.0" fitWidth="255.0" layoutX="524.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
@@ -26,11 +33,52 @@
       <Label layoutX="376.0" layoutY="146.0" text="Expériences:" />
       <TabPane layoutX="270.0" layoutY="250.0" prefHeight="294.0" prefWidth="509.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Experiences" />
-          <Tab text="Revues" />
-            <Tab text="Evenements" />
-            <Tab text="Reservations" />
-            <Tab text="Recommendations" />
+          <Tab text="Experiences">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content></Tab>
+          <Tab text="Revues">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content></Tab>
+            <Tab text="Evenements">
+               <content>
+                  <TableView layoutX="251.0" layoutY="18.0" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="85.0" text="C1" />
+                      <TableColumn prefWidth="65.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content>
+            </Tab>
+            <Tab text="Reservations">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content></Tab>
+            <Tab text="Recommendations">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content></Tab>
         </tabs>
       </TabPane>
       <Button layoutX="692.0" layoutY="225.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="26.0" text="A" />
