@@ -22,10 +22,14 @@ public class ListUtilisateursController implements Initializable{
     @FXML private TableColumn tabcol_email;
     @FXML private TableColumn tabcol_lastlogin;
     @FXML private TableColumn tabcol_role;
+    
+    private Main app;
 
-    private Application main;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+    public void setApp(Main app) {
+        this.app = app;
     }
 }
