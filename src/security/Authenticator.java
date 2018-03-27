@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Authenticator {
+    // TODO: Warning - el class hadi ta5ou les utlisateurs inscrits, el password bech tkoun crypter bel algorithm SHA512 kif el FOSUSER
     private static final Map<String, String> USERS = new HashMap<String, String>();
     static {
         //Ici USERS contient tous les utilisateurs de la base de donnés le login et le password (en clair et static pour le moment)
