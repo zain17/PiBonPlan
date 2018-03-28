@@ -171,6 +171,13 @@ public class UtilisateurService implements IServiceUtilisateur{
         count = getCount(iduser, count, "SELECT count(*) FROM Experience where utilisateur_id=");
         return count;
     }
+    @Override
+    public int  nbEvents(int iduser) {
+        int count=0;
+        ResultSet rs;
+        count = getCount(iduser, count, "SELECT count(*) FROM Evenements where utilisateur_id=");
+        return count;
+    }
     //Méthode pour compter l'apparition d'une id dans un tableau
     private int getCount(int iduser, int count, String s) {
         ResultSet rs;
@@ -184,4 +191,6 @@ public class UtilisateurService implements IServiceUtilisateur{
         }
         return count;
     }
+
+
 }

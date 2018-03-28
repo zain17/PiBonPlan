@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
 
+    @FXML private Label lbl_nbevents;
     @FXML private Label lbl_nbrevues;
     @FXML private Label lbl_nbexp;
     @FXML private Label lbl_role;
@@ -34,6 +35,8 @@ public class ListUtilisateursController implements Initializable{
     @FXML private TableColumn<Utilisateur,String> tabcol_email;
     @FXML private TableColumn<Utilisateur,Date> tabcol_lastlogin;
     @FXML private TableColumn<Utilisateur,String>  tabcol_role;
+    private Utilisateur selectedUser  = new Utilisateur();
+
 
     private Main app;
 
@@ -52,6 +55,12 @@ public class ListUtilisateursController implements Initializable{
         tabcol_lastlogin.setCellValueFactory(new PropertyValueFactory<>("lastLogin"));
         tabcol_role.setCellValueFactory(new PropertyValueFactory<>("roles"));
         tabview_users.setItems(utilisateurs);
+        tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
+        selectedUser=tabview_users.getSelectionModel().getSelectedItem();
+
+        lbl_nbexp.setText(lbl_nbexp.getText()+userServ.nbExperiences(selectedUser.getId()));
+        lbl_nbrevues.setText(lbl_nbrevues.getText()+userServ.nbRevues(selectedUser.getId()));
+        lbl_nbevents.setText(lbl_nbevents.getText()+userServ.nbEvents(selectedUser.getId()));
     }
     public void setApp(Main app) {
         this.app = app;

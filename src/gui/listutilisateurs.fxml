@@ -28,8 +28,8 @@
         </columns>
       </TableView>
       <ImageView fitHeight="196.0" fitWidth="255.0" layoutX="524.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lbl_nbrevues" layoutX="284.0" layoutY="146.0" text="Revues:" />
-      <Label fx:id="lbl_nbexp" layoutX="376.0" layoutY="146.0" text="Expériences:" />
+      <Label fx:id="lbl_nbrevues" layoutX="250.0" layoutY="155.0" text="Revues:" />
+      <Label fx:id="lbl_nbexp" layoutX="338.0" layoutY="155.0" text="Expériences:" />
       <TabPane layoutX="270.0" layoutY="250.0" prefHeight="294.0" prefWidth="509.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Experiences">
@@ -88,5 +88,6 @@
       <ComboBox layoutX="87.0" layoutY="45.0" prefHeight="25.0" prefWidth="153.0" />
       <TextField layoutX="89.0" layoutY="10.0" prefHeight="25.0" prefWidth="153.0" />
       <Label fx:id="lbl_role" layoutX="284.0" layoutY="101.0" text="Role:" />
+      <Label fx:id="lbl_nbevents" layoutX="430.0" layoutY="155.0" text="Evenements:" />
    </children>
 </AnchorPane>
