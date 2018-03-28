@@ -6,6 +6,7 @@
 package services;
 
 import Util.DataSource;
+import Util.SerializedPhpParser;
 import entites.Utilisateur;
 
 import java.sql.*;
@@ -110,8 +111,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             rs = ste.executeQuery("SELECT * FROM Utilisateur");
             users = new ArrayList<>();
             while (rs.next()){
-
-                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),rs.getString(16)));
+                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16))));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,12 +127,18 @@ public class UtilisateurService implements IServiceUtilisateur{
         try {
             ste=connection.createStatement();
             rs=ste.executeQuery("SELECT * from Utilisateur where id="+id);
-            if(rs.next())
-                user=new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),rs.getString(16));
+            if(rs.next()) {
+                user = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getShort(10), rs.getString(11), rs.getString(12), rs.getDate(13), rs.getString(14), rs.getDate(15), serializePHPtoJava(rs.getString(16)));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
         return user;
+    }
+
+    @Override
+    public ArrayList<Utilisateur> selectByName(String nom) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -142,16 +148,6 @@ public class UtilisateurService implements IServiceUtilisateur{
 
     @Override
     public int lastIdAdded() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Utilisateur> selectByName(String nom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Utilisateur> selectByEmail(String email) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -190,6 +186,19 @@ public class UtilisateurService implements IServiceUtilisateur{
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return count;
+    }
+    public String serializePHPtoJava(String role_role){
+        //System.out.println(role_role);
+        String strResultat ="";
+        if (role_role!=null) {
+            SerializedPhpParser serializedPhpParser = new SerializedPhpParser(role_role);
+            Object result = serializedPhpParser.parse();
+            //System.out.println(result);
+             strResultat = result.toString();
+
+            strResultat= strResultat.substring(3,strResultat.length()-1);
+        }
+        return strResultat;
     }
 
 

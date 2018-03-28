@@ -280,11 +280,12 @@ public class Utilisateur   {
                 ", salt='" + salt + '\'' +
                 ", password='" + password + '\'' +
                 ", lastLogin=" + lastLogin +
+                ", confirmationToken='" + confirmationToken + '\'' +
+                ", passwordRequestedAt=" + passwordRequestedAt +
+                ", roles='" + roles + '\'' +
                 ", revues=" + revues +
                 ", etablissement=" + etablissement +
                 ", experiences=" + experiences +
-                '}';
+                '}'+"\n";
     }
-
-
 }

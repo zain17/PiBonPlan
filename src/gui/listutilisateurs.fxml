@@ -49,7 +49,8 @@
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
-               </content></Tab>
+               </content>
+          </Tab>
             <Tab text="Evenements">
                <content>
                   <TableView layoutX="251.0" layoutY="18.0" prefHeight="200.0" prefWidth="200.0">

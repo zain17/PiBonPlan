@@ -60,15 +60,21 @@ public class ListUtilisateursController implements Initializable{
     public void setApp(Main app) {
         this.app = app;
     }
-    public void loadTab(){
 
-    }
     public void loadUserNodes(){
         tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
         selectedUser=tabview_users.getSelectionModel().getSelectedItem();
         lbl_nbexp.setText(lbl_nbexp.getText()+userServ.nbExperiences(selectedUser.getId()));
         lbl_nbrevues.setText(lbl_nbrevues.getText()+userServ.nbRevues(selectedUser.getId()));
-        lbl_nbevents.setText(lbl_nbevents.getText()+userServ.nbEvents(selectedUser.getId()));
+        
+       // TODO: Warning We must add Relation One User can do Many Events
+       // lbl_nbevents.setText(lbl_nbevents.getText()+userServ.nbEvents(selectedUser.getId()));//
+    }
+    public void loadTab(){
+        // TODO: Warning - EAGER fetch related items of the selected USER
+    }
+    public void rechercheParNom(){
+        // TODO: Warning - refrech table view with the input in the textfiled
     }
 
 }

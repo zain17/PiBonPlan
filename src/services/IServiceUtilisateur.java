@@ -16,7 +16,6 @@ import java.util.List;
  */
 public interface IServiceUtilisateur extends IService<Utilisateur>{
     public ArrayList<Utilisateur> selectByName(String nom);
-    public ArrayList<Utilisateur> selectByEmail(String email);
     public int nbRevues(int iduser);
     public int nbExperiences(int iduser);
     public int  nbEvents(int iduser);

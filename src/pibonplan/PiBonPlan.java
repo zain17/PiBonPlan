@@ -23,7 +23,8 @@ public class PiBonPlan {
 //        EtablissementService etablissementService= new EtablissementService();
 //        System.out.println(etablissementService.selectAll());
         UtilisateurService usrserv= new UtilisateurService();
-        System.out.println(usrserv.nbRevues(12));
+        //System.out.println(usrserv.nbRevues(12));
+        System.out.println(usrserv.selectAll());
     }
     
 }
