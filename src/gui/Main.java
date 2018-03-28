@@ -24,7 +24,8 @@ public class Main extends Application {
             stage.setTitle("Bienvenue à Bon Plan");
             stage.setMinWidth(300);
             stage.setMinHeight(500);
-            gotoListEtablissement();
+            //gotoListEtablissement();
+            gotoListUser();
             primaryStage.show();
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,6 +66,15 @@ public class Main extends Application {
             ListetablissementController lstEtabC = (ListetablissementController) replaceSceneContent("/gui/listetablissement.fxml");
             //Charger le controlleur dans l'application
             lstEtabC.setApp(this);
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void gotoListUser(){
+        try {
+            ListUtilisateursController lstUserC = (ListUtilisateursController) replaceSceneContent("/gui/listutilisateurs.fxml");
+            //Charger le controlleur dans l'application
+            lstUserC.setApp(this);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

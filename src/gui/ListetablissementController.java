@@ -46,7 +46,7 @@ public class ListetablissementController implements Initializable {
         tablecol_horraire.setCellValueFactory(new PropertyValueFactory<>("Horraire"));
         tablecol_long.setCellValueFactory(new PropertyValueFactory<>("Longitude"));
         tablecol_lati.setCellValueFactory(new PropertyValueFactory<>("Latitude"));
-        tablecol_active.setCellValueFactory(new PropertyValueFactory<>("Active"));
+        tablecol_active.setCellValueFactory(new PropertyValueFactory<>("estActive"));
         tablecol_photo.setCellValueFactory(new PropertyValueFactory<>("Photo"));
         tableView_listetab.setItems(etablissements);
 

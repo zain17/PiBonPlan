@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import services.UtilisateurService;
 
 import java.net.URL;
@@ -16,7 +17,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
-    
+
+    @FXML private AnchorPane anchorpane_global;
     @FXML private TableView<Utilisateur> tabview_users;
     @FXML private TableColumn<Utilisateur,Integer> tabcol_id;
     @FXML private TableColumn<Utilisateur,String> tabcol_photo;
