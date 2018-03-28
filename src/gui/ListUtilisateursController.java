@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,6 +19,9 @@ import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
 
+    @FXML private Label lbl_nbrevues;
+    @FXML private Label lbl_nbexp;
+    @FXML private Label lbl_role;
     @FXML private AnchorPane anchorpane_global;
     @FXML private TableView<Utilisateur> tabview_users;
     @FXML private TableColumn<Utilisateur,Integer> tabcol_id;

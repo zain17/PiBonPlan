@@ -6,6 +6,8 @@
 package services;
 
 import entites.Utilisateur;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +15,8 @@ import java.util.List;
  * @author ASUS
  */
 public interface IServiceUtilisateur extends IService<Utilisateur>{
-    public List<Utilisateur> selectByName(String nom);
-    public List<Utilisateur> selectByEmail(String email);
+    public ArrayList<Utilisateur> selectByName(String nom);
+    public ArrayList<Utilisateur> selectByEmail(String email);
+    public int nbRevues(int iduser);
+    public int nbExperiences(int iduser);
 }
