@@ -36,13 +36,13 @@ public class ListUtilisateursController implements Initializable{
     @FXML private TableColumn<Utilisateur,Date> tabcol_lastlogin;
     @FXML private TableColumn<Utilisateur,String>  tabcol_role;
     private Utilisateur selectedUser  = new Utilisateur();
-
+    UtilisateurService userServ=new UtilisateurService();
 
     private Main app;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        UtilisateurService userServ=new UtilisateurService();
+
         ObservableList<Utilisateur> utilisateurs= FXCollections.observableList(userServ.selectAll());
         tabcol_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tabcol_photo.setCellValueFactory(new PropertyValueFactory<>("photoProfil"));
@@ -55,14 +55,20 @@ public class ListUtilisateursController implements Initializable{
         tabcol_lastlogin.setCellValueFactory(new PropertyValueFactory<>("lastLogin"));
         tabcol_role.setCellValueFactory(new PropertyValueFactory<>("roles"));
         tabview_users.setItems(utilisateurs);
-        tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
-        selectedUser=tabview_users.getSelectionModel().getSelectedItem();
-
-        lbl_nbexp.setText(lbl_nbexp.getText()+userServ.nbExperiences(selectedUser.getId()));
-        lbl_nbrevues.setText(lbl_nbrevues.getText()+userServ.nbRevues(selectedUser.getId()));
-        lbl_nbevents.setText(lbl_nbevents.getText()+userServ.nbEvents(selectedUser.getId()));
+        loadUserNodes();
     }
     public void setApp(Main app) {
         this.app = app;
     }
+    public void loadTab(){
+
+    }
+    public void loadUserNodes(){
+        tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
+        selectedUser=tabview_users.getSelectionModel().getSelectedItem();
+        lbl_nbexp.setText(lbl_nbexp.getText()+userServ.nbExperiences(selectedUser.getId()));
+        lbl_nbrevues.setText(lbl_nbrevues.getText()+userServ.nbRevues(selectedUser.getId()));
+        lbl_nbevents.setText(lbl_nbevents.getText()+userServ.nbEvents(selectedUser.getId()));
+    }
+
 }
