@@ -146,15 +146,42 @@ public class UtilisateurService implements IServiceUtilisateur{
     }
 
     @Override
-    public List<Utilisateur> selectByName(String nom) {
+    public ArrayList<Utilisateur> selectByName(String nom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Utilisateur> selectByEmail(String email) {
+    public ArrayList<Utilisateur> selectByEmail(String email) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public int nbRevues(int iduser) {
+        int count=0;
+            ResultSet rs;
+        count = getCount(iduser, count, "SELECT count(*) FROM Revue where utilisateur_id=");
+        return count;
+    }
 
 
+    @Override
+    public int nbExperiences(int iduser) {
+        int count=0;
+        ResultSet rs;
+        count = getCount(iduser, count, "SELECT count(*) FROM Experience where utilisateur_id=");
+        return count;
+    }
+    //Méthode pour compter l'apparition d'une id dans un tableau
+    private int getCount(int iduser, int count, String s) {
+        ResultSet rs;
+        try {
+            rs = ste.executeQuery(s +iduser);
+            while (rs.next()){
+                count=rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
 }
