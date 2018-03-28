@@ -13,18 +13,18 @@
 
 <AnchorPane fx:id="anchorpane_global" prefHeight="577.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListUtilisateursController">
    <children>
-      <TableView fx:id="tabview_users" layoutX="14.0" layoutY="98.0" prefHeight="451.0" prefWidth="215.0">
+      <TableView fx:id="tabview_users" layoutX="14.0" layoutY="98.0" prefHeight="451.0" prefWidth="228.0">
         <columns>
-            <TableColumn fx:id="tabcol_id" prefWidth="33.0" text="Id" />
-            <TableColumn fx:id="tabcol_photo" prefWidth="33.0" text="Photo" />
-            <TableColumn fx:id="tabcol_lang" prefWidth="36.0" text="Langitude" />
-            <TableColumn fx:id="tabcol_lat" prefWidth="36.0" text="Latitude" />
-            <TableColumn fx:id="tabcol_idetab" prefWidth="36.0" text="idEtab" />
-            <TableColumn fx:id="tabcol_nom" prefWidth="37.0" text="Nom" />
-            <TableColumn fx:id="tabcol_prenom" prefWidth="56.0" text="Prenom" />
-            <TableColumn fx:id="tabcol_email" minWidth="0.0" prefWidth="18.0" text="Email" />
-            <TableColumn fx:id="tabcol_lastlogin" minWidth="0.0" prefWidth="18.0" text="LastLogin" />
-            <TableColumn fx:id="tabcol_role" prefWidth="18.0" text="Role" />
+            <TableColumn fx:id="tabcol_id" prefWidth="33.0" text="Id" visible="false" />
+            <TableColumn fx:id="tabcol_photo" prefWidth="33.0" text="Photo" visible="false" />
+            <TableColumn fx:id="tabcol_lang" prefWidth="36.0" text="Langitude" visible="false" />
+            <TableColumn fx:id="tabcol_lat" prefWidth="36.0" text="Latitude" visible="false" />
+            <TableColumn fx:id="tabcol_idetab" prefWidth="36.0" text="idEtab" visible="false" />
+            <TableColumn fx:id="tabcol_nom" prefWidth="107.0" text="Nom" />
+            <TableColumn fx:id="tabcol_prenom" minWidth="6.0" prefWidth="120.0" text="Prenom" />
+            <TableColumn fx:id="tabcol_email" minWidth="0.0" prefWidth="18.0" text="Email" visible="false" />
+            <TableColumn fx:id="tabcol_lastlogin" minWidth="0.0" prefWidth="18.0" text="LastLogin" visible="false" />
+            <TableColumn fx:id="tabcol_role" prefWidth="18.0" text="Role" visible="false" />
         </columns>
       </TableView>
       <ImageView fitHeight="196.0" fitWidth="255.0" layoutX="524.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
