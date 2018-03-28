@@ -66,7 +66,10 @@ public class ListUtilisateursController implements Initializable{
         selectedUser=tabview_users.getSelectionModel().getSelectedItem();
         lbl_nbexp.setText(lbl_nbexp.getText()+userServ.nbExperiences(selectedUser.getId()));
         lbl_nbrevues.setText(lbl_nbrevues.getText()+userServ.nbRevues(selectedUser.getId()));
-        
+        if(selectedUser.getRoles().equals("ROLE_ETABLISSEMENT"))
+        lbl_role.setText("Proprietaire de l'établissement X(redirection)");
+        if(selectedUser.getRoles().equals("ROLE_CLIENT"))
+            lbl_role.setText("Visiteur");
        // TODO: Warning We must add Relation One User can do Many Events
        // lbl_nbevents.setText(lbl_nbevents.getText()+userServ.nbEvents(selectedUser.getId()));//
     }
