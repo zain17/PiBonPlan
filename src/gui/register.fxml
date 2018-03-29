@@ -26,17 +26,17 @@
                               <Font size="20.0" fx:id="x1" />
                            </font>
                         </Label>
-                        <Hyperlink fx:id="logout" onAction="#processLogout" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                        <Hyperlink fx:id="link_login" onAction="#processLogout" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                         <Label id="Label" font="$x1" text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets top="2.0" fx:id="x3" />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="user" editable="false" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txt_user" editable="false" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label id="Label" font="$x1" text="Prenom:" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="3" />
-                        <TextField fx:id="email" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txt_prenom" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label id="Label" font="$x1" text="Email:" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="4" />
-                        <TextField fx:id="phone" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="txt_email" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label id="Label" font="$x1" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.valignment="TOP">
                            <GridPane.margin>
                               <Insets top="8.0" />
@@ -47,18 +47,18 @@
                               <Insets left="28.0" top="3.0" />
                            </GridPane.margin>
                         </Label>
-                        <CheckBox id="" fx:id="subscribed1" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <CheckBox id="" fx:id="chb_roleetab" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <font>
                               <Font size="16.0" fx:id="x21" />
                            </font>
                         </CheckBox>
-                        <TextField fx:id="phone1" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="txt_password" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label id="Label" text="Role:" GridPane.rowIndex="7">
                            <font>
                               <Font size="20.0" fx:id="x11" />
                            </font>
                         </Label>
-                        <CheckBox id="" fx:id="subscribed11" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <CheckBox id="" fx:id="chb_roleclient" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <font>
                               <Font size="16.0" fx:id="x211" />
                            </font>
@@ -79,7 +79,7 @@
                               <Font size="20.0" fx:id="x12" />
                            </font>
                         </Label>
-                        <TextField fx:id="phone11" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="txt_confirmpass" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="NEVER" minWidth="60.0" />
@@ -101,7 +101,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Button layoutX="249.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
-      <Button layoutX="433.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
+      <Button fx:id="btn_enregistrer" layoutX="249.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
+      <Button fx:id="btn_annuler" layoutX="433.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
    </children>
 </AnchorPane>

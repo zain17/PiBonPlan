@@ -4,6 +4,7 @@ import entites.Utilisateur;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -55,6 +56,14 @@ public class ListUtilisateursController implements Initializable{
         tabcol_lastlogin.setCellValueFactory(new PropertyValueFactory<>("lastLogin"));
         tabcol_role.setCellValueFactory(new PropertyValueFactory<>("roles"));
         tabview_users.setItems(utilisateurs);
+        tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
+        selectedUser=tabview_users.getSelectionModel().getSelectedItem();
+    }
+    @FXML
+    public void onSelectedChange(ActionEvent event){
+        lbl_nbexp.setText("Expériences:");
+        lbl_nbrevues.setText("Révues:");
+        lbl_role.setText("");
         loadUserNodes();
     }
     public void setApp(Main app) {
@@ -62,8 +71,6 @@ public class ListUtilisateursController implements Initializable{
     }
 
     public void loadUserNodes(){
-        tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
-        selectedUser=tabview_users.getSelectionModel().getSelectedItem();
         lbl_nbexp.setText(lbl_nbexp.getText()+userServ.nbExperiences(selectedUser.getId()));
         lbl_nbrevues.setText(lbl_nbrevues.getText()+userServ.nbRevues(selectedUser.getId()));
         if(selectedUser.getRoles().equals("ROLE_ETABLISSEMENT"))

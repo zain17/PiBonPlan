@@ -23,9 +23,11 @@ public class Utilisateur   {
         if (user == null) {
             user = new Utilisateur(userIdentity);
             USERS.put(userIdentity, user);
+
         }
         return user;
     }
+
     private Integer id;
     private String photoProfil;
     private Double langitude;

@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="anchorpane_global" prefHeight="577.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListUtilisateursController">
    <children>
-      <TableView fx:id="tabview_users" layoutX="14.0" layoutY="98.0" prefHeight="451.0" prefWidth="228.0">
+      <TableView fx:id="tabview_users" layoutX="14.0" layoutY="98.0" onMouseClicked="#onSelectedChange" prefHeight="451.0" prefWidth="228.0">
         <columns>
             <TableColumn fx:id="tabcol_id" prefWidth="33.0" text="Id" visible="false" />
             <TableColumn fx:id="tabcol_photo" prefWidth="33.0" text="Photo" visible="false" />
