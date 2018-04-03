@@ -24,7 +24,7 @@ public class UtilisateurService implements IServiceUtilisateur{
     private Connection connection = DataSource.getInstance().getCon();
     private Statement ste=null;
     public UtilisateurService() {
-        System.out.println("Utilisateur Service");
+
         try {
             ste=DataSource.getInstance().getCon().createStatement();
             System.out.println("Connection établie");

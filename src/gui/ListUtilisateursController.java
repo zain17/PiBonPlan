@@ -1,16 +1,15 @@
 package gui;
 
 import entites.Utilisateur;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import services.UtilisateurService;
 
@@ -19,7 +18,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
-
     @FXML private Label lbl_nbevents;
     @FXML private Label lbl_nbrevues;
     @FXML private Label lbl_nbexp;
@@ -37,13 +35,12 @@ public class ListUtilisateursController implements Initializable{
     @FXML private TableColumn<Utilisateur,Date> tabcol_lastlogin;
     @FXML private TableColumn<Utilisateur,String>  tabcol_role;
     private Utilisateur selectedUser  = new Utilisateur();
-    UtilisateurService userServ=new UtilisateurService();
+    private UtilisateurService userServ=new UtilisateurService();
 
     private Main app;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         ObservableList<Utilisateur> utilisateurs= FXCollections.observableList(userServ.selectAll());
         tabcol_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tabcol_photo.setCellValueFactory(new PropertyValueFactory<>("photoProfil"));
@@ -57,10 +54,11 @@ public class ListUtilisateursController implements Initializable{
         tabcol_role.setCellValueFactory(new PropertyValueFactory<>("roles"));
         tabview_users.setItems(utilisateurs);
         tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
-        selectedUser=tabview_users.getSelectionModel().getSelectedItem();
+
     }
     @FXML
-    public void onSelectedChange(ActionEvent event){
+    public void onSelectedChange(MouseEvent event){
+        selectedUser=tabview_users.getSelectionModel().getSelectedItem();
         lbl_nbexp.setText("Expériences:");
         lbl_nbrevues.setText("Révues:");
         lbl_role.setText("");
@@ -71,6 +69,8 @@ public class ListUtilisateursController implements Initializable{
     }
 
     public void loadUserNodes(){
+        System.out.println("Load new information of  the selected user");
+        System.out.println(selectedUser);
         lbl_nbexp.setText(lbl_nbexp.getText()+userServ.nbExperiences(selectedUser.getId()));
         lbl_nbrevues.setText(lbl_nbrevues.getText()+userServ.nbRevues(selectedUser.getId()));
         if(selectedUser.getRoles().equals("ROLE_ETABLISSEMENT"))
@@ -86,5 +86,4 @@ public class ListUtilisateursController implements Initializable{
     public void rechercheParNom(){
         // TODO: Warning - refrech table view with the input in the textfiled
     }
-
 }
