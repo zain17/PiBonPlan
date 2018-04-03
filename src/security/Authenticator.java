@@ -12,7 +12,7 @@ public class Authenticator {
         USERS.put("Housseme", "houssemspassword");
         USERS.put("Karim", "karimspassword");
         USERS.put("Ouni", "Ounispassword");
-        USERS.put("Zain", "myPassword");
+        USERS.put("zain", "0000");
         USERS.put("admin", "admin");
     }
     public static boolean validate(String user, String password ){

@@ -23,7 +23,7 @@ public class DataSource {
         
 	private DataSource() {          
 		try {                    
-                    Class.forName("com.mysql.jdbc.Driver");                     
+                    Class.forName("com.mysql.jdbc.Driver");
                     con = DriverManager.getConnection(url, user, password);
                     }
                     catch (ClassNotFoundException e)  {

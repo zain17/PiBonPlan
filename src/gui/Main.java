@@ -42,7 +42,8 @@ public class Main extends Application {
     public boolean userLogging(String userIdentity, String password){
         if (Authenticator.validate(userIdentity, password)) {
             loggedUser = Utilisateur.of(userIdentity);
-            gotoProfile();
+            gotoListUser();
+            //gotoProfile();
             return true;
         } else {
             return false;
