@@ -20,19 +20,22 @@ public class DataSource {
         //BE Carful password is empty here
 	public String password = "";
 	public String url = "jdbc:mysql://localhost:3306/bonplan";
-        
-	private DataSource() {          
-		try {                    
-                    Class.forName("com.mysql.jdbc.Driver");
-                    con = DriverManager.getConnection(url, user, password);
-                    }
-                    catch (ClassNotFoundException e)  {
-                        System.out.println("Connexion Failed ClassNotFoundException");
-                    }
-                    catch (SQLException e)  {
-			Logger.getLogger("DataSource loading error");
-                        System.out.println("Connexion Failed SQLException");
-                    }
+	private DataSource() {
+
+		try {
+                    if (System.getProperty("os.name").equals("Linux") )
+                        Class.forName("org.mariadb.jdbc.Driver");
+                    else
+                        Class.forName("org.mysql.jdbc.Driver");
+
+                   con = DriverManager.getConnection(url, user, password);
+                   System.out.println("Connexion établie!");
+		}
+
+		catch (SQLException e)  {
+			Logger.getLogger("DataSource: "+ e.getMessage());
+
+		}
                 
 	}
 
