@@ -6,47 +6,24 @@
 package entites;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  *
  * @author aminos
  */
-@Entity
-@Table(name = "commentaire_b")
-@NamedQueries({
-	@NamedQuery(name = "CommentaireB.findAll", query = "SELECT c FROM CommentaireB c")})
+
 public class CommentaireB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Basic(optional = false)
-        @Column(name = "id")
+
 	private Integer id;
-	@Basic(optional = false)
-        @Lob
-        @Column(name = "text")
+
 	private String text;
-	@Basic(optional = false)
-        @Column(name = "auteurn")
+
 	private String auteurn;
-	@Basic(optional = false)
-        @Column(name = "auteur")
+
 	private int auteur;
-	@JoinColumn(name = "article_id", referencedColumnName = "id")
-        @ManyToOne
+
 	private Article articleId;
 
 	public CommentaireB() {
