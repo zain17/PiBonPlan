@@ -7,46 +7,25 @@ package entites;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+
 
 /**
  *
  * @author aminos
  */
-@Entity
-@Table(name = "tag")
-@NamedQueries({
-	@NamedQuery(name = "Tag.findAll", query = "SELECT t FROM Tag t")})
+
 public class Tag implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Basic(optional = false)
-        @Column(name = "id")
+	
 	private Integer id;
-	@Basic(optional = false)
-        @Column(name = "name")
+	
 	private String name;
-	@JoinTable(name = "tag_tag", joinColumns = {
-        	@JoinColumn(name = "tag_target", referencedColumnName = "id")}, inverseJoinColumns = {
-        	@JoinColumn(name = "tag_source", referencedColumnName = "id")})
-        @ManyToMany
+	
 	private Collection<Tag> tagCollection;
-	@ManyToMany(mappedBy = "tagCollection")
+	
 	private Collection<Tag> tagCollection1;
-	@ManyToMany(mappedBy = "tagCollection")
+	
 	private Collection<Article> articleCollection;
 
 	public Tag() {

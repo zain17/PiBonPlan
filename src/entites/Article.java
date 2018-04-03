@@ -8,70 +8,33 @@ package entites;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author aminos
  */
-@Entity
-@Table(name = "article")
-@NamedQueries({
-	@NamedQuery(name = "Article.findAll", query = "SELECT a FROM Article_1 a")})
+
 public class Article implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Basic(optional = false)
-        @Column(name = "id")
+	
 	private Integer id;
-	@Basic(optional = false)
-        @Lob
-        @Column(name = "texte")
+
 	private String texte;
-	@Basic(optional = false)
-        @Column(name = "vote")
+
 	private int vote;
-	@Basic(optional = false)
-        @Lob
-        @Column(name = "titre")
+
 	private String titre;
-	@Basic(optional = false)
-        @Column(name = "auteur")
+
 	private int auteur;
-	@Basic(optional = false)
-        @Column(name = "auteurn")
+
 	private String auteurn;
-	@Basic(optional = false)
-        @Column(name = "updated")
-        @Temporal(TemporalType.TIMESTAMP)
+
 	private Date updated;
-	@Basic(optional = false)
-        @Column(name = "created")
-        @Temporal(TemporalType.TIMESTAMP)
+
 	private Date created;
-	@JoinTable(name = "article_tag", joinColumns = {
-        	@JoinColumn(name = "article_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        	@JoinColumn(name = "tag_id", referencedColumnName = "id")})
-        @ManyToMany
+
 	private Collection<Tag> tagCollection;
-	@OneToMany(mappedBy = "articleId")
 	private Collection<CommentaireB> commentaireBCollection;
 
 	public Article() {
