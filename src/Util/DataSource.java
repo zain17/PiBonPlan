@@ -14,29 +14,35 @@ import java.util.logging.Logger;
  * @author AmineAmri
  */
 public class DataSource {
-        private static DataSource data;
+    private static DataSource data;
 	private Connection con;
 	public String user = "root";
-        //BE Carful password is empty here
 	public String password = "";
 	public String url = "jdbc:mysql://localhost:3306/bonplan";
-        
-	private DataSource() {          
-		try {                    
-                    Class.forName("com.mysql.jdbc.Driver");                     
-                    con = DriverManager.getConnection(url, user, password);
-                    }
-                    catch (ClassNotFoundException e)  {
-                        System.out.println("Connexion Failed ClassNotFoundException");
-                    }
-                    catch (SQLException e)  {
-			Logger.getLogger("DataSource loading error");
-                        System.out.println("Connexion Failed SQLException");
-                    }
+	private DataSource() {
+
+		try {
+                    if (System.getProperty("os.name").equals("Linux") )
+                        Class.forName("org.mariadb.jdbc.Driver");
+                    else
+                        Class.forName("org.mysql.jdbc.Driver");
+                    
+                   con = DriverManager.getConnection(url, user, password);
+                   System.out.println("Connexion établie!");
+		}
+             
+		catch (SQLException e)  {
+			Logger.getLogger("DataSource: "+ e.getMessage());
+			
+		}
                 
+                catch (ClassNotFoundException e) {
+                    Logger.getLogger("DataSource: " + e.getLocalizedMessage());
+                }
 	}
 
-	public static DataSource getInstance() {		
+	public static DataSource getInstance() {
+		
 		if (data == null)
 			data = new DataSource();
 		return data;
