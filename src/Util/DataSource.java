@@ -35,9 +35,11 @@ public class DataSource {
 		catch (SQLException e)  {
 			Logger.getLogger("DataSource: "+ e.getMessage());
 
-		}
-                
-	}
+		} catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 	public static DataSource getInstance() {		
 		if (data == null)
