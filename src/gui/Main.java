@@ -24,8 +24,9 @@ public class Main extends Application {
             stage.setTitle("Bienvenue à Bon Plan");
             stage.setMinWidth(300);
             stage.setMinHeight(500);
+            gotoLogin();
             //gotoListEtablissement();
-            gotoListUser();
+            //gotoListUser();
             primaryStage.show();
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

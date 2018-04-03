@@ -69,14 +69,10 @@ public class LoginController extends AnchorPane implements Initializable {
         errorMessage.setText("");
         userId.setPromptText("login");
         password.setPromptText("password");
-        
     }
-    
     
     public void processLogin(ActionEvent event) {
         if (application == null){
-            // We are running in isolated FXML, possibly in Scene Builder.
-            // NO-OP.
             errorMessage.setText("Loading... " + userId.getText());
         } else {
             if (!application.userLogging(userId.getText(), password.getText())){

@@ -17,7 +17,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
   <children>
     <AnchorPane id="anchorPane2" prefHeight="463.0" prefWidth="382.0" style="-fx-background-color: white;" styleClass="top-segment" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -27,7 +27,7 @@
               <children>
                 <Label id="label1" layoutX="5.0" layoutY="65.0" style="-fx-background-color: green;" styleClass="profileTitle" text="Username" textOverrun="CLIP">
                            <textFill>
-                              <RadialGradient centerX="0.46111111111111114" centerY="0.4285714285714286" cycleMethod="REFLECT" focusAngle="108.43" focusDistance="-0.09302325581395343" radius="1.0">
+                              <RadialGradient centerX="0.46111111111111114" centerY="0.4285714285714286" cycleMethod="REFLECT" focusAngle="108.43" focusDistance="-0.09302325581395343">
                                  <stops>
                                     <Stop color="BLACK" />
                                     <Stop color="#000000a6" offset="1.0" />
