@@ -30,7 +30,7 @@
             <TableColumn fx:id="tabcol_role" prefWidth="18.0" text="Role" visible="false" />
         </columns>
       </TableView>
-      <ImageView fitHeight="196.0" fitWidth="255.0" layoutX="524.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="121.0" fitWidth="255.0" layoutX="524.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lbl_nbrevues" layoutX="250.0" layoutY="155.0" text="Revues:" />
       <Label fx:id="lbl_nbexp" layoutX="338.0" layoutY="155.0" text="Expériences:" />
       <TabPane layoutX="270.0" layoutY="250.0" prefHeight="294.0" prefWidth="509.0" tabClosingPolicy="UNAVAILABLE">
