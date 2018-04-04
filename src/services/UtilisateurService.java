@@ -108,7 +108,7 @@ public class UtilisateurService implements IServiceUtilisateur{
         try {
 
             //rs = ste.executeQuery("SELECT (id,photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password) FROM `utilisateur`");
-            rs = ste.executeQuery("SELECT * FROM Utilisateur");
+            rs = ste.executeQuery("SELECT * FROM utilisateur");
             users = new ArrayList<>();
             while (rs.next()){
                 users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16))));
