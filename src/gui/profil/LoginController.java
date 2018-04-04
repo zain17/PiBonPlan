@@ -36,6 +36,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import gui.Main;
+import gui.Routers.RoutingGestionProfil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,6 +51,7 @@ import javafx.scene.layout.AnchorPane;
  */
 public class LoginController extends AnchorPane implements Initializable {
 
+    @FXML Button btn_register;
     @FXML
     TextField userId;
     @FXML
@@ -59,11 +61,11 @@ public class LoginController extends AnchorPane implements Initializable {
     @FXML
     Label errorMessage;
 
-    private Main application;
+    private Main main;
     
     
     public void setApp(Main application){
-        this.application = application;
+        this.main = application;
     }
     
     @Override
@@ -74,12 +76,18 @@ public class LoginController extends AnchorPane implements Initializable {
     }
     
     public void processLogin(ActionEvent event) {
-        if (application == null){
+        if (main == null){
             errorMessage.setText("Loading... " + userId.getText());
         } else {
-            if (!application.userLogging(userId.getText(), password.getText())){
+            if (!main.userLogging(userId.getText(), password.getText())){
                 errorMessage.setText("Login/Mot de passe incorrect");
             }
         }
+    }
+
+    public void onClickRegister(ActionEvent actionEvent) {
+        System.out.println(this.main != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.main);
+        rgP.gotoRegistration();
     }
 }

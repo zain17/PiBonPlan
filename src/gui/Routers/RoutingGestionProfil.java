@@ -1,10 +1,7 @@
 package gui.Routers;
 
 import gui.*;
-import gui.profil.ListUtilisateursController;
-import gui.profil.ListetablissementController;
-import gui.profil.LoginController;
-import gui.profil.ProfileController;
+import gui.profil.*;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +41,14 @@ public class RoutingGestionProfil {
     public void gotoLogin() {
         try {
             LoginController login = (LoginController) main.replaceSceneContent("/gui/profil/login.fxml");
+            login.setApp(main);
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void gotoRegistration() {
+        try {
+            RegisterController login = (RegisterController) main.replaceSceneContent("/gui/profil/register.fxml");
             login.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

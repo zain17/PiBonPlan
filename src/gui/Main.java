@@ -29,8 +29,6 @@ public class Main extends Application {
             stage.setMinWidth(300);
             stage.setMinHeight(500);
             routGP.gotoLogin();
-            //gotoListEtablissement();
-            //gotoListUser();
             primaryStage.show();
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

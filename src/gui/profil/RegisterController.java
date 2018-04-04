@@ -24,7 +24,7 @@ public class RegisterController implements Initializable{
     @FXML private TextField txt_confirmpass;
     @FXML private Button btn_enregistrer;
     @FXML private Button btn_annuler;
-    private Main application;
+    private Main app;
 
     public void processLogout(ActionEvent actionEvent) {
 
@@ -33,5 +33,13 @@ public class RegisterController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public Main getApp() {
+        return app;
+    }
+
+    public void setApp(Main main) {
+        this.app = main;
     }
 }

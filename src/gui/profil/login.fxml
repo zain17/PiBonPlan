@@ -54,7 +54,7 @@
                   <Insets />
                </opaqueInsets>
         </VBox>
-            <Button layoutY="1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" styleClass="text-field" text="S'inscrire" />
+            <Button fx:id="btn_register" layoutY="1.0" mnemonicParsing="false" onAction="#onClickRegister" prefHeight="31.0" prefWidth="111.0" styleClass="text-field" text="S'inscrire" />
       </children>
     </AnchorPane>
     <Button id="button1" fx:id="login" defaultButton="true" layoutX="55.0" layoutY="492.0" onAction="#processLogin" prefHeight="51.0" prefWidth="273.0" style="-fx-background-color: green;" text="Login" textFill="#12da16" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="54.0" />
