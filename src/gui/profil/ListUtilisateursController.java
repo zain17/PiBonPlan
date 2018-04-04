@@ -1,6 +1,7 @@
-package gui;
+package gui.profil;
 
 import entites.Utilisateur;
+import gui.Main;
 import gui.Routers.RoutingBlog;
 import gui.Routers.RoutingGestionProfil;
 import javafx.collections.FXCollections;

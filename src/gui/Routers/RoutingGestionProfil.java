@@ -1,6 +1,10 @@
 package gui.Routers;
 
 import gui.*;
+import gui.profil.ListUtilisateursController;
+import gui.profil.ListetablissementController;
+import gui.profil.LoginController;
+import gui.profil.ProfileController;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +17,7 @@ public class RoutingGestionProfil {
 
     public void gotoProfile() {
         try {
-            ProfileController profile = (ProfileController) main.replaceSceneContent("gui/profile.fxml");
+            ProfileController profile = (ProfileController) main.replaceSceneContent("/gui/profil/profile.fxml");
             profile.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -21,7 +25,7 @@ public class RoutingGestionProfil {
     }
     public void gotoListEtablissement(){
         try {
-            ListetablissementController lstEtabC = (ListetablissementController)main.replaceSceneContent("/gui/listetablissement.fxml");
+            ListetablissementController lstEtabC = (ListetablissementController)main.replaceSceneContent("/gui/profil/listetablissement.fxml");
             //Charger le controlleur dans l'application
             lstEtabC.setApp(main);
         } catch (Exception ex) {
@@ -30,7 +34,7 @@ public class RoutingGestionProfil {
     }
     public void gotoListUser(){
         try {
-            ListUtilisateursController lstUserC = (ListUtilisateursController) main.replaceSceneContent("/gui/listutilisateurs.fxml");
+            ListUtilisateursController lstUserC = (ListUtilisateursController) main.replaceSceneContent("/gui/profil/listutilisateurs.fxml");
             //Charger le controlleur dans l'application
             lstUserC.setApp(main);
         } catch (Exception ex) {
@@ -39,7 +43,7 @@ public class RoutingGestionProfil {
     }
     public void gotoLogin() {
         try {
-            LoginController login = (LoginController) main.replaceSceneContent("login.fxml");
+            LoginController login = (LoginController) main.replaceSceneContent("/gui/profil/login.fxml");
             login.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,5 +1,6 @@
-package gui;
+package gui.profil;
 
+import gui.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

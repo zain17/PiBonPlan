@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="602.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProfileController">
+<AnchorPane prefHeight="602.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfileController">
     <children>
         <ImageView fx:id="image_photoprofil" fitHeight="196.0" fitWidth="236.0" layoutX="30.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
             <image>

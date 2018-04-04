@@ -1,4 +1,6 @@
-package gui;
+package gui.profil;
+
+import gui.Main;
 
 public class ProfileController {
     private Main app;

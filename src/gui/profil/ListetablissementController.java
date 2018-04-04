@@ -1,6 +1,7 @@
-package gui;
+package gui.profil;
 
 import entites.Etablissement;
+import gui.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
