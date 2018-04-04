@@ -1,6 +1,7 @@
 package gui;
 
 import entites.Utilisateur;
+import gui.Routers.RoutingBlog;
 import gui.Routers.RoutingGestionProfil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,6 +46,8 @@ public class ListUtilisateursController implements Initializable{
     private UtilisateurService userServ=new UtilisateurService();
 
     private Main app;
+    @FXML
+    private Menu menu_file1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,10 +68,10 @@ public class ListUtilisateursController implements Initializable{
 
     }
     @FXML
-    public void onMenuBlogChoose(Event event) throws Exception {
+    public void onMenuBlogChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
-        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
-        rgP.gotoProfile();
+        RoutingBlog rgB = new RoutingBlog(this.app);
+        rgB.gotoAjouterArticle();
     }
     @FXML
     public void onMenuEventsChoose(Event event) throws Exception {
@@ -76,19 +79,16 @@ public class ListUtilisateursController implements Initializable{
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
         rgP.gotoProfile();
     }
-    @FXML
     public void onMenuEtablissementsChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
         rgP.gotoProfile();
     }
-    @FXML
     public void onMenuReserverEventChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
         rgP.gotoProfile();
     }
-    @FXML
     public void onMenuReserverTicketChoose(ActionEvent event) throws Exception {
 
     }
