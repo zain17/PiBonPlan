@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package gui.blog;
 
+import gui.Main;
 import gui.Routers.RoutingGestionProfil;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.HTMLEditor;
 
 /**
  * FXML Controller class
@@ -25,6 +27,8 @@ public class AjouterArticleController implements Initializable {
      private Main app;
     @FXML
     private Button sauvegarderArticle;
+    @FXML
+    private HTMLEditor texteArticle;
 
     /**
      * Initializes the controller class.
@@ -36,8 +40,11 @@ public class AjouterArticleController implements Initializable {
 
     @FXML
     private void enregistrerArticle(ActionEvent event) {
+        String texte = texteArticle.getHtmlText();
+        System.out.println(texte);
         RoutingGestionProfil rGP = new RoutingGestionProfil(this.app);
         rGP.gotoProfile();
+      
     }
     
        
