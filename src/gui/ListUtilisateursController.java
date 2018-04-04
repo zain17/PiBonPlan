@@ -90,9 +90,7 @@ public class ListUtilisateursController implements Initializable{
     }
     @FXML
     public void onMenuReserverTicketChoose(ActionEvent event) throws Exception {
-        System.out.println(this.app != null);
-        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
-        rgP.gotoProfile();
+
     }
     @FXML
     public void onSelectedChange(MouseEvent event){
@@ -126,6 +124,8 @@ public class ListUtilisateursController implements Initializable{
     }
 
     public void onClick_nomUser(ActionEvent actionEvent) {
-
+        System.out.println(this.app != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
+        rgP.gotoProfile();
     }
 }
