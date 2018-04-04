@@ -1,13 +1,14 @@
 package gui;
 
 import entites.Utilisateur;
+import gui.Routers.RoutingGestionProfil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +19,10 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
+    @FXML private MenuItem menu_Reserver_Place;
+    @FXML private MenuItem menu_blogArticles;
+    @FXML private MenuBar menuBar;
+    @FXML private Menu menu_file;
     @FXML private Label lbl_nbevents;
     @FXML private Label lbl_nbrevues;
     @FXML private Label lbl_nbexp;
@@ -55,6 +60,37 @@ public class ListUtilisateursController implements Initializable{
         tabview_users.setItems(utilisateurs);
         tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
 
+
+    }
+    @FXML
+    public void onMenuBlogChoose(Event event) throws Exception {
+        System.out.println(this.app != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
+        rgP.gotoProfile();
+    }
+    @FXML
+    public void onMenuEventsChoose(Event event) throws Exception {
+        System.out.println(this.app != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
+        rgP.gotoProfile();
+    }
+    @FXML
+    public void onMenuEtablissementsChoose(ActionEvent event) throws Exception {
+        System.out.println(this.app != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
+        rgP.gotoProfile();
+    }
+    @FXML
+    public void onMenuReserverEventChoose(ActionEvent event) throws Exception {
+        System.out.println(this.app != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
+        rgP.gotoProfile();
+    }
+    @FXML
+    public void onMenuReserverTicketChoose(ActionEvent event) throws Exception {
+        System.out.println(this.app != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
+        rgP.gotoProfile();
     }
     @FXML
     public void onSelectedChange(MouseEvent event){
