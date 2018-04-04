@@ -25,7 +25,7 @@ public class DataSource {
                     if (System.getProperty("os.name").equals("Linux") )
                         Class.forName("org.mariadb.jdbc.Driver");
                     else
-                        Class.forName("com.mysql.jdbc.Driver");                     
+                        Class.forName("com.mysql.jdbc.Driver");
                     
                    con = DriverManager.getConnection(url, user, password);
                    System.out.println("Connexion établie!");

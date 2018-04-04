@@ -1,6 +1,7 @@
 package gui;
 
 import entites.Utilisateur;
+import gui.Routers.RoutingGestionProfil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 public class Main extends Application {
     private Stage stage;
     private Utilisateur loggedUser;
+    private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
@@ -24,7 +26,7 @@ public class Main extends Application {
             stage.setTitle("Bienvenue à Bon Plan");
             stage.setMinWidth(300);
             stage.setMinHeight(500);
-            gotoLogin();
+            routGP.gotoLogin();
             //gotoListEtablissement();
             //gotoListUser();
             primaryStage.show();
@@ -42,7 +44,8 @@ public class Main extends Application {
     public boolean userLogging(String userIdentity, String password){
         if (Authenticator.validate(userIdentity, password)) {
             loggedUser = Utilisateur.of(userIdentity);
-            gotoProfile();
+            routGP.gotoListUser();
+            //gotoProfile();
             return true;
         } else {
             return false;
@@ -51,45 +54,12 @@ public class Main extends Application {
 
     void userLogout(){
         loggedUser = null;
-        gotoLogin();
+        routGP.gotoLogin();
     }
 
-    private void gotoProfile() {
-        try {
-            ProfileController profile = (ProfileController) replaceSceneContent("profile.fxml");
-            profile.setApp(this);
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    private void gotoListEtablissement(){
-        try {
-            ListetablissementController lstEtabC = (ListetablissementController) replaceSceneContent("/gui/listetablissement.fxml");
-            //Charger le controlleur dans l'application
-            lstEtabC.setApp(this);
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    private void gotoListUser(){
-        try {
-            ListUtilisateursController lstUserC = (ListUtilisateursController) replaceSceneContent("/gui/listutilisateurs.fxml");
-            //Charger le controlleur dans l'application
-            lstUserC.setApp(this);
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    private void gotoLogin() {
-        try {
-            LoginController login = (LoginController) replaceSceneContent("login.fxml");
-            login.setApp(this);
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
-    private Initializable replaceSceneContent(String fxml) throws Exception {
+
+    public Initializable replaceSceneContent(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         InputStream in = Main.class.getResourceAsStream(fxml);
         loader.setBuilderFactory(new JavaFXBuilderFactory());
