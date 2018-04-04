@@ -44,8 +44,8 @@ public class Article implements Serializable {
 		this.id = id;
 	}
 
-	public Article(Integer id, String texte, int vote, String titre, int auteur, String auteurn, Date updated, Date created) {
-		this.id = id;
+	public Article(String texte, int vote, String titre, int auteur, String auteurn, Date updated, Date created) {
+		
 		this.texte = texte;
 		this.vote = vote;
 		this.titre = titre;

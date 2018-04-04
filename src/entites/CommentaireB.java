@@ -24,7 +24,7 @@ public class CommentaireB implements Serializable {
 
 	private int auteur;
 
-	private Article articleId;
+	private Article article;
 
 	public CommentaireB() {
 	}
@@ -33,8 +33,7 @@ public class CommentaireB implements Serializable {
 		this.id = id;
 	}
 
-	public CommentaireB(Integer id, String text, String auteurn, int auteur) {
-		this.id = id;
+	public CommentaireB(String text, String auteurn, int auteur) {
 		this.text = text;
 		this.auteurn = auteurn;
 		this.auteur = auteur;
@@ -73,11 +72,11 @@ public class CommentaireB implements Serializable {
 	}
 
 	public Article getArticle() {
-		return articleId;
+		return article;
 	}
 
 	public void setArticle(Article articleId) {
-		this.articleId = articleId;
+		this.article = articleId;
 	}
 
 	@Override
