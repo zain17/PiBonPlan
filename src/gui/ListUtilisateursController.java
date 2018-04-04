@@ -19,10 +19,12 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
+    @FXML private MenuItem menu_profil;
+    @FXML private MenuItem menu_deconnecte;
+    @FXML private MenuButton menubtn_NomUser;
     @FXML private MenuItem menu_Reserver_Place;
     @FXML private MenuItem menu_blogArticles;
     @FXML private MenuBar menuBar;
-    @FXML private Menu menu_file;
     @FXML private Label lbl_nbevents;
     @FXML private Label lbl_nbrevues;
     @FXML private Label lbl_nbexp;
@@ -121,5 +123,9 @@ public class ListUtilisateursController implements Initializable{
     }
     public void rechercheParNom(){
         // TODO: Warning - refrech table view with the input in the textfiled
+    }
+
+    public void onClick_nomUser(ActionEvent actionEvent) {
+
     }
 }

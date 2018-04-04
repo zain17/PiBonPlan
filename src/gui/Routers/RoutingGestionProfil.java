@@ -7,14 +7,13 @@ import java.util.logging.Logger;
 
 public class RoutingGestionProfil {
     private Main main;
-
     public RoutingGestionProfil(Main main) {
         this.main = main;
     }
 
     public void gotoProfile() {
         try {
-            ProfileController profile = (ProfileController) main.replaceSceneContent("profile.fxml");
+            ProfileController profile = (ProfileController) main.replaceSceneContent("gui/profile.fxml");
             profile.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
