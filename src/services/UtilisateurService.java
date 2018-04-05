@@ -89,12 +89,13 @@ public class UtilisateurService implements IServiceUtilisateur{
             pre.setString(6, user.getEmail());
             pre.setString(7, user.getEmailCanonical());
             pre.setShort(8, user.getEnabled());
-            //Some thing wrong : exp in database {username:Zain,salt:'0Yi3LZANkpfMsnhbn2XHA00cASLCGVfWc7TJWNOjXsk')
             pre.setString(9, user.getSalt());
-            //Some thing wrong : exp in database {username:Zain,passowrd:'qXSSYBDXWQA/ZcbPVOoBKzd5oshTkQP0Q3AeEilnh47Mcrc9uUZYDYwmRJiMKc7nRPvRx6k0eEJrc6HrrDvZtQ==')
             pre.setString(10, user.getPassword());
-            //This Role must be unserialised(the equivalent unserialize method in php)
-            pre.setString(11,user.getRoles());
+            if(user.getRoles().equals("ROLE_CIENT"))
+            pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
+            else
+            if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
+                pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
             pre.setInt(12,id);
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,12 +189,10 @@ public class UtilisateurService implements IServiceUtilisateur{
         return count;
     }
     public String serializePHPtoJava(String role_role){
-        //System.out.println(role_role);
         String strResultat ="";
         if (role_role!=null) {
             SerializedPhpParser serializedPhpParser = new SerializedPhpParser(role_role);
             Object result = serializedPhpParser.parse();
-            //System.out.println(result);
              strResultat = result.toString();
 
             strResultat= strResultat.substring(3,strResultat.length()-1);
