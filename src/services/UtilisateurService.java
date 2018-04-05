@@ -40,20 +40,26 @@ public class UtilisateurService implements IServiceUtilisateur{
         try {
             pre = connection.prepareStatement(req);
             pre.setString(1,user.getPhotoProfil());
-            pre.setDouble(2,user.getLangitude());
-            pre.setDouble(3,user.getLatitude());
+            if(user.getLangitude()==null)
+                pre.setDouble(2,Types.NULL);
+            else
+                pre.setDouble(2,user.getLangitude());
+            if(user.getLatitude()==null)
+                pre.setDouble(2,Types.NULL);
+            else
+                pre.setDouble(3,user.getLatitude());
             pre.setString(4, user.getUsername());
             pre.setString(5, user.getUsernameCanonical());
             pre.setString(6, user.getEmail());
             pre.setString(7, user.getEmailCanonical());
             pre.setShort(8, user.getEnabled());
-            //Some thing wrong : exp in database {username:Zain,salt:'0Yi3LZANkpfMsnhbn2XHA00cASLCGVfWc7TJWNOjXsk')
             pre.setString(9, user.getSalt());
-            //Some thing wrong : exp in database {username:Zain,passowrd:'qXSSYBDXWQA/ZcbPVOoBKzd5oshTkQP0Q3AeEilnh47Mcrc9uUZYDYwmRJiMKc7nRPvRx6k0eEJrc6HrrDvZtQ==')
             pre.setString(10, user.getPassword());
-            //This Role must be unserialised(the equivalent unserialize method in php)
-            pre.setString(11,user.getRoles());
-
+            if(user.getRoles().equals("ROLE_CIENT"))
+                pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
+            else
+            if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
+                pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
             pre.executeUpdate();
             System.out.println("Utilisateur ajouter avec succés");
         } catch (SQLException ex) {
