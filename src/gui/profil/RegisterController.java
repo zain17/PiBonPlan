@@ -62,8 +62,8 @@ public class RegisterController implements Initializable{
             }
             userToSave.setEnabled(new Short("1"));
             usserv.ajouter(userToSave);
-        }
-        System.out.println("DATA not valid");
+        }else
+            System.out.println("DATA not valid");
     }
 
     public void onAnnuller(ActionEvent actionEvent) {
