@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main extends Application {
-    private Stage stage;
+    public Stage stage;
     private Utilisateur loggedUser;
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);
@@ -46,7 +46,10 @@ public class Main extends Application {
     public boolean userLogging(String userIdentity, String password){
         if (Authenticator.validate(userIdentity, password)) {
             loggedUser = Utilisateur.of(userIdentity);
-            routGP.gotoListUser();
+            this.stage.setHeight(700);
+            this.stage.setWidth(1000);
+            routeBlog.gotoContainer();
+            //routGP.gotoListUser();
             //gotoProfile();
             return true;
         } else {
@@ -72,7 +75,7 @@ public class Main extends Application {
         } finally {
             in.close();
         }
-        Scene scene = new Scene(page, 800, 600);
+        Scene scene = new Scene(page, 1000, 700);
         stage.setScene(scene);
         stage.sizeToScene();
         return (Initializable) loader.getController();

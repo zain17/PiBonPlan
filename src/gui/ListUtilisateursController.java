@@ -71,7 +71,7 @@ public class ListUtilisateursController implements Initializable{
     public void onMenuBlogChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
         RoutingBlog rgB = new RoutingBlog(this.app);
-        rgB.gotoAjouterArticle();
+        rgB.gotoContainer();
     }
     @FXML
     public void onMenuEventsChoose(Event event) throws Exception {

@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 5, 2018, 7:16:21 PM
+    Author     : aminos
+*/
+
+/*
+ * **********
+ * BUTTONS
+ * **********
+ * 
+ */
+.button {
+	-fx-background-color : -gray,-gray,-gray,-gray;
+}
+.button:default{
+	-fx-background-color : -color;
+}
+.button:cancel{
+	-fx-background-color : -abort;
+}
+
+.button:focused {
+	-fx-color : -darkGray;
+   -fx-background-color : -darkGray;
+   -fx-focus-color : -darkGray;
+}
+.button:hover {
+    -fx-color: -darkGray;
+	-fx-inner-border : -darkGray;
+	-fx-body-color : -darkGray;
+}
+
+.button:armed {
+    -fx-color: -white;
+}
+
+
+.toggle-button{
+	-fx-background-color : -gray;
+}
+
+.toggle-button:selected{
+	-fx-background-color : -darkGray;
+}
