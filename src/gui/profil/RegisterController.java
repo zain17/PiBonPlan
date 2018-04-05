@@ -5,10 +5,7 @@ import gui.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,8 +17,8 @@ public class RegisterController implements Initializable{
     @FXML private TextField txt_user;
     @FXML private TextField txt_prenom;
     @FXML private TextField txt_email;
-    @FXML private TextField txt_password;
-    @FXML private TextField txt_confirmpass;
+    @FXML private PasswordField txt_password;
+    @FXML private PasswordField txt_confirmpass;
     @FXML private Button btn_enregistrer;
     @FXML private Button btn_annuler;
     private Main app;
@@ -46,7 +43,8 @@ public class RegisterController implements Initializable{
             userToSave.setUsername(txt_prenom.getText());
             userToSave.setUsernameCanonical(txt_user.getText());
             userToSave.setEmail(txt_email.getText());
-//            userToSave.set
+            String pwclair=txt_confirmpass.getText();
+            //userToSave
         }
     }
 
@@ -55,6 +53,7 @@ public class RegisterController implements Initializable{
     }
     public boolean dataValidation(){
         // TODO: Warning - Cette méthode valide tous les donnés taper dans le formulaire (aucun passage sauf qu'elle return true)
+        if(txt_password.getText()!=txt_confirmpass.getText())return false;
         return true;
     }
 }

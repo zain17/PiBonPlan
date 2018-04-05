@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -32,7 +33,7 @@
                               <Insets top="2.0" fx:id="x3" />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="txt_user" editable="false" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txt_user" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label id="Label" font="$x1" text="Prenom:" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="3" />
                         <TextField fx:id="txt_prenom" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label id="Label" font="$x1" text="Email:" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="4" />
@@ -52,7 +53,6 @@
                               <Font size="16.0" fx:id="x21" />
                            </font>
                         </CheckBox>
-                        <TextField fx:id="txt_password" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label id="Label" text="Role:" GridPane.rowIndex="7">
                            <font>
                               <Font size="20.0" fx:id="x11" />
@@ -79,7 +79,8 @@
                               <Font size="20.0" fx:id="x12" />
                            </font>
                         </Label>
-                        <TextField fx:id="txt_confirmpass" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <PasswordField fx:id="txt_password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <PasswordField fx:id="txt_confirmpass" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="NEVER" minWidth="60.0" />

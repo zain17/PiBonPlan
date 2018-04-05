@@ -26,8 +26,8 @@ public class Main extends Application {
         try {
             stage = primaryStage;
             stage.setTitle("Bienvenue à Bon Plan");
-            stage.setMinWidth(300);
-            stage.setMinHeight(500);
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
             routGP.gotoLogin();
             primaryStage.show();
         } catch (Exception ex) {
