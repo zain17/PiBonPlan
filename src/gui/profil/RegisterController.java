@@ -2,6 +2,7 @@ package gui.profil;
 
 import entites.Utilisateur;
 import gui.Main;
+import gui.Routers.RoutingGestionProfil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,7 +29,7 @@ public class RegisterController implements Initializable{
     private Main app;
     private Utilisateur userToSave;
     private UtilisateurService usserv=new UtilisateurService();
-
+    private RoutingGestionProfil routGP=new RoutingGestionProfil(app);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,14 +65,19 @@ public class RegisterController implements Initializable{
             usserv.ajouter(userToSave);
         }else
             System.out.println("DATA not valid");
+        app.userLogout();
     }
 
     public void onAnnuller(ActionEvent actionEvent) {
-
+        routGP = new RoutingGestionProfil(this.app);
+        routGP.gotoLogin();
     }
     public boolean dataValidation(){
         // TODO: Warning - Cette méthode valide tous les donnés taper dans le formulaire (aucun passage sauf qu'elle return true)
         //if(txt_password.getText()!=txt_confirmpass.getText())return false;
         return true;
+    }
+    public void onClickRegister(ActionEvent actionEvent) {
+
     }
 }

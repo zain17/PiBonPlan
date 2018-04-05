@@ -52,13 +52,10 @@ public class Main extends Application {
         }
     }
 
-    void userLogout(){
+    public void userLogout(){
         loggedUser = null;
         routGP.gotoLogin();
     }
-
-
-
     public Initializable replaceSceneContent(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         InputStream in = Main.class.getResourceAsStream(fxml);

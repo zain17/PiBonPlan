@@ -86,7 +86,6 @@ public class LoginController extends AnchorPane implements Initializable {
     }
 
     public void onClickRegister(ActionEvent actionEvent) {
-        System.out.println(this.main != null);
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.main);
         rgP.gotoRegistration();
     }

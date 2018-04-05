@@ -23,7 +23,6 @@ public class RoutingGestionProfil {
     public void gotoListEtablissement(){
         try {
             ListetablissementController lstEtabC = (ListetablissementController)main.replaceSceneContent("/gui/profil/listetablissement.fxml");
-            //Charger le controlleur dans l'application
             lstEtabC.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -32,7 +31,6 @@ public class RoutingGestionProfil {
     public void gotoListUser(){
         try {
             ListUtilisateursController lstUserC = (ListUtilisateursController) main.replaceSceneContent("/gui/profil/listutilisateurs.fxml");
-            //Charger le controlleur dans l'application
             lstUserC.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
