@@ -32,7 +32,9 @@
 package gui.profil;
 
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 import gui.Main;
@@ -75,7 +77,7 @@ public class LoginController extends AnchorPane implements Initializable {
         password.setPromptText("password");
     }
     
-    public void processLogin(ActionEvent event) {
+    public void processLogin(ActionEvent event) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         if (main == null){
             errorMessage.setText("Loading... " + userId.getText());
         } else {
