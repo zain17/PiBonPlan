@@ -51,12 +51,12 @@ public class Main extends Application {
     public boolean userLogging(String userIdentity, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         UtilisateurService us=new UtilisateurService();
         if (Authenticator.validate(userIdentity, password)) {
+
             System.out.println(userIdentity);
-            loggedUser = us.selectOne(userIdentity);
+            loggedUser = Authenticator.getCurrentAuth();
             System.out.println(loggedUser);
             routGP=new RoutingGestionProfil(this);
             routGP.gotoListUser();
-            //gotoProfile();
             return true;
         } else {
             return false;

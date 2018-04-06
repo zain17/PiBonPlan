@@ -33,6 +33,7 @@ package gui.profil;
 
 
 import java.io.UnsupportedEncodingException;
+import java.net.Authenticator;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
