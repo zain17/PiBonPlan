@@ -25,6 +25,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 
 /**
@@ -120,8 +121,11 @@ public class FOSJCrypt {
         return diff == 0;
     }
 
-    public static boolean checkPassword(String saltReadyNotgenerated, String s) {
-//Cette méthode prend salt de la base de donnés, genere un hash fur et à mesure, prend hash de la base de donnés et vérifie si ils sont égaux ou pas
-        return false;
+    public static boolean checkPassword(String originalHashStr, String passwordClair,String salt) throws
+            NoSuchAlgorithmException, UnsupportedEncodingException {
+        byte[] comparisonHash = encodePassword(passwordClair, salt);
+        System.out.println();
+        byte[] originalHash = Base64.getDecoder().decode(originalHashStr.getBytes("UTF-8"));
+        return comparePasswords(originalHash, comparisonHash);
     }
 }
