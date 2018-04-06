@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="624.0" prefWidth="753.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Events.AjoutEvents">
+   <children>
+      <JFXTextField layoutX="91.0" layoutY="112.0" prefHeight="25.0" prefWidth="175.0" promptText="Nom Evenement" />
+      <JFXTextField layoutX="94.0" layoutY="168.0" prefHeight="25.0" prefWidth="175.0" promptText="Lieu" text="Adresse" />
+      <Text layoutX="181.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout Evenement" textAlignment="CENTER" wrappingWidth="410.451171875">
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Text>
+      <JFXDatePicker layoutX="96.0" layoutY="239.0" />
+      <JFXDatePicker layoutX="398.0" layoutY="239.0" />
+      <JFXTextField layoutX="104.0" layoutY="329.0" prefHeight="25.0" prefWidth="175.0" promptText="Nom Evenement" text="Telephone" />
+      <JFXTextArea layoutX="385.0" layoutY="311.0" prefHeight="89.0" prefWidth="327.0" promptText="Petite Description ..." />
+      <JFXToolbar layoutX="386.0" layoutY="108.0" prefHeight="16.0" prefWidth="118.0" />
+      <JFXTextField layoutX="386.0" layoutY="111.0" prefHeight="26.0" prefWidth="162.0" promptText="Nom Evenement" text="Nombre de place " />
+      <JFXTextField layoutX="386.0" layoutY="168.0" prefHeight="26.0" prefWidth="162.0" promptText="Nom Evenement" text="Prix" />
+      <Button defaultButton="true" layoutX="440.0" layoutY="448.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="175.0" text="Image">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <JFXComboBox layoutX="133.0" layoutY="434.0" prefHeight="28.0" prefWidth="175.0" promptText="Type" />
+      <Button layoutX="308.0" layoutY="561.0" mnemonicParsing="false" text="Save" />
+   </children>
+   <cursor>
+      <Cursor fx:constant="NE_RESIZE" />
+   </cursor>
+</AnchorPane>
