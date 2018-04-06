@@ -5,6 +5,8 @@
  */
 package gui;
 
+import gui.blog.AjouterArticleController;
+import gui.blog.RechercherArticleController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +34,12 @@ public class ContainerController implements Initializable {
     private Button etab;
     @FXML
     private Button blog;
+    @FXML
+    private Button blogRech;
+    @FXML
+    private Button articles;
+    @FXML
+    private Button articles1;
 
     /**
      * Initializes the controller class.
@@ -44,7 +52,25 @@ public class ContainerController implements Initializable {
     @FXML
     private void blogAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/ajouterArticle.fxml"));
+
         AnchorPane parentContent = fxmlLoader.load();
+        AjouterArticleController c = (AjouterArticleController) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+        
+    }
+    
+        @FXML
+    private void blogArction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/rechercherArticle.fxml"));
+
+        AnchorPane parentContent = fxmlLoader.load();
+            RechercherArticleController c = (RechercherArticleController) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
         
     }
@@ -53,7 +79,7 @@ public class ContainerController implements Initializable {
         contained.getChildren().clear();
         contained.getChildren().add((Node) node);
 
-        FadeTransition ft = new FadeTransition(Duration.millis(1500));
+        FadeTransition ft = new FadeTransition(Duration.millis(1000));
         ft.setNode(node);
         ft.setFromValue(0.1);
         ft.setToValue(1);
@@ -64,6 +90,11 @@ public class ContainerController implements Initializable {
 
     public void setApp(Main main) {
         this.app = main;
+    }
+
+    @FXML
+    private void blogLsArtcAction(ActionEvent event) {
+        
     }
     
 }

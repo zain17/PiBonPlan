@@ -7,6 +7,7 @@ package services;
 
 import entites.Article;
 import entites.CommentaireB;
+import entites.Tag;
 import java.util.Date;
 
 /**
@@ -19,11 +20,18 @@ public class BlogServicesTests {
         ArticleService aServ = new ArticleService();
         //aServ.ajouter(art1);
         
-        CommentaireB cB = new CommentaireB("Un commentaire", "Zin", 5);
-        cB.setArticle(aServ.find(36));
-        CommentaireBService cServ = new CommentaireBService();
-        System.out.println(aServ.find(36));
-        cServ.ajouter(cB);
+        //CommentaireB cB = new CommentaireB("Un commentaire", "Zin", 5);
+        //cB.setArticle(aServ.find(36));
+        //CommentaireBService cServ = new CommentaireBService();
+        //System.out.println(aServ.find(36));
+        //cServ.ajouter(cB);
+        TagService tS = new TagService();
+        //Tag t = new Tag("");
+        //tS.ajouter(t, 36);
+        
+        //System.out.println(aServ.findByTag(t).size());
+        System.out.println(tS.find(new Tag("musique")));
+        tS.supprimer("musique");
         
     }
 }

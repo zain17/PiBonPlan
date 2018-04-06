@@ -15,35 +15,24 @@ and open the template in the editor.
  * 
  */
 .button {
-	-fx-background-color : -gray,-gray,-gray,-gray;
-}
-.button:default{
-	-fx-background-color : -color;
-}
-.button:cancel{
-	-fx-background-color : -abort;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 1em; /* 12 */
+    -fx-text-fill: black;
 }
 
 .button:focused {
-	-fx-color : -darkGray;
-   -fx-background-color : -darkGray;
-   -fx-focus-color : -darkGray;
-}
-.button:hover {
-    -fx-color: -darkGray;
-	-fx-inner-border : -darkGray;
-	-fx-body-color : -darkGray;
+    -fx-border-color: black;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
 }
 
-.button:armed {
-    -fx-color: -white;
-}
-
-
-.toggle-button{
-	-fx-background-color : -gray;
-}
-
-.toggle-button:selected{
-	-fx-background-color : -darkGray;
+.button:pressed {
+    -fx-background-color: black;
+    -fx-text-fill: white;
 }

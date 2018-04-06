@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class Main extends Application {
     public Stage stage;
-    private Utilisateur loggedUser;
+    public Utilisateur loggedUser;
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);
     @Override
@@ -48,6 +48,7 @@ public class Main extends Application {
             loggedUser = Utilisateur.of(userIdentity);
             this.stage.setHeight(700);
             this.stage.setWidth(1000);
+            this.stage.setResizable(false);
             routeBlog.gotoContainer();
             //routGP.gotoListUser();
             //gotoProfile();

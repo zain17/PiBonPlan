@@ -10,9 +10,9 @@
    <children>
       <HTMLEditor fx:id="texteArticle" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="47.0" layoutY="154.0" prefHeight="200.0" prefWidth="506.0" />
       <Label layoutX="47.0" layoutY="42.0" text="Titre" />
-      <TextField layoutX="47.0" layoutY="60.0" />
+      <TextField fx:id="titreArticle" layoutX="47.0" layoutY="60.0" />
       <Label layoutX="47.0" layoutY="95.0" text="Tags" />
-      <TextField layoutX="47.0" layoutY="113.0" />
+      <TextField fx:id="tagsTexte" layoutX="47.0" layoutY="113.0" />
       <Button fx:id="sauvegarderArticle" layoutX="457.0" layoutY="358.0" mnemonicParsing="false" onAction="#enregistrerArticle" text="Sauvegarder" />
    </children>
 </AnchorPane>

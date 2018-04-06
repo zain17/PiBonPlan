@@ -24,15 +24,14 @@ public class Tag implements Serializable {
 	
 	private Collection<Tag> tagCollection;
 	
-	private Collection<Tag> tagCollection1;
-	
 	private Collection<Article> articleCollection;
 
 	public Tag() {
 	}
 
-	public Tag(Integer id) {
-		this.id = id;
+	public Tag(String name) {
+		this.name = name;
+                
 	}
 
 	public Tag(Integer id, String name) {
@@ -62,14 +61,6 @@ public class Tag implements Serializable {
 
 	public void setTagCollection(Collection<Tag> tagCollection) {
 		this.tagCollection = tagCollection;
-	}
-
-	public Collection<Tag> getTagCollection1() {
-		return tagCollection1;
-	}
-
-	public void setTagCollection1(Collection<Tag> tagCollection1) {
-		this.tagCollection1 = tagCollection1;
 	}
 
 	public Collection<Article> getArticleCollection() {
