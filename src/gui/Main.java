@@ -20,7 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main extends Application {
-    private Stage stage;
+
+    public Stage stage;
     private Utilisateur loggedUser=new Utilisateur();
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);
@@ -52,11 +53,20 @@ public class Main extends Application {
         UtilisateurService us=new UtilisateurService();
         if (Authenticator.validate(userIdentity, password)) {
 
-            System.out.println(userIdentity);
             loggedUser = Authenticator.getCurrentAuth();
+            this.stage.setHeight(700);
+            this.stage.setWidth(1000);
+            this.stage.setResizable(false);
+            routeBlog.gotoContainer();
+            //routGP.gotoListUser();
+            //gotoProfile();
+/*
+            System.out.println(userIdentity);
+            
             System.out.println(loggedUser);
             routGP=new RoutingGestionProfil(this);
             routGP.gotoListUser();
+*/
             return true;
         } else {
             return false;
@@ -78,7 +88,7 @@ public class Main extends Application {
         } finally {
             in.close();
         }
-        Scene scene = new Scene(page, 800, 600);
+        Scene scene = new Scene(page, 1000, 700);
         stage.setScene(scene);
         stage.sizeToScene();
         return (Initializable) loader.getController();

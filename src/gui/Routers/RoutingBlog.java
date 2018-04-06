@@ -5,6 +5,7 @@
  */
 package gui.Routers;
 
+import gui.ContainerController;
 import gui.blog.AjouterArticleController;
 import gui.Main;
 import java.util.logging.Level;
@@ -25,6 +26,16 @@ public class RoutingBlog {
         try {
             System.out.println(main != null);
             AjouterArticleController ajouterArticleC = (AjouterArticleController) main.replaceSceneContent("/gui/blog/ajouterArticle.fxml");
+            ajouterArticleC.setApp(main);
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void gotoContainer() {
+        try {
+            System.out.println(main != null);
+            ContainerController ajouterArticleC = (ContainerController) main.replaceSceneContent("/gui/container.fxml");
             ajouterArticleC.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

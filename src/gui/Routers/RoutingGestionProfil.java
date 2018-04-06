@@ -30,7 +30,12 @@ public class RoutingGestionProfil {
     }
     public void gotoListUser(){
         try {
-            ListUtilisateursController lstUserC = (ListUtilisateursController) main.replaceSceneContent("/gui/profil/listutilisateurs.fxml");
+
+            ListUtilisateursController lstUserC = (ListUtilisateursController) main.replaceSceneContent("/gui/listutilisateurs.fxml");
+            //Charger le controlleur dans l'application
+            main.stage.setMinHeight(700);
+            main.stage.setMaxWidth(1000);
+
             lstUserC.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
