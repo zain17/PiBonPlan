@@ -3,7 +3,6 @@ package security;
 import entites.Utilisateur;
 import services.UtilisateurService;
 
-import javax.rmi.CORBA.Util;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -40,7 +39,6 @@ public class Authenticator {
                 users) {
             USERS.put(utilisateur.getUsername(),utilisateur);
         }
-        //USERS.forEach((key, value) -> System.out.println(key + ", " + value));
         System.out.println(USERS.size());
     }
 
