@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorpane_global" prefHeight="631.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListUtilisateursController">
+<AnchorPane fx:id="anchorpane_global" prefHeight="631.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ListUtilisateursController">
    <children>
       <TableView fx:id="tabview_users" layoutX="14.0" layoutY="140.0" onMouseClicked="#onSelectedChange" prefHeight="451.0" prefWidth="228.0">
         <columns>
@@ -30,7 +31,7 @@
             <TableColumn fx:id="tabcol_role" prefWidth="18.0" text="Role" visible="false" />
         </columns>
       </TableView>
-      <ImageView fitHeight="196.0" fitWidth="255.0" layoutX="524.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="121.0" fitWidth="255.0" layoutX="524.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lbl_nbrevues" layoutX="250.0" layoutY="155.0" text="Revues:" />
       <Label fx:id="lbl_nbexp" layoutX="338.0" layoutY="155.0" text="Expériences:" />
       <TabPane layoutX="270.0" layoutY="250.0" prefHeight="294.0" prefWidth="509.0" tabClosingPolicy="UNAVAILABLE">
@@ -92,7 +93,7 @@
                 <MenuItem mnemonicParsing="false" text="Statistiques" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Visiter">
+          <Menu fx:id="menu_visiterEtabs" mnemonicParsing="false" onAction="#onMenuEtablissementsChoose" text="Visiter">
             <items>
               <MenuItem mnemonicParsing="false" text="Restaurants" />
                   <MenuItem mnemonicParsing="false" text="Shopping" />
@@ -100,10 +101,10 @@
                   <MenuItem mnemonicParsing="false" text="Restaurants" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Reserver">
+          <Menu mnemonicParsing="false" text="Evénements">
             <items>
-              <MenuItem mnemonicParsing="false" text="Produit" />
-                  <MenuItem fx:id="menu_Reserver_Place" mnemonicParsing="false" onMenuValidation="#onMenuEventsChoose" text="Place" />
+              <MenuItem mnemonicParsing="false" text="Edit" />
+                  <MenuItem fx:id="menu_Reserver_Place" mnemonicParsing="false" onMenuValidation="#onMenuEventsChoose" text="Delete" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Blog">
@@ -120,5 +121,11 @@
             </Menu>
         </menus>
       </MenuBar>
+      <MenuButton fx:id="menubtn_NomUser" layoutX="669.0" layoutY="11.0" mnemonicParsing="false" onAction="#onClick_nomUser" text="NameLogUser">
+        <items>
+          <MenuItem fx:id="menu_profil" mnemonicParsing="false" text="Profil" />
+          <MenuItem fx:id="menu_deconnecte" mnemonicParsing="false" text="Déconnecté" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>

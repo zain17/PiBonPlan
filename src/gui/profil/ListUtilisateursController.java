@@ -1,6 +1,8 @@
-package gui;
+package gui.profil;
 
 import entites.Utilisateur;
+import gui.Main;
+import gui.Routers.RoutingBlog;
 import gui.Routers.RoutingGestionProfil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,10 +21,13 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
+    @FXML private Menu menu_visiterEtabs;
+    @FXML private MenuItem menu_profil;
+    @FXML private MenuItem menu_deconnecte;
+    @FXML private MenuButton menubtn_NomUser;
     @FXML private MenuItem menu_Reserver_Place;
     @FXML private MenuItem menu_blogArticles;
     @FXML private MenuBar menuBar;
-    @FXML private Menu menu_file;
     @FXML private Label lbl_nbevents;
     @FXML private Label lbl_nbrevues;
     @FXML private Label lbl_nbexp;
@@ -43,9 +48,13 @@ public class ListUtilisateursController implements Initializable{
     private UtilisateurService userServ=new UtilisateurService();
 
     private Main app;
+    @FXML
+    private Menu menu_file1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //System.out.println(app.getLoggedUser());
+        //Utilisateur logged=app.getLoggedUser();
         ObservableList<Utilisateur> utilisateurs= FXCollections.observableList(userServ.selectAll());
         tabcol_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tabcol_photo.setCellValueFactory(new PropertyValueFactory<>("photoProfil"));
@@ -59,14 +68,15 @@ public class ListUtilisateursController implements Initializable{
         tabcol_role.setCellValueFactory(new PropertyValueFactory<>("roles"));
         tabview_users.setItems(utilisateurs);
         tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
-
+//        System.out.println(app.getLoggedUser().getUsername());
+//        menubtn_NomUser.setText(app.getLoggedUser().getUsername());
 
     }
     @FXML
-    public void onMenuBlogChoose(Event event) throws Exception {
+    public void onMenuBlogChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
-        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
-        rgP.gotoProfile();
+        RoutingBlog rgB = new RoutingBlog(this.app);
+        rgB.gotoContainer();
     }
     @FXML
     public void onMenuEventsChoose(Event event) throws Exception {
@@ -74,23 +84,18 @@ public class ListUtilisateursController implements Initializable{
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
         rgP.gotoProfile();
     }
-    @FXML
     public void onMenuEtablissementsChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
-        rgP.gotoProfile();
+        rgP.gotoListEtablissement();
     }
-    @FXML
     public void onMenuReserverEventChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
         rgP.gotoProfile();
     }
-    @FXML
     public void onMenuReserverTicketChoose(ActionEvent event) throws Exception {
-        System.out.println(this.app != null);
-        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
-        rgP.gotoProfile();
+
     }
     @FXML
     public void onSelectedChange(MouseEvent event){
@@ -121,5 +126,11 @@ public class ListUtilisateursController implements Initializable{
     }
     public void rechercheParNom(){
         // TODO: Warning - refrech table view with the input in the textfiled
+    }
+
+    public void onClick_nomUser(ActionEvent actionEvent) {
+        System.out.println(this.app != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
+        rgP.gotoProfile();
     }
 }

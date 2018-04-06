@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.LoginController">
   <children>
     <AnchorPane id="anchorPane2" prefHeight="463.0" prefWidth="382.0" style="-fx-background-color: white;" styleClass="top-segment" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
@@ -45,7 +44,7 @@
                 <PasswordField id="passwordField1" fx:id="password" layoutX="5.0" layoutY="169.0" prefWidth="415.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                 <ImageView id="app-login-logo" fitHeight="103.0" fitWidth="195.0" layoutY="-37.0">
                   <image>
-                    <Image url="@../images/utilisateur/LoginLogo.png" />
+                    <Image url="@../../images/utilisateur/LoginLogo.png" />
                   </image>
                 </ImageView>
               </children>
@@ -55,6 +54,7 @@
                   <Insets />
                </opaqueInsets>
         </VBox>
+            <Button fx:id="btn_register" layoutY="1.0" mnemonicParsing="false" onAction="#onClickRegister" prefHeight="31.0" prefWidth="111.0" styleClass="text-field" text="S'inscrire" />
       </children>
     </AnchorPane>
     <Button id="button1" fx:id="login" defaultButton="true" layoutX="55.0" layoutY="492.0" onAction="#processLogin" prefHeight="51.0" prefWidth="273.0" style="-fx-background-color: green;" text="Login" textFill="#12da16" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="54.0" />
@@ -65,6 +65,6 @@
     </HBox>
   </children>
   <stylesheets>
-    <URL value="@CSS/Login.css" />
+    <URL value="@../CSS/Login.css" />
   </stylesheets>
 </AnchorPane>

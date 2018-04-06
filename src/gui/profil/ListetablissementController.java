@@ -1,6 +1,12 @@
-package gui;
+package gui.profil;
 
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
 import entites.Etablissement;
+import gui.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,11 +18,27 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 import services.EtablissementService;
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import javafx.application.Application;
+
+import static com.lynden.gmapsfx.javascript.object.MapTypeIdEnum.ROADMAP;
+import static javafx.application.Application.launch;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ListetablissementController implements Initializable {
+public class ListetablissementController implements MapComponentInitializedListener,Initializable {
+    @FXML
+    GoogleMapView mapView;
+    GoogleMap map;
     @FXML private TableColumn<Etablissement,Integer> tablecol_id;
     @FXML private TableColumn<Etablissement,String> tablecol_nom;
     @FXML private TableColumn<Etablissement,String> tablecol_adresse;
@@ -54,5 +76,34 @@ public class ListetablissementController implements Initializable {
 
     public void setApp(Main app) {
         this.app = app;
+    }
+
+    @Override
+    public void mapInitialized() {
+        //Set the initial properties of the map.
+        MapOptions mapOptions = new MapOptions();
+
+        mapOptions.center(new LatLong(47.6097, -122.3331))
+                .mapType(ROADMAP)
+                .overviewMapControl(false)
+                .panControl(false)
+                .rotateControl(false)
+                .scaleControl(false)
+                .streetViewControl(false)
+                .zoomControl(false)
+                .zoom(12);
+
+        map = mapView.createMap(mapOptions);
+
+        //Add a marker to the map
+        MarkerOptions markerOptions = new MarkerOptions();
+
+        markerOptions.position( new LatLong(47.6, -122.3) )
+                .visible(Boolean.TRUE)
+                .title("My Marker");
+
+        Marker marker = new Marker( markerOptions );
+
+        map.addMarker(marker);
     }
 }

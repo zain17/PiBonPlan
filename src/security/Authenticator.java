@@ -1,22 +1,48 @@
 package security;
 
+import entites.Utilisateur;
+import services.UtilisateurService;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Authenticator {
-    // TODO: Warning - el class hadi ta5ou les utlisateurs inscrits, el password bech tkoun crypter bel algorithm SHA512 kif el FOSUSER
-    private static final Map<String, String> USERS = new HashMap<String, String>();
-    static {
-        //Ici USERS contient tous les utilisateurs de la base de donnés le login et le password (en clair et static pour le moment)
-        USERS.put("Amri", "amrispassword");
-        USERS.put("Housseme", "houssemspassword");
-        USERS.put("Karim", "karimspassword");
-        USERS.put("Ouni", "Ounispassword");
-        USERS.put("zain", "0000");
-        USERS.put("admin", "admin");
+
+    private static Utilisateur currentAuth = null;
+    private static final Map<String, Utilisateur> USERS = new HashMap<String, Utilisateur>();
+
+    public static Utilisateur getCurrentAuth() {
+        return currentAuth;
     }
-    public static boolean validate(String user, String password ){
-        String validUserPassword = USERS.get(user);
-        return validUserPassword != null && validUserPassword.equals(password);
+
+    public static void setCurrentAuth(Utilisateur currentAuth) {
+        Authenticator.currentAuth = currentAuth;
+    }
+
+    public static boolean validate(String userName, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        loadAuthentificators();
+        Utilisateur validUserPassword = USERS.get(userName);
+        if(validUserPassword==null)
+            return false;
+        else
+        currentAuth=validUserPassword;
+        //  Cette méthode prend l'utilisateur qui veut s'authentifier et encrypt mot de pass en claire et puis elle vérifie si la hash générer et égale au hash original
+        return FOSJCrypt.checkPassword(validUserPassword.getPassword(),password,validUserPassword.getSalt());
+    }
+    public static void loadAuthentificators(){
+        UtilisateurService useserv=new UtilisateurService();
+        ArrayList<Utilisateur> users=useserv.selectAll();
+        for (Utilisateur utilisateur:
+                users) {
+            USERS.put(utilisateur.getUsername(),utilisateur);
+        }
+        System.out.println(USERS.size());
+    }
+
+    public static void main(String[] args) {
+
     }
 }

@@ -7,6 +7,7 @@ package services;
 
 import Util.DataSource;
 import entites.Article;
+import entites.Tag;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,6 +57,7 @@ public class ArticleService  {
 		return ret;
 		
 	}
+        
 
 	public boolean supprimer(int id) {
 		boolean ret = false;
@@ -73,7 +75,7 @@ public class ArticleService  {
 	public boolean supprimer(Article t) {
 		boolean ret = false;
 		try {
-			String req = "DELTE FROM article where id = ?";
+			String req = "DELETE FROM article where id = ?";
 			PreparedStatement pre = con.prepareStatement(req);
 			pre.setInt(1, t.getId());
 			ret = pre.execute();
@@ -171,6 +173,77 @@ public class ArticleService  {
 					ret.setAuteurn(rs.getString(6));
 					ret.setUpdated(java.sql.Date.valueOf(rs.getDate(7).toLocalDate()));
 					ret.setCreated(java.sql.Date.valueOf(rs.getDate(8).toLocalDate()));
+				} catch (SQLException ex) {
+					Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				
+			}
+		} catch (SQLException ex) {			
+			Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return ret;
+			
+	}
+        
+        public ArrayList<Article> findByTag(Tag t) {
+            ArrayList<Article> ret = new ArrayList();
+                try {
+			String req = "SELECT article.id, texte, vote, titre, auteur, auteurn, updated, created from article, article_tag, tag where article.id = article_tag.article_id AND tag_id = tag.id AND tag.name LIKE ?";
+
+			PreparedStatement pre;
+			pre = con.prepareStatement(req);
+			pre.setString(1, "%"+t.getName()+"%");
+			ResultSet rs = pre.executeQuery();
+			
+			while (rs.next()) {
+				try {
+					Article re = new Article();
+					re.setId(rs.getInt(1));
+					re.setTexte(rs.getString(2));
+					re.setVote(rs.getInt(3));
+					re.setTitre(rs.getString(4));
+					re.setAuteur(rs.getInt(5));
+					re.setAuteurn(rs.getString(6));
+					re.setUpdated(java.sql.Date.valueOf(rs.getDate(7).toLocalDate()));
+					re.setCreated(java.sql.Date.valueOf(rs.getDate(8).toLocalDate()));
+                                        ret.add(re);
+				} catch (SQLException ex) {
+					Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				
+			}
+		} catch (SQLException ex) {			
+			Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+            
+            return ret;
+        }
+        
+        
+        public ArrayList find(String texte) {
+		ArrayList<Article> ret = null;
+		try {
+			String req = "SELECT * FROM article WHERE texte LIKE ?";
+			PreparedStatement pre;
+			pre = con.prepareStatement(req);
+                        pre.setString(1, "%"+texte+"%");
+		
+			ResultSet rs = pre.executeQuery();
+			ret = new ArrayList();
+			Article x;
+			while (rs.next()) {
+				try {
+					x = new Article();
+					x.setId(rs.getInt(1));
+					x.setTexte(rs.getString(2));
+					x.setVote(rs.getInt(3));
+					x.setTitre(rs.getString(4));
+					x.setAuteur(rs.getInt(5));
+					x.setAuteurn(rs.getString(6));
+					x.setUpdated(java.sql.Date.valueOf(rs.getDate(7).toLocalDate()));
+					x.setCreated(java.sql.Date.valueOf(rs.getDate(8).toLocalDate()));
+					ret.add(x);
 				} catch (SQLException ex) {
 					Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
 				}

@@ -40,20 +40,26 @@ public class UtilisateurService implements IServiceUtilisateur{
         try {
             pre = connection.prepareStatement(req);
             pre.setString(1,user.getPhotoProfil());
-            pre.setDouble(2,user.getLangitude());
-            pre.setDouble(3,user.getLatitude());
+            if(user.getLangitude()==null)
+                pre.setDouble(2,Types.NULL);
+            else
+                pre.setDouble(2,user.getLangitude());
+            if(user.getLatitude()==null)
+                pre.setDouble(3,Types.NULL);
+            else
+                pre.setDouble(3,user.getLatitude());
             pre.setString(4, user.getUsername());
-            pre.setString(5, user.getUsernameCanonical());
+            pre.setString(5, user.getUsername());
             pre.setString(6, user.getEmail());
             pre.setString(7, user.getEmailCanonical());
             pre.setShort(8, user.getEnabled());
-            //Some thing wrong : exp in database {username:Zain,salt:'0Yi3LZANkpfMsnhbn2XHA00cASLCGVfWc7TJWNOjXsk')
             pre.setString(9, user.getSalt());
-            //Some thing wrong : exp in database {username:Zain,passowrd:'qXSSYBDXWQA/ZcbPVOoBKzd5oshTkQP0Q3AeEilnh47Mcrc9uUZYDYwmRJiMKc7nRPvRx6k0eEJrc6HrrDvZtQ==')
             pre.setString(10, user.getPassword());
-            //This Role must be unserialised(the equivalent unserialize method in php)
-            pre.setString(11,user.getRoles());
-
+            if(user.getRoles().equals("ROLE_CLIENT"))
+                pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
+            else
+            if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
+                pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
             pre.executeUpdate();
             System.out.println("Utilisateur ajouter avec succés");
         } catch (SQLException ex) {
@@ -89,12 +95,13 @@ public class UtilisateurService implements IServiceUtilisateur{
             pre.setString(6, user.getEmail());
             pre.setString(7, user.getEmailCanonical());
             pre.setShort(8, user.getEnabled());
-            //Some thing wrong : exp in database {username:Zain,salt:'0Yi3LZANkpfMsnhbn2XHA00cASLCGVfWc7TJWNOjXsk')
             pre.setString(9, user.getSalt());
-            //Some thing wrong : exp in database {username:Zain,passowrd:'qXSSYBDXWQA/ZcbPVOoBKzd5oshTkQP0Q3AeEilnh47Mcrc9uUZYDYwmRJiMKc7nRPvRx6k0eEJrc6HrrDvZtQ==')
             pre.setString(10, user.getPassword());
-            //This Role must be unserialised(the equivalent unserialize method in php)
-            pre.setString(11,user.getRoles());
+            if(user.getRoles().equals("ROLE_CIENT"))
+            pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
+            else
+            if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
+                pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
             pre.setInt(12,id);
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,6 +134,22 @@ public class UtilisateurService implements IServiceUtilisateur{
         try {
             ste=connection.createStatement();
             rs=ste.executeQuery("SELECT * from Utilisateur where id="+id);
+            if(rs.next()) {
+                user = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getShort(10), rs.getString(11), rs.getString(12), rs.getDate(13), rs.getString(14), rs.getDate(15), serializePHPtoJava(rs.getString(16)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
+    @Override
+    public Utilisateur selectOne(String username) {
+        Statement ste=null;
+        Utilisateur user=new Utilisateur();
+        ResultSet rs=null;
+        try {
+            ste=connection.createStatement();
+            rs=ste.executeQuery("SELECT * from Utilisateur where username="+username);
             if(rs.next()) {
                 user = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getShort(10), rs.getString(11), rs.getString(12), rs.getDate(13), rs.getString(14), rs.getDate(15), serializePHPtoJava(rs.getString(16)));
             }
@@ -188,12 +211,10 @@ public class UtilisateurService implements IServiceUtilisateur{
         return count;
     }
     public String serializePHPtoJava(String role_role){
-        //System.out.println(role_role);
         String strResultat ="";
         if (role_role!=null) {
             SerializedPhpParser serializedPhpParser = new SerializedPhpParser(role_role);
             Object result = serializedPhpParser.parse();
-            //System.out.println(result);
              strResultat = result.toString();
 
             strResultat= strResultat.substring(3,strResultat.length()-1);

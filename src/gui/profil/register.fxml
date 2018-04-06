@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="483.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.RegisterController">
+<AnchorPane prefHeight="483.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.RegisterController">
    <children>
       <AnchorPane id="anchorPane1" layoutX="28.0" layoutY="15.0" prefHeight="399.0" prefWidth="614.0" styleClass="top-segment">
          <children>
@@ -26,13 +27,13 @@
                               <Font size="20.0" fx:id="x1" />
                            </font>
                         </Label>
-                        <Hyperlink fx:id="link_login" onAction="#processLogout" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                        <Hyperlink fx:id="link_login" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                         <Label id="Label" font="$x1" text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets top="2.0" fx:id="x3" />
                            </GridPane.margin>
                         </Label>
-                        <TextField fx:id="txt_user" editable="false" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txt_nom" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label id="Label" font="$x1" text="Prenom:" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="3" />
                         <TextField fx:id="txt_prenom" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label id="Label" font="$x1" text="Email:" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="4" />
@@ -47,18 +48,17 @@
                               <Insets left="28.0" top="3.0" />
                            </GridPane.margin>
                         </Label>
-                        <CheckBox id="" fx:id="chb_roleetab" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <CheckBox id="" fx:id="chb_roleEtab" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <font>
                               <Font size="16.0" fx:id="x21" />
                            </font>
                         </CheckBox>
-                        <TextField fx:id="txt_password" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label id="Label" text="Role:" GridPane.rowIndex="7">
                            <font>
                               <Font size="20.0" fx:id="x11" />
                            </font>
                         </Label>
-                        <CheckBox id="" fx:id="chb_roleclient" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <CheckBox id="" fx:id="chb_roleClient" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <font>
                               <Font size="16.0" fx:id="x211" />
                            </font>
@@ -79,7 +79,8 @@
                               <Font size="20.0" fx:id="x12" />
                            </font>
                         </Label>
-                        <TextField fx:id="txt_confirmpass" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <PasswordField fx:id="txt_password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <PasswordField fx:id="txt_confirmpass" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="NEVER" minWidth="60.0" />
@@ -101,7 +102,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Button fx:id="btn_enregistrer" layoutX="249.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
-      <Button fx:id="btn_annuler" layoutX="433.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
+      <Button fx:id="btn_enregistrer" layoutX="249.0" layoutY="421.0" mnemonicParsing="false" onAction="#onClickEnregistrer" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
+      <Button fx:id="btn_annuler" layoutX="433.0" layoutY="421.0" mnemonicParsing="false" onAction="#onAnnuller" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
    </children>
 </AnchorPane>
