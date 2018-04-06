@@ -98,11 +98,7 @@ fabric.properties
 .idea/sonarlint
 
 
-<<<<<<< HEAD
 # End of https://www.gitignore.io/api/intellij
 \.idea/
 
 *.iml
-=======
-# End of https://www.gitignore.io/api/intellij
->>>>>>> 4bdf2de35b194c439fc0e82b608b5d616addccc6
