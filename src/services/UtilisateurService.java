@@ -142,6 +142,22 @@ public class UtilisateurService implements IServiceUtilisateur{
         }
         return user;
     }
+    @Override
+    public Utilisateur selectOne(String username) {
+        Statement ste=null;
+        Utilisateur user=new Utilisateur();
+        ResultSet rs=null;
+        try {
+            ste=connection.createStatement();
+            rs=ste.executeQuery("SELECT * from Utilisateur where username="+username);
+            if(rs.next()) {
+                user = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getShort(10), rs.getString(11), rs.getString(12), rs.getDate(13), rs.getString(14), rs.getDate(15), serializePHPtoJava(rs.getString(16)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
 
     @Override
     public ArrayList<Utilisateur> selectByName(String nom) {
