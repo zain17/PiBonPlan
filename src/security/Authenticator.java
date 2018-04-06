@@ -26,10 +26,10 @@ public class Authenticator {
     public static boolean validate(String userName, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         loadAuthentificators();
         Utilisateur validUserPassword = USERS.get(userName);
-        if(validUserPassword!=null)
-        currentAuth=validUserPassword;
+        if(validUserPassword==null)
+            return false;
         else
-            System.out.println("User password not valide");
+        currentAuth=validUserPassword;
         //  Cette méthode prend l'utilisateur qui veut s'authentifier et encrypt mot de pass en claire et puis elle vérifie si la hash générer et égale au hash original
         return FOSJCrypt.checkPassword(validUserPassword.getPassword(),password,validUserPassword.getSalt());
     }
