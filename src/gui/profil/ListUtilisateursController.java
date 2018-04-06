@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
+    @FXML private Menu menu_visiterEtabs;
     @FXML private MenuItem menu_profil;
     @FXML private MenuItem menu_deconnecte;
     @FXML private MenuButton menubtn_NomUser;
@@ -86,7 +87,7 @@ public class ListUtilisateursController implements Initializable{
     public void onMenuEtablissementsChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
-        rgP.gotoProfile();
+        rgP.gotoListEtablissement();
     }
     public void onMenuReserverEventChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);

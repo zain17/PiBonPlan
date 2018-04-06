@@ -93,7 +93,7 @@
                 <MenuItem mnemonicParsing="false" text="Statistiques" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Visiter">
+          <Menu fx:id="menu_visiterEtabs" mnemonicParsing="false" onAction="#onMenuEtablissementsChoose" text="Visiter">
             <items>
               <MenuItem mnemonicParsing="false" text="Restaurants" />
                   <MenuItem mnemonicParsing="false" text="Shopping" />
