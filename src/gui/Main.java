@@ -11,14 +11,18 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import security.Authenticator;
+import services.UtilisateurService;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main extends Application {
+
     public Stage stage;
-    public Utilisateur loggedUser;
+    private Utilisateur loggedUser=new Utilisateur();
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);
     @Override
@@ -26,11 +30,9 @@ public class Main extends Application {
         try {
             stage = primaryStage;
             stage.setTitle("Bienvenue à Bon Plan");
-            stage.setMinWidth(300);
-            stage.setMinHeight(500);
+//            stage.setWidth(500);
+//            stage.setHeight(300);
             routGP.gotoLogin();
-            //gotoListEtablissement();
-            //gotoListUser();
             primaryStage.show();
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,28 +45,38 @@ public class Main extends Application {
         return loggedUser;
     }
 
-    public boolean userLogging(String userIdentity, String password){
+    public void setLoggedUser(Utilisateur loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    public boolean userLogging(String userIdentity, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        UtilisateurService us=new UtilisateurService();
         if (Authenticator.validate(userIdentity, password)) {
-            loggedUser = Utilisateur.of(userIdentity);
+
+            loggedUser = Authenticator.getCurrentAuth();
             this.stage.setHeight(700);
             this.stage.setWidth(1000);
             this.stage.setResizable(false);
             routeBlog.gotoContainer();
             //routGP.gotoListUser();
             //gotoProfile();
+/*
+            System.out.println(userIdentity);
+            
+            System.out.println(loggedUser);
+            routGP=new RoutingGestionProfil(this);
+            routGP.gotoListUser();
+*/
             return true;
         } else {
             return false;
         }
     }
 
-    void userLogout(){
+    public void userLogout(){
         loggedUser = null;
         routGP.gotoLogin();
     }
-
-
-
     public Initializable replaceSceneContent(String fxml) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         InputStream in = Main.class.getResourceAsStream(fxml);

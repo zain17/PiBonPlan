@@ -15,9 +15,9 @@ import java.util.List;
  * @author ASUS
  */
 public interface IServiceEtablissement extends IService<Etablissement>{
-    public ArrayList<Etablissement> selectByNom();
-    public ArrayList<Etablissement> selectByGouvernorat();
-    public ArrayList<Etablissement> selectByVille();
+    public Etablissement selectByNom(String s);
+    public ArrayList<Etablissement> selectByGouvernorat(String s);
+    public ArrayList<Etablissement> selectByVille(String s);
     public ArrayList<Etablissement> selectBest();
     public ArrayList<Etablissement> selectBestByType(String type);//Select les 5 meilleurs etablissement par type(café,loisir.etc..)
     public ArrayList<Etablissement> selectNear();//Select les établissements qui sont proches de cordonnés de l'utilisateur

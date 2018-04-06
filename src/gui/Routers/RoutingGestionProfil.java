@@ -1,6 +1,7 @@
 package gui.Routers;
 
 import gui.*;
+import gui.profil.*;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +14,7 @@ public class RoutingGestionProfil {
 
     public void gotoProfile() {
         try {
-            ProfileController profile = (ProfileController) main.replaceSceneContent("gui/profile.fxml");
+            ProfileController profile = (ProfileController) main.replaceSceneContent("/gui/profil/profile.fxml");
             profile.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -21,8 +22,7 @@ public class RoutingGestionProfil {
     }
     public void gotoListEtablissement(){
         try {
-            ListetablissementController lstEtabC = (ListetablissementController)main.replaceSceneContent("/gui/listetablissement.fxml");
-            //Charger le controlleur dans l'application
+            ListetablissementController lstEtabC = (ListetablissementController)main.replaceSceneContent("/gui/profil/listetablissement.fxml");
             lstEtabC.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -30,10 +30,12 @@ public class RoutingGestionProfil {
     }
     public void gotoListUser(){
         try {
+
             ListUtilisateursController lstUserC = (ListUtilisateursController) main.replaceSceneContent("/gui/listutilisateurs.fxml");
             //Charger le controlleur dans l'application
             main.stage.setMinHeight(700);
             main.stage.setMaxWidth(1000);
+
             lstUserC.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,7 +43,15 @@ public class RoutingGestionProfil {
     }
     public void gotoLogin() {
         try {
-            LoginController login = (LoginController) main.replaceSceneContent("login.fxml");
+            LoginController login = (LoginController) main.replaceSceneContent("/gui/profil/login.fxml");
+            login.setApp(main);
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void gotoRegistration() {
+        try {
+            RegisterController login = (RegisterController) main.replaceSceneContent("/gui/profil/register.fxml");
             login.setApp(main);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

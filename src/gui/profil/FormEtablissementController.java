@@ -1,6 +1,7 @@
-package gui;
+package gui.profil;
 
 
+import gui.Main;
 import javafx.fxml.Initializable;
 
 import java.net.URL;

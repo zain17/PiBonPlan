@@ -1,6 +1,7 @@
-package gui;
+package gui.profil;
 
 import entites.Utilisateur;
+import gui.Main;
 import gui.Routers.RoutingBlog;
 import gui.Routers.RoutingGestionProfil;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListUtilisateursController implements Initializable{
+    @FXML private Menu menu_visiterEtabs;
     @FXML private MenuItem menu_profil;
     @FXML private MenuItem menu_deconnecte;
     @FXML private MenuButton menubtn_NomUser;
@@ -51,6 +53,8 @@ public class ListUtilisateursController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //System.out.println(app.getLoggedUser());
+        //Utilisateur logged=app.getLoggedUser();
         ObservableList<Utilisateur> utilisateurs= FXCollections.observableList(userServ.selectAll());
         tabcol_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tabcol_photo.setCellValueFactory(new PropertyValueFactory<>("photoProfil"));
@@ -64,7 +68,8 @@ public class ListUtilisateursController implements Initializable{
         tabcol_role.setCellValueFactory(new PropertyValueFactory<>("roles"));
         tabview_users.setItems(utilisateurs);
         tabview_users.getSelectionModel().selectFirst();//le premier row est selectionner au début
-
+//        System.out.println(app.getLoggedUser().getUsername());
+//        menubtn_NomUser.setText(app.getLoggedUser().getUsername());
 
     }
     @FXML
@@ -82,7 +87,7 @@ public class ListUtilisateursController implements Initializable{
     public void onMenuEtablissementsChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
         RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
-        rgP.gotoProfile();
+        rgP.gotoListEtablissement();
     }
     public void onMenuReserverEventChoose(ActionEvent event) throws Exception {
         System.out.println(this.app != null);
@@ -90,9 +95,7 @@ public class ListUtilisateursController implements Initializable{
         rgP.gotoProfile();
     }
     public void onMenuReserverTicketChoose(ActionEvent event) throws Exception {
-        System.out.println(this.app != null);
-        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
-        rgP.gotoProfile();
+
     }
     @FXML
     public void onSelectedChange(MouseEvent event){
@@ -126,6 +129,8 @@ public class ListUtilisateursController implements Initializable{
     }
 
     public void onClick_nomUser(ActionEvent actionEvent) {
-
+        System.out.println(this.app != null);
+        RoutingGestionProfil rgP = new RoutingGestionProfil(this.app);
+        rgP.gotoProfile();
     }
 }

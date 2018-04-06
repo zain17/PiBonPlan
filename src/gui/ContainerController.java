@@ -7,6 +7,7 @@ package gui;
 
 import gui.blog.AjouterArticleController;
 import gui.blog.RechercherArticleController;
+import gui.profil.ListetablissementController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,6 +41,8 @@ public class ContainerController implements Initializable {
     private Button articles;
     @FXML
     private Button articles1;
+    @FXML
+    private Button profileB;
 
     /**
      * Initializes the controller class.
@@ -47,7 +50,9 @@ public class ContainerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    
 
     @FXML
     private void blogAction(ActionEvent event) throws IOException {
@@ -95,6 +100,18 @@ public class ContainerController implements Initializable {
     @FXML
     private void blogLsArtcAction(ActionEvent event) {
         
+    }
+
+    @FXML
+    private void listeEtab(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
+
+        AnchorPane parentContent = fxmlLoader.load();
+           ListetablissementController c = (ListetablissementController) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
     }
     
 }

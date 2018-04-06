@@ -15,7 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="anchorpane_global" prefHeight="631.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListUtilisateursController">
+<AnchorPane fx:id="anchorpane_global" prefHeight="631.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ListUtilisateursController">
    <children>
       <TableView fx:id="tabview_users" layoutX="14.0" layoutY="140.0" onMouseClicked="#onSelectedChange" prefHeight="451.0" prefWidth="228.0">
         <columns>
@@ -93,7 +93,7 @@
                 <MenuItem mnemonicParsing="false" text="Statistiques" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Visiter">
+          <Menu fx:id="menu_visiterEtabs" mnemonicParsing="false" onAction="#onMenuEtablissementsChoose" text="Visiter">
             <items>
               <MenuItem mnemonicParsing="false" text="Restaurants" />
                   <MenuItem mnemonicParsing="false" text="Shopping" />
@@ -101,15 +101,15 @@
                   <MenuItem mnemonicParsing="false" text="Restaurants" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Reserver">
+          <Menu mnemonicParsing="false" text="Evénements">
             <items>
-              <MenuItem mnemonicParsing="false" text="Produit" />
-                  <MenuItem fx:id="menu_Reserver_Place" mnemonicParsing="false" onMenuValidation="#onMenuEventsChoose" text="Place" />
+              <MenuItem mnemonicParsing="false" text="Edit" />
+                  <MenuItem fx:id="menu_Reserver_Place" mnemonicParsing="false" onMenuValidation="#onMenuEventsChoose" text="Delete" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Blog">
                <items>
-                  <MenuItem fx:id="menu_blogArticles" mnemonicParsing="false" onAction="#onMenuBlogChoose" text="Articles" />
+                  <MenuItem fx:id="menu_blogArticles" mnemonicParsing="false" onMenuValidation="#onMenuBlogChoose" text="Articles" />
                   <MenuItem mnemonicParsing="false" text="Nouveautés" />
                </items>
             </Menu>
