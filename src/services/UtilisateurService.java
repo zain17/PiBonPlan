@@ -49,13 +49,13 @@ public class UtilisateurService implements IServiceUtilisateur{
             else
                 pre.setDouble(3,user.getLatitude());
             pre.setString(4, user.getUsername());
-            pre.setString(5, user.getUsernameCanonical());
+            pre.setString(5, user.getUsername());
             pre.setString(6, user.getEmail());
             pre.setString(7, user.getEmailCanonical());
             pre.setShort(8, user.getEnabled());
             pre.setString(9, user.getSalt());
             pre.setString(10, user.getPassword());
-            if(user.getRoles().equals("ROLE_CIENT"))
+            if(user.getRoles().equals("ROLE_CLIENT"))
                 pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
             else
             if(user.getRoles().equals("ROLE_ETABLISSEMENT"))

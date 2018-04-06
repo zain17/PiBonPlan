@@ -11,14 +11,17 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import security.Authenticator;
+import services.UtilisateurService;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main extends Application {
     private Stage stage;
-    private Utilisateur loggedUser;
+    private Utilisateur loggedUser=new Utilisateur();
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);
     @Override
@@ -41,9 +44,17 @@ public class Main extends Application {
         return loggedUser;
     }
 
-    public boolean userLogging(String userIdentity, String password){
+    public void setLoggedUser(Utilisateur loggedUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    public boolean userLogging(String userIdentity, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        UtilisateurService us=new UtilisateurService();
         if (Authenticator.validate(userIdentity, password)) {
-            loggedUser = Utilisateur.of(userIdentity);
+            System.out.println(userIdentity);
+            loggedUser = us.selectOne(userIdentity);
+            System.out.println(loggedUser);
+            routGP=new RoutingGestionProfil(this);
             routGP.gotoListUser();
             //gotoProfile();
             return true;
