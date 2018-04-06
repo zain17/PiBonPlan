@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.lynden.gmapsfx.GoogleMapView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.web.WebView?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ListetablissementController">
    <children>
-      <ImageView fx:id="image_photoetab" fitHeight="298.0" fitWidth="382.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image_photoetab" fitHeight="298.0" fitWidth="359.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <!--<Image url="imageview_photo" />-->
          </image>
       </ImageView>
-      <WebView fx:id="webview_map" layoutX="510.0" layoutY="8.0" prefHeight="298.0" prefWidth="356.0" />
       <TableView fx:id="tableView_listetab" layoutX="5.0" layoutY="367.0" prefHeight="213.0" prefWidth="875.0">
         <columns>
           <TableColumn fx:id="tablecol_id" prefWidth="72.0" text="Id" />
@@ -29,5 +28,6 @@
             <TableColumn fx:id="tablecol_photo" prefWidth="159.0" text="Photo" />
         </columns>
       </TableView>
+      <GoogleMapView fx:id="mapView" layoutX="336.0" layoutY="14.0" prefHeight="327.0" prefWidth="431.0" />
    </children>
 </AnchorPane>
