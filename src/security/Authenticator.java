@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Authenticator {
 
-    private static Utilisateur currentAuth = null;
+    private static Utilisateur currentAuth ;
     private static final Map<String, Utilisateur> USERS = new HashMap<String, Utilisateur>();
 
     public static Utilisateur getCurrentAuth() {

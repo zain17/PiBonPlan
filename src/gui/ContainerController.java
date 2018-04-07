@@ -5,6 +5,7 @@
  */
 package gui;
 
+import entites.Utilisateur;
 import gui.blog.AjouterArticleController;
 import gui.blog.RechercherArticleController;
 import gui.profil.ListetablissementController;
@@ -20,8 +21,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import security.Authenticator;
+
+import static java.lang.Thread.sleep;
 
 /**
  * FXML Controller class
@@ -30,6 +35,8 @@ import javafx.util.Duration;
  */
 public class ContainerController implements Initializable {
 
+    @FXML
+    private MenuButton cmb_username;
     private Main app;
     @FXML
     private AnchorPane contained;
@@ -45,13 +52,14 @@ public class ContainerController implements Initializable {
     private Button articles1;
     @FXML
     private Button profileB;
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        //System.out.println(this.app.getLoggedUser());
+       // System.out.println(Authenticator.getCurrentAuth());
+        cmb_username.setText(Authenticator.getCurrentAuth().getUsername());
     }
 
     
@@ -123,6 +131,4 @@ public class ContainerController implements Initializable {
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
     }
-
-    
 }

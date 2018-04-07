@@ -52,7 +52,7 @@ public class Main extends Application {
     public boolean userLogging(String userIdentity, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         UtilisateurService us=new UtilisateurService();
         if (Authenticator.validate(userIdentity, password)) {
-            loggedUser = Authenticator.getCurrentAuth();
+            loggedUser=Authenticator.getCurrentAuth();
             this.stage.setHeight(700);
             this.stage.setWidth(1000);
             this.stage.setResizable(false);
