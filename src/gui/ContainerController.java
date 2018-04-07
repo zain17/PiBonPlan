@@ -11,6 +11,8 @@ import gui.profil.ListetablissementController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import gui.profil.ProfileController;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -101,7 +103,15 @@ public class ContainerController implements Initializable {
     private void blogLsArtcAction(ActionEvent event) {
         
     }
-
+    @FXML
+    private void profil(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/profile.fxml"));
+        AnchorPane parentContent = fxmlLoader.load();
+        ProfileController c = (ProfileController) fxmlLoader.getController();
+        c.setApp(app);
+        // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+    }
     @FXML
     private void listeEtab(ActionEvent event) throws IOException {
          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
@@ -113,5 +123,6 @@ public class ContainerController implements Initializable {
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
     }
+
     
 }
