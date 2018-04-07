@@ -27,19 +27,15 @@ public class ProfileController implements Initializable {
 
 
     public void setApp(Main app) {
-        System.out.println("FIRST ONE ?");
+        System.out.println("setApp prompt");
         this.app = app;
-        userHand = app.getLoggedUser();
-        System.out.println("userhand"+userHand);
     }
     public void processLogout(ActionEvent actionEvent) {
-        System.out.println(app.getLoggedUser());
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        System.out.println("SECOND ONE ?");
-        System.out.println(userHand);
+        System.out.println("initialize prompt");
     }
 }
