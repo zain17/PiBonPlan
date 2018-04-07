@@ -39,10 +39,6 @@ public class Authenticator {
                 users) {
             USERS.put(utilisateur.getUsername(),utilisateur);
         }
-        System.out.println(USERS.size());
-    }
-
-    public static void main(String[] args) {
-
+        System.out.println("Loading authentificators list");
     }
 }

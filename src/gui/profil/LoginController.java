@@ -55,6 +55,9 @@ import javafx.scene.layout.AnchorPane;
 public class LoginController extends AnchorPane implements Initializable {
 
     @FXML Button btn_register;
+    /**
+     * userId: l'identifant principale de l'utilisateur(login)
+     */
     @FXML
     TextField userId;
     @FXML
@@ -77,7 +80,6 @@ public class LoginController extends AnchorPane implements Initializable {
         userId.setPromptText("login");
         password.setPromptText("password");
     }
-    
     public void processLogin(ActionEvent event) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         if (main == null){
             errorMessage.setText("Loading... " + userId.getText());

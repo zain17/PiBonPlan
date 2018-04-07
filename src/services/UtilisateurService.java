@@ -27,7 +27,6 @@ public class UtilisateurService implements IServiceUtilisateur{
 
         try {
             ste=DataSource.getInstance().getCon().createStatement();
-            System.out.println("Connection établie");
         }
         catch (SQLException e) {
             System.out.println(e.getMessage());
