@@ -5,24 +5,34 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="602.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfileController">
     <children>
-        <ImageView fx:id="image_photoprofil" fitHeight="165.0" fitWidth="171.0" layoutX="30.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="image_photoprofil" fitHeight="165.0" fitWidth="171.0" layoutX="163.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/utilisateur/user_inconn.jpg" />
          </image>
         </ImageView>
 
-      <Label layoutX="262.0" layoutY="189.0" text="nbExper" />
-      <Label layoutX="389.0" layoutY="189.0" text="nbRevue" />
-      <Label layoutX="504.0" layoutY="189.0" text="nbEvent" />
-      <Label fx:id="lbl_nom" layoutX="270.0" layoutY="66.0" text="nom" />
-      <Label fx:id="lbl_prenom" layoutX="413.0" layoutY="66.0" text="prenom" />
-      <Label fx:id="lbl_email" layoutX="270.0" layoutY="131.0" text="ContactEmail" />
-      <Label fx:id="lbl_nbExperience" layoutX="319.0" layoutY="189.0" text="12" />
-      <Label fx:id="lbl_nbRevue" layoutX="448.0" layoutY="189.0" text="23" />
-      <Label fx:id="lbl_nbEvents" layoutX="568.0" layoutY="189.0" text="2" />
-      <Hyperlink fx:id="H_gotoMyEtab" layoutX="461.0" layoutY="120.0" text="gotomyetabProfil" />
+      <Label layoutX="377.0" layoutY="210.0" text="Experiences" />
+      <Label layoutX="522.0" layoutY="210.0" text="Revues" />
+      <Label layoutX="629.0" layoutY="210.0" text="Evénements" />
+      <Label fx:id="lbl_nom" layoutX="403.0" layoutY="87.0" text="nom">
+         <font>
+            <Font size="38.0" />
+         </font></Label>
+      <Label fx:id="lbl_prenom" layoutX="546.0" layoutY="87.0" text="prenom">
+         <font>
+            <Font size="38.0" />
+         </font></Label>
+      <Label fx:id="lbl_email" layoutX="357.0" layoutY="152.0" text="ContactEmail">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="lbl_nbExperience" layoutX="452.0" layoutY="210.0" text="12" />
+      <Label fx:id="lbl_nbRevue" layoutX="573.0" layoutY="210.0" text="23" />
+      <Label fx:id="lbl_nbEvents" layoutX="705.0" layoutY="210.0" text="2" />
+      <Hyperlink fx:id="H_gotoMyEtab" layoutX="594.0" layoutY="149.0" text="gotomyetabProfil" />
     </children>
 </AnchorPane>
