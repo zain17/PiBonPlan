@@ -17,12 +17,12 @@
       <Label layoutX="262.0" layoutY="189.0" text="nbExper" />
       <Label layoutX="389.0" layoutY="189.0" text="nbRevue" />
       <Label layoutX="504.0" layoutY="189.0" text="nbEvent" />
-      <Label layoutX="270.0" layoutY="66.0" text="nom" />
-      <Label layoutX="413.0" layoutY="66.0" text="prenom" />
-      <Label layoutX="270.0" layoutY="131.0" text="ContactEmail" />
-      <Label layoutX="319.0" layoutY="189.0" text="12" />
-      <Label layoutX="448.0" layoutY="189.0" text="23" />
-      <Label layoutX="568.0" layoutY="189.0" text="2" />
-      <Hyperlink layoutX="461.0" layoutY="120.0" text="gotomyetabProfil" />
+      <Label fx:id="lbl_nom" layoutX="270.0" layoutY="66.0" text="nom" />
+      <Label fx:id="lbl_prenom" layoutX="413.0" layoutY="66.0" text="prenom" />
+      <Label fx:id="lbl_email" layoutX="270.0" layoutY="131.0" text="ContactEmail" />
+      <Label fx:id="lbl_nbExperience" layoutX="319.0" layoutY="189.0" text="12" />
+      <Label fx:id="lbl_nbRevue" layoutX="448.0" layoutY="189.0" text="23" />
+      <Label fx:id="lbl_nbEvents" layoutX="568.0" layoutY="189.0" text="2" />
+      <Hyperlink fx:id="H_gotoMyEtab" layoutX="461.0" layoutY="120.0" text="gotomyetabProfil" />
     </children>
 </AnchorPane>
