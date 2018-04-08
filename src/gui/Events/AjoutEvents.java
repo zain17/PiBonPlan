@@ -13,6 +13,6 @@ public class AjoutEvents implements Initializable {
     }
 
     public void setApp(Main main) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }

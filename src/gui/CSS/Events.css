@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+
+*/
+
+
+
+.hover_border :hover{
+    -fx-border-color :#0fbcf9 ; 
+    -fx-border-width : 0px 0px 0px 4px;
+    -fx-background-color :  #34e7e4e0 ; 
+    -fx-cursor : hand ; }
+    
+ .hover_fade:hover {
+        -fx-background-color : #e2e2e2 !important;
+    }
+  .cursor_hand {
+        -fx-cursor : hand ; 
+        
+    }
+    

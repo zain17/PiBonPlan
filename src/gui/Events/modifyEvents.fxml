@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Events.AjoutEvents">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Events.ModifyEventsController">
    <children>
       <Label layoutX="40.0" layoutY="140.0" text="Nom d'evenements" />
       <TextField layoutX="205.0" layoutY="136.0" />
@@ -17,7 +17,7 @@
       <Label layoutX="41.0" layoutY="300.0" text="Téléphone" />
       <TextField layoutX="205.0" layoutY="212.0" />
       <TextField layoutX="214.0" layoutY="296.0" />
-      <Text layoutX="310.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout Evénement">
+      <Text layoutX="69.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier l' Evénement : Nom de l'évenement ">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>
@@ -27,7 +27,7 @@
       <Label layoutX="479.0" layoutY="140.0" text="Prix" />
       <TextField layoutX="617.0" layoutY="136.0" />
       <Label layoutX="61.0" layoutY="449.0" text="Image" />
-      <Button layoutX="245.0" layoutY="441.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="73.0" style="-fx-background-color: gray;" text="Parcourir" />
+      <Button layoutX="245.0" layoutY="441.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="73.0" text="Parcourir" />
       <Label layoutX="459.0" layoutY="321.0" text="Description" />
       <TextArea layoutX="596.0" layoutY="296.0" prefHeight="119.0" prefWidth="194.0" />
       <Label layoutX="467.0" layoutY="226.0" text="Date Fin" />

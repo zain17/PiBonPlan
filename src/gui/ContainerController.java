@@ -5,6 +5,8 @@
  */
 package gui;
 
+import gui.Events.AjoutEvents;
+import gui.Events.ListEvents;
 import gui.blog.AjouterArticleController;
 import gui.blog.RechercherArticleController;
 import gui.profil.ListetablissementController;
@@ -112,6 +114,33 @@ public class ContainerController implements Initializable {
         c.setApp(app);
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
+    }
+    
+    
+     @FXML
+    private void ajout(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/AjoutEvents.fxml"));
+
+        AnchorPane parentContent = fxmlLoader.load();
+           AjoutEvents c = (AjoutEvents) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+        
+    }
+    
+      @FXML
+       private void Events(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/ListEvents.fxml"));
+
+        AnchorPane parentContent = fxmlLoader.load();
+           ListEvents c = (ListEvents) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+        
     }
     
 }
