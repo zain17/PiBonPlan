@@ -8,6 +8,7 @@ package gui;
 import entites.Utilisateur;
 import gui.blog.AjouterArticleController;
 import gui.blog.RechercherArticleController;
+import gui.profil.FormUtilisateur;
 import gui.profil.ListetablissementController;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import security.Authenticator;
@@ -36,8 +38,9 @@ import static java.lang.Thread.sleep;
 public class ContainerController implements Initializable {
 
     @FXML
+    private  MenuItem menubtn_clickEditer;
+    @FXML
     private MenuButton cmb_username;
-    private Main app;
     @FXML
     private AnchorPane contained;
     @FXML
@@ -52,6 +55,7 @@ public class ContainerController implements Initializable {
     private Button articles1;
     @FXML
     private Button profileB;
+    private Main app;
     /**
      * Initializes the controller class.
      */
@@ -129,6 +133,15 @@ public class ContainerController implements Initializable {
       
         c.setApp(app);
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+    }
+    @FXML
+    private void profilEdit(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/formUtilisateur.fxml"));
+        AnchorPane parentContent = fxmlLoader.load();
+        FormUtilisateur c = (FormUtilisateur) fxmlLoader.getController();
+        c.setApp(app);
+        // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
     }
 }

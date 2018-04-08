@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import services.UtilisateurService;
 
+import javax.annotation.PostConstruct;
 import java.net.Authenticator;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,7 +37,9 @@ public class ProfileController implements Initializable {
     private Main app;
     private Utilisateur userHand;
 
+    public ProfileController() {
 
+    }
     public void setApp(Main app) {
         System.out.println("setApp prompt");
         this.app = app;
@@ -47,7 +50,10 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+      //  System.out.println(app.getLoggedUser());
         System.out.println("initialize prompt");
+
         loadUserInfo(security.Authenticator.getCurrentAuth());
     }
     public void loadUserInfo(Utilisateur u){
@@ -59,6 +65,5 @@ public class ProfileController implements Initializable {
         lbl_nbExperience.setText(String.valueOf(usev.nbExperiences(u.getId())));
         lbl_nbRevue.setText(String.valueOf(usev.nbRevues(u.getId())));
     }
-
 
 }

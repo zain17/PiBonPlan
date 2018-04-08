@@ -81,7 +81,7 @@
             </VBox>
             <MenuButton fx:id="cmb_username" mnemonicParsing="false" style="-fx-background-color: white;" text="Nom">
               <items>
-                <MenuItem mnemonicParsing="false" text="Editer" />
+                <MenuItem fx:id="menubtn_clickEditer" mnemonicParsing="false" onAction="#profilEdit" text="Editer" />
                 <MenuItem mnemonicParsing="false" text="Profil" />
                   <MenuItem mnemonicParsing="false" text="Déconnecter" />
               </items>

@@ -220,6 +220,4 @@ public class UtilisateurService implements IServiceUtilisateur{
         }
         return strResultat;
     }
-
-
 }
