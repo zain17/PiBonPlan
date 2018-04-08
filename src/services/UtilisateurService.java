@@ -82,7 +82,7 @@ public class UtilisateurService implements IServiceUtilisateur{
 
     @Override
     public void modifier(int id, Utilisateur user) {
-        String requete="UPDATE Utilisateur set id=?,photoProfil=?,langitude=?,latitude=?,username=?,usernameCanonical=?,email=?,emailCanonical=?,enabled=?,salt=?,password=?,roles where id=?";
+        String requete="UPDATE Utilisateur set id=?,photoProfil=?,langitude=?,latitude=?,username=?,usernameCanonical=?,email=?,emailCanonical=?,enabled=?,salt=?,password=?,roles where idc=?";
         PreparedStatement pre=null;
         try {
             pre = connection.prepareStatement(requete);
@@ -107,6 +107,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             else
             if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
                 pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
+            pre.setInt(12, id);
             pre.executeUpdate();
             System.out.println("Utilisateur ajouter avec succés");
         } catch (SQLException ex) {
