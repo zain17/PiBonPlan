@@ -31,7 +31,6 @@ public class EtablissementService implements IServiceEtablissement{
         System.out.println("EtablissementService");
                     try {
                              ste=DataSource.getInstance().getCon().createStatement();
-                            System.out.println("Connection établie");
                     }
                     catch (SQLException e) {
                         System.out.println(e.getMessage());
