@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,7 +15,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.FormUtilisateur">
 <children>
-    <GridPane id="GridPane" hgap="15.0" layoutX="153.0" layoutY="57.0" prefHeight="344.0" prefWidth="532.0">
+    <GridPane id="GridPane" hgap="15.0" layoutX="153.0" layoutY="57.0" prefHeight="373.0" prefWidth="532.0">
         <children>
             <Label id="Label" styleClass="profileTitle" text="Mettre à jour mes informations" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                 <font>
@@ -74,6 +75,19 @@
             </Label>
             <PasswordField fx:id="txt_password" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <PasswordField fx:id="txt_confirmpass" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label id="Label" text="Etat de compte:" GridPane.rowIndex="8">
+               <font>
+                  <Font size="20.0" fx:id="x111" />
+               </font>
+            </Label>
+            <ToggleButton fx:id="etat_AD" mnemonicParsing="false" prefHeight="25.0" prefWidth="354.0" text="Désactivé" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ToggleButton>
         </children>
         <columnConstraints>
             <ColumnConstraints hgrow="NEVER" minWidth="60.0" />
@@ -91,7 +105,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" />
         </rowConstraints>
     </GridPane>
-<Button fx:id="btn_enregistrer" layoutX="249.0" layoutY="421.0" mnemonicParsing="false" onAction="#onClickEnregistrer" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
-<Button fx:id="btn_annuler" layoutX="433.0" layoutY="421.0" mnemonicParsing="false" onAction="#onAnnuller" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
+<Button fx:id="btn_enregistrer" layoutX="259.0" layoutY="468.0" mnemonicParsing="false" onAction="#onClickEnregistrer" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
+<Button fx:id="btn_annuler" layoutX="443.0" layoutY="468.0" mnemonicParsing="false" onAction="#onAnnuller" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
 </children>
 </AnchorPane>

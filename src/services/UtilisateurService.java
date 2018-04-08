@@ -82,9 +82,10 @@ public class UtilisateurService implements IServiceUtilisateur{
 
     @Override
     public void modifier(int id, Utilisateur user) {
-        String requete="UPDATE Utilisateur set id=?,photoProfil=?,langitude=?,latitude=?,username=?,usernameCanonical=?,email=?,emailCanonical=?,enabled=?,salt=?,password=?,roles where idc=?";
+        String requete="UPDATE Utilisateur set photo_profil=?,langitude=?,latitude=?,username=?,username_canonical=?,email=?,email_canonical=?,enabled=?,salt=?,password=?,roles=? where id=?";
         PreparedStatement pre=null;
         try {
+            System.out.println(user);
             pre = connection.prepareStatement(requete);
             pre.setString(1,user.getPhotoProfil());
             if(user.getLangitude()==null)
@@ -92,26 +93,25 @@ public class UtilisateurService implements IServiceUtilisateur{
             else
                 pre.setDouble(2,user.getLangitude());
             if(user.getLatitude()==null)
-                pre.setDouble(3,Types.NULL);
+                pre.setDouble(3,Types.DOUBLE);
             else
                 pre.setDouble(3,user.getLatitude());
             pre.setString(4, user.getUsername());
             pre.setString(5, user.getUsername());
             pre.setString(6, user.getEmail());
-            pre.setString(7, user.getEmailCanonical());
+            pre.setString(7, user.getEmail());
             pre.setShort(8, user.getEnabled());
             pre.setString(9, user.getSalt());
             pre.setString(10, user.getPassword());
             if(user.getRoles().equals("ROLE_CLIENT"))
                 pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
-            else
             if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
                 pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
             if(id==user.getId())
             pre.setInt(12, id);
             else System.out.println("be carfull error id ");
             pre.executeUpdate();
-            System.out.println("Utilisateur ajouter avec succés");
+            System.out.println("Utilisateur Modifier avec succés");
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }

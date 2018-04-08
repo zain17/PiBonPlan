@@ -2,13 +2,11 @@ package gui.profil;
 
 import entites.Utilisateur;
 import gui.Main;
+import gui.Routers.RoutingGestionProfil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import security.Authenticator;
 import security.FOSJCrypt;
 import security.Sha512;
@@ -21,6 +19,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class FormUtilisateur implements Initializable {
+    @FXML
+    private ToggleButton etat_AD;
     private Main app;
     public CheckBox chb_roleClient;
     @FXML
@@ -79,9 +79,14 @@ public class FormUtilisateur implements Initializable {
                 u.setRoles("ROLE_ETABLISSEMENT");
             }
             u.setEnabled(new Short("1"));
-            usserv.modifier(app.getLoggedUser().getId(),u);
+            if(etat_AD.isSelected())
+                u.setEnabled((short) 0);
+                usserv.modifier(app.getLoggedUser().getId(),u);
+            RoutingGestionProfil r=new RoutingGestionProfil(this.app);
+            r.gotoProfile();
         }else
             System.out.println("DATA not valid");
+
         //app.userLogout();
     }
 
