@@ -40,7 +40,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             pre = connection.prepareStatement(req);
             pre.setString(1,user.getPhotoProfil());
             if(user.getLangitude()==null)
-                pre.setDouble(2,Types.NULL);
+                pre.setNull(2,Types.DOUBLE);
             else
                 pre.setDouble(2,user.getLangitude());
             if(user.getLatitude()==null)
@@ -87,21 +87,28 @@ public class UtilisateurService implements IServiceUtilisateur{
         try {
             pre = connection.prepareStatement(requete);
             pre.setString(1,user.getPhotoProfil());
-            pre.setDouble(2,user.getLangitude());
-            pre.setDouble(3,user.getLatitude());
+            if(user.getLangitude()==null)
+                pre.setNull(2,Types.DOUBLE);
+            else
+                pre.setDouble(2,user.getLangitude());
+            if(user.getLatitude()==null)
+                pre.setDouble(3,Types.NULL);
+            else
+                pre.setDouble(3,user.getLatitude());
             pre.setString(4, user.getUsername());
-            pre.setString(5, user.getUsernameCanonical());
+            pre.setString(5, user.getUsername());
             pre.setString(6, user.getEmail());
             pre.setString(7, user.getEmailCanonical());
             pre.setShort(8, user.getEnabled());
             pre.setString(9, user.getSalt());
             pre.setString(10, user.getPassword());
-            if(user.getRoles().equals("ROLE_CIENT"))
-            pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
+            if(user.getRoles().equals("ROLE_CLIENT"))
+                pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
             else
             if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
                 pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
-            pre.setInt(12,id);
+            pre.executeUpdate();
+            System.out.println("Utilisateur ajouter avec succés");
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -215,7 +222,6 @@ public class UtilisateurService implements IServiceUtilisateur{
             SerializedPhpParser serializedPhpParser = new SerializedPhpParser(role_role);
             Object result = serializedPhpParser.parse();
              strResultat = result.toString();
-
             strResultat= strResultat.substring(3,strResultat.length()-1);
         }
         return strResultat;
