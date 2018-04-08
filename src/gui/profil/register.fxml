@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="483.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.RegisterController">
+<AnchorPane prefHeight="591.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.RegisterController">
    <children>
-      <AnchorPane id="anchorPane1" layoutX="28.0" layoutY="15.0" prefHeight="399.0" prefWidth="614.0" styleClass="top-segment">
+      <AnchorPane id="anchorPane1" layoutX="151.0" layoutY="165.0" prefHeight="399.0" prefWidth="614.0" styleClass="top-segment">
          <children>
             <VBox id="VBox" alignment="CENTER" spacing="5.0" AnchorPane.bottomAnchor="32.5" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
                <children>
@@ -100,9 +100,9 @@
                   </GridPane>
                </children>
             </VBox>
+            <Button fx:id="btn_enregistrer" layoutX="111.0" layoutY="367.0" mnemonicParsing="false" onAction="#onClickEnregistrer" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
+            <Button fx:id="btn_annuler" layoutX="295.0" layoutY="367.0" mnemonicParsing="false" onAction="#onAnnuller" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
          </children>
       </AnchorPane>
-      <Button fx:id="btn_enregistrer" layoutX="249.0" layoutY="421.0" mnemonicParsing="false" onAction="#onClickEnregistrer" prefHeight="42.0" prefWidth="137.0" text="Enregistrer" />
-      <Button fx:id="btn_annuler" layoutX="433.0" layoutY="421.0" mnemonicParsing="false" onAction="#onAnnuller" prefHeight="42.0" prefWidth="137.0" text="Annuler" />
    </children>
 </AnchorPane>

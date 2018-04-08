@@ -68,9 +68,11 @@ public class FormUtilisateur implements Initializable {
             u.setEmail(txt_email.getText());
             u.setEmailCanonical(txt_email.getText());
             String pwclair=txt_confirmpass.getText();
-            Sha512 sha512=FOSJCrypt.crypt(pwclair);
-            u.setSalt(sha512.getSalt());
-            u.setPassword(sha512.getHash());
+            if(txt_confirmpass.getText()!="" && txt_password.getText()!=""&&txt_password.getText().equals(txt_confirmpass.getText())) {
+                Sha512 sha512 = FOSJCrypt.crypt(pwclair);
+                u.setSalt(sha512.getSalt());
+                u.setPassword(sha512.getHash());
+            }
             u.setLastLogin(new Date());
             if(chb_roleClient.isSelected()) {
                 u.setRoles("ROLE_CLIENT");

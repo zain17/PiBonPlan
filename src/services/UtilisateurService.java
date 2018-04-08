@@ -88,11 +88,11 @@ public class UtilisateurService implements IServiceUtilisateur{
             System.out.println(user);
             pre = connection.prepareStatement(requete);
             pre.setString(1,user.getPhotoProfil());
-            if(user.getLangitude()==null)
+            if(user.getLangitude()==0)
                 pre.setNull(2,Types.DOUBLE);
             else
                 pre.setDouble(2,user.getLangitude());
-            if(user.getLatitude()==null)
+            if(user.getLatitude()==0)
                 pre.setDouble(3,Types.DOUBLE);
             else
                 pre.setDouble(3,user.getLatitude());
@@ -134,7 +134,23 @@ public class UtilisateurService implements IServiceUtilisateur{
         }
         return  users;
     }
+    @Override
+    public ArrayList<Utilisateur> selectAllEnabled() {
+        ArrayList<Utilisateur> users = new ArrayList<>();
+        ResultSet rs;
+        try {
 
+            //rs = ste.executeQuery("SELECT (id,photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password) FROM `utilisateur`");
+            rs = ste.executeQuery("SELECT * FROM utilisateur where enabled=1");
+            users = new ArrayList<>();
+            while (rs.next()){
+                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16))));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  users;
+    }
     @Override
     public Utilisateur selectOne(int id) {
         Statement ste=null;
