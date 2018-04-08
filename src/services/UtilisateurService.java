@@ -107,7 +107,9 @@ public class UtilisateurService implements IServiceUtilisateur{
             else
             if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
                 pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
+            if(id==user.getId())
             pre.setInt(12, id);
+            else System.out.println("be carfull error id ");
             pre.executeUpdate();
             System.out.println("Utilisateur ajouter avec succés");
         } catch (SQLException ex) {

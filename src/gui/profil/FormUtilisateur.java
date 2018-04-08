@@ -86,7 +86,7 @@ public class FormUtilisateur implements Initializable {
     }
 
     private boolean dataValidation() {
-        return false;
+        return true;
     }
 
 
