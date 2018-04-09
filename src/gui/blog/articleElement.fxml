@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.ArticleElementController">
+   <children>
+      <Hyperlink fx:id="titre" text="Hyperlink">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets top="2.0" />
+         </padding></Hyperlink>
+      <Label fx:id="author" text="Label" />
+      <Separator maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+      <Label fx:id="text" text="Label" />
+   </children>
+</VBox>

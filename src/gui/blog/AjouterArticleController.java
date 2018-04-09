@@ -7,8 +7,11 @@ package gui.blog;
 
 import entites.Article;
 import entites.Tag;
+import gui.ContainerController;
 import gui.Main;
+import gui.Routers.RoutingBlog;
 import gui.Routers.RoutingGestionProfil;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +21,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -45,6 +49,8 @@ public class AjouterArticleController implements Initializable {
     private TextField titreArticle;
     @FXML
     private TextField tagsTexte;
+    @FXML
+    private AnchorPane contained;
 
     /**
      * Initializes the controller class.
@@ -55,7 +61,7 @@ public class AjouterArticleController implements Initializable {
     }    
 
     @FXML
-    private void enregistrerArticle(ActionEvent event) {
+    private void enregistrerArticle(ActionEvent event) throws IOException {
         ArticleService aS = new ArticleService();
         TagService tS = new TagService();
         String texte = texteArticle.getHtmlText();
@@ -80,7 +86,11 @@ public class AjouterArticleController implements Initializable {
                 System.out.println("Tag: " + t.getName());
             }
         }
+        
+              contained.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/blog/rechercherArticle.fxml")));
+
        
+        
       
     }
     

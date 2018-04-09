@@ -6,6 +6,7 @@
 package gui;
 
 import gui.blog.AjouterArticleController;
+import gui.blog.BlogContainerController;
 import gui.blog.RechercherArticleController;
 import gui.profil.ListetablissementController;
 import java.io.IOException;
@@ -56,10 +57,10 @@ public class ContainerController implements Initializable {
 
     @FXML
     private void blogAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/ajouterArticle.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/blogContainer.fxml"));
 
         AnchorPane parentContent = fxmlLoader.load();
-        AjouterArticleController c = (AjouterArticleController) fxmlLoader.getController();
+        BlogContainerController c = (BlogContainerController) fxmlLoader.getController();
       
         c.setApp(app);
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
@@ -80,7 +81,7 @@ public class ContainerController implements Initializable {
         
     }
     
-   private void setNode(Node node) {
+   public void setNode(Node node) {
         contained.getChildren().clear();
         contained.getChildren().add((Node) node);
 

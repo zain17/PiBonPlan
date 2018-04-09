@@ -117,7 +117,7 @@ public class ArticleService  {
 		
 	}
 
-	public ArrayList findAll() {
+	public ArrayList<Article> findAll() {
 		ArrayList<Article> ret = null;
 		try {
 			String req = "SELECT * FROM article";
