@@ -68,7 +68,7 @@ public class ProfileController implements Initializable {
             H_gotoMyEtab.setVisible(false);
         }
         lbl_nom.setText(u.getUsername());
-        lbl_prenom.setText(u.getUsername());
+        lbl_prenom.setText(u.getPrenom());
         lbl_email.setText(u.getEmail());
         lbl_nbEvents.setText(String.valueOf(usev.nbEvents(u.getId())));
         lbl_nbExperience.setText(String.valueOf(usev.nbExperiences(u.getId())));

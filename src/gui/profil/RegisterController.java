@@ -47,7 +47,8 @@ public class RegisterController implements Initializable{
     public void onClickEnregistrer(ActionEvent actionEvent) {
         if (dataValidation()) {
             userToSave.setUsername(txt_prenom.getText());
-            userToSave.setUsernameCanonical(txt_nom.getText());
+            userToSave.setUsernameCanonical(txt_prenom.getText());
+            userToSave.setPrenom((txt_nom.getText()));
             userToSave.setEmail(txt_email.getText());
             userToSave.setEmailCanonical(txt_email.getText());
             String pwclair=txt_confirmpass.getText();
