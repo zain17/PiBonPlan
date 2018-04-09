@@ -26,26 +26,38 @@ import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import services.ArticleService;
 
-public class Paginator extends Application {
+public class Paginator  {
   private Pagination pagination;
   private ArrayList<Article> list;
-  private int itemsPerPage = 10;
+  private int itemsPerPage;
+  int pages = 1;
+  
+  public Paginator(ArrayList<Article> list, int itemsNumber) {
+      this.list = list;
+      this.itemsPerPage = itemsNumber;
+  }
 
   public static void main(String[] args) throws Exception {
-    launch(args);
+  
   }
 
   
 
   public VBox createPage(int pageIndex) {
     VBox box = new VBox(5);
+    box.setStyle("-fx-background-color: white;");
     int page = pageIndex * itemsPerPage;
+    System.out.println("PAGGGGGE " + page);
+    if (pages - 1 == page) {
+        itemsPerPage = list.size() - (itemsPerPage * (pages - 1));
+    }
     for (int i = page; i < page + itemsPerPage; i++) {
       
        
         try {
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/blog/articleElement.fxml"));
         VBox element;
+        
             element = loader.load();
             ArticleElementController c = (ArticleElementController) loader.getController();
             c.setTitre(list.get(i).getTitre());
@@ -53,7 +65,8 @@ public class Paginator extends Application {
                         String aText = list.get(i).getTexte();
             aText = Jsoup.parse(aText).text();
             c.setText(aText.substring(0, aText.length()/10) + "...");
-            box.getChildren().add(element);
+            System.out.println(list.get(i).getTexte() + "*****");
+            box.getChildren().addAll(element);
             /*
             Hyperlink link = new Hyperlink(list.get(i).getTitre());
             link.setVisited(true);
@@ -73,24 +86,33 @@ public class Paginator extends Application {
     return box;
   }
 
-  @Override
-  public void start(final Stage stage) throws Exception {
-      ArticleService aS = new ArticleService();
-      list = aS.findAll();
-      list.sort((Article e1, Article e2)-> e2.getCreated().compareTo(e1.getCreated()));
-    pagination = new Pagination((list.size() / 10)+1, 0);
+ 
+  public AnchorPane getPaginator() throws Exception {
+    
+      
+      if (list.size() > itemsPerPage ) {
+          if (list.size() % itemsPerPage != 0) {
+              pages  = (list.size() / itemsPerPage) + 1;
+              
+          }
+          else
+              pages = (list.size() / itemsPerPage);
+      }
+      else
+          itemsPerPage = list.size();
+   
+    pagination = new Pagination(pages, 0);
    // pagination.setStyle("-fx-border-color:red;");
+     pagination.setStyle("-fx-background-color: white;");
     pagination.setPageFactory((Integer pageIndex) -> createPage(pageIndex));
-
+  
     AnchorPane anchor = new AnchorPane();
+    anchor.setStyle("-fx-background-color: white;");
     AnchorPane.setTopAnchor(pagination, 10.0);
     AnchorPane.setRightAnchor(pagination, 10.0);
     AnchorPane.setBottomAnchor(pagination, 10.0);
     AnchorPane.setLeftAnchor(pagination, 10.0);
     anchor.getChildren().addAll(pagination);
-    Scene scene = new Scene(anchor);
-    stage.setScene(scene);
-    stage.setTitle("PaginationSample");
-    stage.show();
+    return anchor;
   }
 }

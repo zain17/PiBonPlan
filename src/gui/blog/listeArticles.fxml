@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" fx:id="blogWidget" maxHeight="600.0" maxWidth="803.0" prefHeight="600.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.ListeArticlesController">
+<AnchorPane id="AnchorPane" fx:id="blogWidget" maxHeight="600.0" maxWidth="803.0" prefHeight="600.0" prefWidth="803.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.ListeArticlesController">
    <children>
-      <Label layoutX="6.0" layoutY="5.0" text="Label" />
+      <AnchorPane fx:id="listeContainer" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
+      <VBox layoutX="600.0" prefHeight="600.0" prefWidth="203.0">
+         <children>
+            <Label text="Rechercher:" />
+            <TextField />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tags" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
