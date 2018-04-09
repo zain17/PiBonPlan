@@ -41,18 +41,6 @@ public class ListEvents implements Initializable {
     public void setApp(Main app)  {
         this.app = app;
     }
-       private void setNode(Node node) {
-        contained.getChildren().clear();
-        contained.getChildren().add((Node) node);
-
-        FadeTransition ft = new FadeTransition(Duration.millis(1000));
-        ft.setNode(node);
-        ft.setFromValue(0.1);
-        ft.setToValue(1);
-        ft.setCycleCount(1);
-        ft.setAutoReverse(false);
-        ft.play();
-    }
         @FXML
     private void ajout(ActionEvent event) throws IOException {
            routingEvents.fromListToAdd();
