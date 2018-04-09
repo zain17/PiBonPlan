@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.HTMLEditor?>
+
+<AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.ModifierArticleController">
+   <children>
+      <Label layoutX="47.0" layoutY="108.0" text="Titre" />
+      <TextField fx:id="titre" layoutX="47.0" layoutY="142.0" />
+      <HTMLEditor fx:id="editor" htmlText="" layoutX="47.0" layoutY="185.0" prefHeight="200.0" prefWidth="506.0" />
+      <Button layoutX="457.0" layoutY="430.0" mnemonicParsing="false" onAction="#modifierArticle" text="Sauvegarder" />
+   </children>
+</AnchorPane>
