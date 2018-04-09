@@ -43,6 +43,16 @@ public class Utilisateur   {
     private String confirmationToken;
     private Date passwordRequestedAt;
     private String roles;
+    private String prenom;
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
     private ArrayList<Revue> revues;
     private Etablissement etablissement;
     private ArrayList<Experience> experiences;
@@ -290,4 +300,6 @@ public class Utilisateur   {
                 ", experiences=" + experiences +
                 '}'+"\n";
     }
+
+
 }

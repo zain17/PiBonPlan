@@ -34,7 +34,7 @@ public class UtilisateurService implements IServiceUtilisateur{
     }
     @Override
     public void ajouter(Utilisateur user) {
-        String req = "INSERT INTO Utilisateur (photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password,roles) VALUES (?,?,?,?,?,?,?,?,?,?,?)" ;
+        String req = "INSERT INTO Utilisateur (photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password,roles,prenom) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ;
         PreparedStatement pre;
         try {
             pre = connection.prepareStatement(req);
@@ -59,6 +59,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             else
             if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
                 pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
+            pre.setString(12, user.getPrenom());
             pre.executeUpdate();
             System.out.println("Utilisateur ajouter avec succés");
         } catch (SQLException ex) {
