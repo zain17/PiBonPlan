@@ -5,9 +5,11 @@
  */
 package gui.blog;
 
+import entites.Article;
 import gui.Main;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import services.ArticleService;
 
 /**
  * FXML Controller class
@@ -40,10 +43,16 @@ public class BlogContainerController implements Initializable {
     }    
 
     @FXML
-    public void listeArticleAction(ActionEvent event) throws IOException {
+    public void listeArticleAction(ActionEvent event) throws IOException, Exception {
         FXMLLoader fXMlLoader = new FXMLLoader(getClass().getResource("/gui/blog/listeArticles.fxml"));
         AnchorPane parentContent = fXMlLoader.load();
         ListeArticlesController c = (ListeArticlesController) fXMlLoader.getController();
+        ArticleService aS = new ArticleService();
+        ArrayList<Article> list = aS.findAll();
+        
+        System.out.println("BlogContainerController, 52 " + list.size() + "titre " + list.get(0).getTexte());
+        Paginator p = new Paginator(list, 3);
+        c.setListeContainer(p.getPaginator());
         c.setApp(app);
         setNode(parentContent);
     }
