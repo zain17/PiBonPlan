@@ -68,7 +68,7 @@ public class UtilisateurService implements IServiceUtilisateur{
 
     @Override
     public void supprimer(int id) {
-        String SQL = "DELETE FROM Utilisateur WHERE id = ? ";
+        String SQL = "DELETE FROM utilisateur WHERE id = ? ";
         PreparedStatement pre = null;
         try {
             // get a connection and then in your try catch for executing your delete...
