@@ -28,6 +28,7 @@ public class Evenements   {
     private String adresse;    
     private String tel;
     private Integer rating;
+    private String type ;
     
     private Collection<CommentaireE> commentaireECollection;
 
@@ -38,7 +39,7 @@ public class Evenements   {
         this.id = id;
     }
 
-    public Evenements(Integer id, String nom, String description, Date date, int nbPlace, String lieu, int prix, String brochure, Date dateF, String adresse, String tel) {
+    public Evenements(Integer id, String nom, String description, Date date, int nbPlace, String lieu, int prix, String brochure, Date dateF, String adresse, String tel,String type) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -50,6 +51,7 @@ public class Evenements   {
         this.dateF = dateF;
         this.adresse = adresse;
         this.tel = tel;
+        this.type=type ;
     }
 
     public Integer getId() {
@@ -146,6 +148,14 @@ public class Evenements   {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+    public String getType(){
+        return type ;
+       
+    }
+    
+    public void setType(String type){
+        this.type=type ;
     }
 
     public Collection<CommentaireE> getCommentaireECollection() {

@@ -5,7 +5,12 @@
  */
 package gui;
 
+<<<<<<< HEAD
+import gui.Events.AjoutEvents;
+import gui.Events.ListEvents;
+=======
 import entites.Utilisateur;
+>>>>>>> 9726114415426a37071652a943752ecdd5b50290
 import gui.blog.AjouterArticleController;
 import gui.blog.RechercherArticleController;
 import gui.profil.FormUtilisateur;
@@ -135,6 +140,36 @@ public class ContainerController implements Initializable {
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
     }
+<<<<<<< HEAD
+    
+    
+     @FXML
+    private void ajout(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/AjoutEvents.fxml"));
+
+        AnchorPane parentContent = fxmlLoader.load();
+           AjoutEvents c = (AjoutEvents) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+        
+    }
+    
+      @FXML
+       private void Events(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/ListEvents.fxml"));
+
+        AnchorPane parentContent = fxmlLoader.load();
+           ListEvents c = (ListEvents) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+        
+    }
+    
+=======
     @FXML
     private void profilEdit(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/formUtilisateur.fxml"));
@@ -144,4 +179,5 @@ public class ContainerController implements Initializable {
         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
     }
+>>>>>>> 9726114415426a37071652a943752ecdd5b50290
 }
