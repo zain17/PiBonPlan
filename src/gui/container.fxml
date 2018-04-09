@@ -82,8 +82,7 @@
             <MenuButton fx:id="cmb_username" mnemonicParsing="false" style="-fx-background-color: white;" text="Nom">
               <items>
                 <MenuItem fx:id="menubtn_clickEditer" mnemonicParsing="false" onAction="#profilEdit" text="Editer" />
-                <MenuItem mnemonicParsing="false" text="Profil" />
-                  <MenuItem mnemonicParsing="false" text="Déconnecter" />
+                  <MenuItem fx:id="menu_logout" mnemonicParsing="false" onAction="#logout" text="Déconnecter" />
               </items>
                <HBox.margin>
                   <Insets left="530.0" />

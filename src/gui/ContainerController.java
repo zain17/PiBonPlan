@@ -10,6 +10,7 @@ import gui.Events.AjoutEvents;
 import gui.Events.ListEvents;
 
 import entites.Utilisateur;
+import gui.Routers.RoutingGestionProfil;
 import gui.blog.AjouterArticleController;
 import gui.blog.BlogContainerController;
 import gui.blog.RechercherArticleController;
@@ -42,6 +43,8 @@ import static java.lang.Thread.sleep;
  */
 public class ContainerController implements Initializable {
 
+    @FXML
+    private MenuItem menu_logout;
     @FXML
     private  MenuItem menubtn_clickEditer;
     @FXML
@@ -173,5 +176,11 @@ public class ContainerController implements Initializable {
         c.setApp(app);
         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
+    }
+
+    public void logout(ActionEvent actionEvent) {
+        Authenticator.setCurrentAuth(null);
+        RoutingGestionProfil r = new RoutingGestionProfil(this.app);
+        r.gotoLogin();
     }
 }
