@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="602.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfileController">
+<AnchorPane fx:id="contneurProfil" prefHeight="602.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfileController">
     <children>
         <ImageView fx:id="image_photoprofil" fitHeight="165.0" fitWidth="171.0" layoutX="163.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>

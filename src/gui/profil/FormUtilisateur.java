@@ -2,23 +2,27 @@ package gui.profil;
 
 import entites.Utilisateur;
 import gui.Main;
-import gui.Routers.RoutingGestionProfil;
+import gui.Routers.RoutingGestionProfilContainer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import security.Authenticator;
 import security.FOSJCrypt;
 import security.Sha512;
 import services.UtilisateurService;
 
-import javax.annotation.PostConstruct;
-import javax.rmi.CORBA.Util;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 public class FormUtilisateur implements Initializable {
+    RoutingGestionProfilContainer routingGestionProfilContainer= new RoutingGestionProfilContainer(this.app,this);
+    @FXML
+    private  AnchorPane conteneurProfil;
     @FXML
     private ToggleButton etat_AD;
     private Main app;
@@ -61,7 +65,7 @@ public class FormUtilisateur implements Initializable {
             chb_roleClient.setSelected(true);
         else chb_roleEtab.setSelected(true);
     }
-    public void readNewInfoUser(Utilisateur u){
+    public void readNewInfoUser(Utilisateur u) throws IOException {
         if (dataValidation()) {
             u.setUsername(txt_prenom.getText());
             u.setUsernameCanonical(txt_nom.getText());
@@ -84,8 +88,7 @@ public class FormUtilisateur implements Initializable {
             if(etat_AD.isSelected())
                 u.setEnabled((short) 0);
                 usserv.modifier(app.getLoggedUser().getId(),u);
-            RoutingGestionProfil r=new RoutingGestionProfil(this.app);
-            r.gotoProfile();
+              routingGestionProfilContainer.returnFromEdit();
         }else
             System.out.println("DATA not valid");
 
@@ -98,9 +101,24 @@ public class FormUtilisateur implements Initializable {
 
 
     public void onClickEnregistrer(ActionEvent actionEvent) {
-        readNewInfoUser(app.getLoggedUser());
+        try {
+            readNewInfoUser(app.getLoggedUser());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onAnnuller(ActionEvent actionEvent) {
+    }
+    public void gotoProfile() throws IOException {
+        conteneurProfil.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/profil/profile.fxml")));
+    }
+
+    public AnchorPane getConteneurProfil() {
+        return conteneurProfil;
+    }
+
+    public void setConteneurProfil(AnchorPane conteneurProfil) {
+        this.conteneurProfil = conteneurProfil;
     }
 }
