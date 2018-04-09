@@ -5,6 +5,7 @@
  */
 package gui.blog;
 
+import gui.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -16,6 +17,8 @@ import javafx.fxml.Initializable;
  */
 public class ListeArticlesController implements Initializable {
 
+    public Main app;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +26,9 @@ public class ListeArticlesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    void setApp(Main app) {
+     this.app = app;
+    }
     
 }

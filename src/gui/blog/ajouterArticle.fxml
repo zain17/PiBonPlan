@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.AjouterArticleController">
+<AnchorPane id="AnchorPane" fx:id="blogWidget" prefHeight="600.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.AjouterArticleController">
    <children>
       <HTMLEditor fx:id="texteArticle" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="47.0" layoutY="154.0" prefHeight="200.0" prefWidth="506.0" />
       <Label layoutX="47.0" layoutY="42.0" text="Titre" />

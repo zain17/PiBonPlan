@@ -4,8 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="gui.blog.RechercherArticleController">
+<AnchorPane id="AnchorPane" fx:id="blogWidget" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.RechercherArticleController">
    <children>
       <TextField fx:id="rech" layoutX="285.0" layoutY="147.0" onKeyPressed="#rechercherArticles" />
       <Label layoutX="285.0" layoutY="209.0" text="Resultat" />

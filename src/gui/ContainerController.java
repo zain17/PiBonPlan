@@ -11,6 +11,7 @@ import gui.Events.ListEvents;
 
 import entites.Utilisateur;
 import gui.blog.AjouterArticleController;
+import gui.blog.BlogContainerController;
 import gui.blog.RechercherArticleController;
 import gui.profil.FormUtilisateur;
 import gui.profil.ListetablissementController;
@@ -72,10 +73,10 @@ public class ContainerController implements Initializable {
 
     @FXML
     private void blogAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/ajouterArticle.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/blogContainer.fxml"));
 
         AnchorPane parentContent = fxmlLoader.load();
-        AjouterArticleController c = (AjouterArticleController) fxmlLoader.getController();
+        BlogContainerController c = (BlogContainerController) fxmlLoader.getController();
       
         c.setApp(app);
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
