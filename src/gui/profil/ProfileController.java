@@ -53,14 +53,20 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-      //  System.out.println(app.getLoggedUser());
-        System.out.println("initialize prompt");
-
         loadUserInfo(security.Authenticator.getCurrentAuth());
     }
     public void loadUserInfo(Utilisateur u){
         UtilisateurService usev=new UtilisateurService();
+        if(u.getRoles().equals("ROLE_ETABLISSEMENT")){
+            if(u.getEtablissement()!=null){
+                H_gotoMyEtab.setText("Voir l'établissement");
+            }
+            else
+                H_gotoMyEtab.setText("Créer mon établissement");
+        }
+        if(u.getRoles().equals("ROLE_CLIENT")){
+            H_gotoMyEtab.setVisible(false);
+        }
         lbl_nom.setText(u.getUsername());
         lbl_prenom.setText(u.getUsername());
         lbl_email.setText(u.getEmail());
