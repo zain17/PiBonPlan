@@ -34,7 +34,7 @@ public class UtilisateurService implements IServiceUtilisateur{
     }
     @Override
     public void ajouter(Utilisateur user) {
-        String req = "INSERT INTO Utilisateur (photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password,roles) VALUES (?,?,?,?,?,?,?,?,?,?,?)" ;
+        String req = "INSERT INTO utilisateur (photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password,roles) VALUES (?,?,?,?,?,?,?,?,?,?,?)" ;
         PreparedStatement pre;
         try {
             pre = connection.prepareStatement(req);
@@ -82,7 +82,7 @@ public class UtilisateurService implements IServiceUtilisateur{
 
     @Override
     public void modifier(int id, Utilisateur user) {
-        String requete="UPDATE Utilisateur set photo_profil=?,langitude=?,latitude=?,username=?,username_canonical=?,email=?,email_canonical=?,enabled=?,salt=?,password=?,roles=? where id=?";
+        String requete="UPDATE utilisateur set photo_profil=?,langitude=?,latitude=?,username=?,username_canonical=?,email=?,email_canonical=?,enabled=?,salt=?,password=?,roles=? where id=?";
         PreparedStatement pre=null;
         try {
             System.out.println(user);
@@ -158,7 +158,7 @@ public class UtilisateurService implements IServiceUtilisateur{
         ResultSet rs=null;
         try {
             ste=connection.createStatement();
-            rs=ste.executeQuery("SELECT * from Utilisateur where id="+id);
+            rs=ste.executeQuery("SELECT * from utilisateur where id="+id);
             if(rs.next()) {
                 user = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getShort(10), rs.getString(11), rs.getString(12), rs.getDate(13), rs.getString(14), rs.getDate(15), serializePHPtoJava(rs.getString(16)));
             }
@@ -174,7 +174,7 @@ public class UtilisateurService implements IServiceUtilisateur{
         ResultSet rs=null;
         try {
             ste=connection.createStatement();
-            rs=ste.executeQuery("SELECT * from Utilisateur where username="+username);
+            rs=ste.executeQuery("SELECT * from utilisateur where username="+username);
             if(rs.next()) {
                 user = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getShort(10), rs.getString(11), rs.getString(12), rs.getDate(13), rs.getString(14), rs.getDate(15), serializePHPtoJava(rs.getString(16)));
             }
