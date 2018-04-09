@@ -27,7 +27,7 @@
                               <Font size="20.0" fx:id="x1" />
                            </font>
                         </Label>
-                        <Hyperlink fx:id="link_login" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                        <Hyperlink fx:id="link_login" onAction="#onAnnuller" text="Log In" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                         <Label id="Label" font="$x1" text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets top="2.0" fx:id="x3" />

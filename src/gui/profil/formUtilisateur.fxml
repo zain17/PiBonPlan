@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.FormUtilisateur">
+<AnchorPane fx:id="conteneurProfil" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.FormUtilisateur">
 <children>
-    <GridPane id="GridPane" hgap="15.0" layoutX="153.0" layoutY="57.0" prefHeight="373.0" prefWidth="532.0">
+    <GridPane id="GridPane" hgap="15.0" layoutX="134.0" layoutY="58.0" prefHeight="372.0" prefWidth="551.0">
         <children>
             <Label id="Label" styleClass="profileTitle" text="Mettre à jour mes informations" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                 <font>
@@ -90,8 +90,8 @@
             </ToggleButton>
         </children>
         <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" minWidth="60.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="174.0" minWidth="60.0" prefWidth="174.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="362.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />

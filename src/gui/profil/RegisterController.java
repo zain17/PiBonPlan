@@ -77,7 +77,4 @@ public class RegisterController implements Initializable{
         //if(txt_password.getText()!=txt_confirmpass.getText())return false;
         return true;
     }
-    public void onClickRegister(ActionEvent actionEvent) {
-
-    }
 }

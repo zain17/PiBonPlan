@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import services.UtilisateurService;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +17,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
+    @FXML
+    private AnchorPane contneurProfil;
     @FXML
     private  Label lbl_nbExperience;
     @FXML

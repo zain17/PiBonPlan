@@ -66,8 +66,6 @@ public class ContainerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //System.out.println(this.app.getLoggedUser());
-       // System.out.println(Authenticator.getCurrentAuth());
         cmb_username.setText(Authenticator.getCurrentAuth().getUsername());//Afficher le nom de l'utilisateur courrant
     }
 
