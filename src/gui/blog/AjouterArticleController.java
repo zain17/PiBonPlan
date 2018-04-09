@@ -8,6 +8,8 @@ package gui.blog;
 import entites.Article;
 import entites.Tag;
 import gui.ContainerController;
+import entites.Utilisateur;
+
 import gui.Main;
 import gui.Routers.RoutingBlog;
 import gui.Routers.RoutingGestionProfil;
@@ -93,8 +95,6 @@ public class AjouterArticleController implements Initializable {
         
       
     }
-    
-       
 
     public void setApp(Main app) {
         this.app = app;

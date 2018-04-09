@@ -5,13 +5,21 @@
  */
 package gui;
 
+
+import gui.Events.AjoutEvents;
+import gui.Events.ListEvents;
+
+import entites.Utilisateur;
 import gui.blog.AjouterArticleController;
 import gui.blog.BlogContainerController;
 import gui.blog.RechercherArticleController;
+import gui.profil.FormUtilisateur;
 import gui.profil.ListetablissementController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import gui.profil.ProfileController;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,8 +27,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import security.Authenticator;
+
+import static java.lang.Thread.sleep;
 
 /**
  * FXML Controller class
@@ -29,7 +42,10 @@ import javafx.util.Duration;
  */
 public class ContainerController implements Initializable {
 
-    private Main app;
+    @FXML
+    private  MenuItem menubtn_clickEditer;
+    @FXML
+    private MenuButton cmb_username;
     @FXML
     private AnchorPane contained;
     @FXML
@@ -44,13 +60,15 @@ public class ContainerController implements Initializable {
     private Button articles1;
     @FXML
     private Button profileB;
-
+    private Main app;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //System.out.println(this.app.getLoggedUser());
+       // System.out.println(Authenticator.getCurrentAuth());
+        cmb_username.setText(Authenticator.getCurrentAuth().getUsername());//Afficher le nom de l'utilisateur courrant
     }
 
     
@@ -102,7 +120,15 @@ public class ContainerController implements Initializable {
     private void blogLsArtcAction(ActionEvent event) {
         
     }
-
+    @FXML
+    private void profil(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/profile.fxml"));
+        AnchorPane parentContent = fxmlLoader.load();
+        ProfileController c = (ProfileController) fxmlLoader.getController();
+        c.setApp(app);
+        // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+    }
     @FXML
     private void listeEtab(ActionEvent event) throws IOException {
          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
@@ -115,4 +141,39 @@ public class ContainerController implements Initializable {
         setNode(parentContent);
     }
     
+    
+     @FXML
+    private void ajout(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/AjoutEvents.fxml"));
+
+        AnchorPane parentContent = fxmlLoader.load();
+           AjoutEvents c = (AjoutEvents) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+        
+    }
+    
+      @FXML
+       private void Events(ActionEvent event) throws IOException {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/ListEvents.fxml"));
+
+        AnchorPane parentContent = fxmlLoader.load();
+           ListEvents c = (ListEvents) fxmlLoader.getController();
+      
+        c.setApp(app);
+         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+        
+    }
+    @FXML
+    private void profilEdit(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/formUtilisateur.fxml"));
+        AnchorPane parentContent = fxmlLoader.load();
+        FormUtilisateur c = (FormUtilisateur) fxmlLoader.getController();
+        c.setApp(app);
+        // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
+        setNode(parentContent);
+    }
 }

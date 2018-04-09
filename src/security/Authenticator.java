@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Authenticator {
 
-    private static Utilisateur currentAuth = null;
+    private static Utilisateur currentAuth ;
     private static final Map<String, Utilisateur> USERS = new HashMap<String, Utilisateur>();
 
     public static Utilisateur getCurrentAuth() {
@@ -34,15 +34,11 @@ public class Authenticator {
     }
     public static void loadAuthentificators(){
         UtilisateurService useserv=new UtilisateurService();
-        ArrayList<Utilisateur> users=useserv.selectAll();
+        ArrayList<Utilisateur> users=useserv.selectAllEnabled();
         for (Utilisateur utilisateur:
                 users) {
             USERS.put(utilisateur.getUsername(),utilisateur);
         }
-        System.out.println(USERS.size());
-    }
-
-    public static void main(String[] args) {
-
+        System.out.println("Loading authentificators list");
     }
 }

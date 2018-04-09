@@ -19,6 +19,9 @@ public interface IServiceUtilisateur extends IService<Utilisateur>{
     public int nbRevues(int iduser);
     public int nbExperiences(int iduser);
     public int  nbEvents(int iduser);
+
+    ArrayList<Utilisateur> selectAllEnabled();
+
     public Utilisateur selectOne(String username);
 
 }
