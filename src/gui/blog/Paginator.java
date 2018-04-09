@@ -24,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.jsoup.Jsoup;
+import security.Authenticator;
 import services.ArticleService;
 
 public class Paginator  {
@@ -31,10 +32,22 @@ public class Paginator  {
   private ArrayList<Article> list;
   private int itemsPerPage;
   int pages = 1;
+  private AnchorPane paginatorParent;
+
+    public Paginator(Pagination pagination, ArrayList<Article> list, int itemsPerPage, AnchorPane parent) {
+        this.pagination = pagination;
+        this.list = list;
+        this.itemsPerPage = itemsPerPage;
+        paginatorParent = parent;
+    }
+
+    public Paginator() {
+    }
   
-  public Paginator(ArrayList<Article> list, int itemsNumber) {
+  public Paginator(ArrayList<Article> list, int itemsNumber, AnchorPane parent) {
       this.list = list;
       this.itemsPerPage = itemsNumber;
+      paginatorParent = parent;
   }
 
   public static void main(String[] args) throws Exception {
@@ -60,9 +73,17 @@ public class Paginator  {
         
             element = loader.load();
             ArticleElementController c = (ArticleElementController) loader.getController();
+            c.setPaginatorParent(this.paginatorParent);
+            c.setArticle(list.get(i));
             c.setTitre(list.get(i).getTitre());
             c.setAuthor(list.get(i).getAuteurn(), list.get(i).getCreated().toString());
                         String aText = list.get(i).getTexte();
+            if (!Authenticator.getCurrentAuth().getUsername().equals("admin")) {
+                c.supprimer.setVisible(false);
+                c.supprimer.setManaged(false);
+                c.modifier.setVisible(false);
+                c.modifier.setManaged(false);
+            };
             aText = Jsoup.parse(aText).text();
             c.setText(aText.substring(0, aText.length()/10) + "...");
             System.out.println(list.get(i).getTexte() + "*****");
