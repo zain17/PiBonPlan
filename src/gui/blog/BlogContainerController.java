@@ -32,7 +32,7 @@ public class BlogContainerController implements Initializable {
     @FXML
     private AnchorPane contained;
     @FXML
-    private AnchorPane blogWidget;
+    public AnchorPane blogWidget;
 
     /**
      * Initializes the controller class.
@@ -51,7 +51,7 @@ public class BlogContainerController implements Initializable {
         ArrayList<Article> list = aS.findAll();
         
         System.out.println("BlogContainerController, 52 " + list.size() + "titre " + list.get(0).getTexte());
-        Paginator p = new Paginator(list, 3);
+        Paginator p = new Paginator(list, 3, blogWidget);
         c.setListeContainer(p.getPaginator());
         c.setApp(app);
         setNode(parentContent);

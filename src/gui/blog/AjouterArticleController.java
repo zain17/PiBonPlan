@@ -31,6 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import security.Authenticator;
 import services.ArticleService;
 import services.TagService;
 
@@ -52,7 +53,7 @@ public class AjouterArticleController implements Initializable {
     @FXML
     private TextField tagsTexte;
     @FXML
-    private AnchorPane contained;
+    private AnchorPane blogWidget;
 
     /**
      * Initializes the controller class.
@@ -80,7 +81,7 @@ public class AjouterArticleController implements Initializable {
         //System.out.println("Debug AjoutA***" + (this.app != null));
                  //   Logger.getagsStrtLogger(AjouterArticleController.class.getName()).log(Level.SEVERE, null, this.app != null);
 
-        Article a = new Article(htmlText, 0, titre, 3, "admin", new Date(), new Date());
+        Article a = new Article(htmlText, 0, titre, 3, Authenticator.getCurrentAuth().getUsername(), new Date(), new Date());
         aS.ajouter(a);
         if (tagsArray != null && ! tagsArray.isEmpty()) {
             for (Tag t : tagsArray) {
@@ -89,7 +90,9 @@ public class AjouterArticleController implements Initializable {
             }
         }
         
-              contained.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/blog/rechercherArticle.fxml")));
+        URL res = getClass().getResource("/gui/blog/rechercherArticle.fxml");
+        AnchorPane toInsert = (AnchorPane) FXMLLoader.load(res);
+        blogWidget.getChildren().setAll(toInsert);
 
        
         
