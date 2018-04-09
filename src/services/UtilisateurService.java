@@ -34,7 +34,7 @@ public class UtilisateurService implements IServiceUtilisateur{
     }
     @Override
     public void ajouter(Utilisateur user) {
-        String req = "INSERT INTO utilisateur (photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password,roles) VALUES (?,?,?,?,?,?,?,?,?,?,?)" ;
+        String req = "INSERT INTO utilisateur (photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password,roles,prenom) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ;
         PreparedStatement pre;
         try {
             pre = connection.prepareStatement(req);
@@ -59,6 +59,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             else
             if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
                 pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
+            pre.setString(12, user.getPrenom());
             pre.executeUpdate();
             System.out.println("Utilisateur ajouter avec succés");
         } catch (SQLException ex) {
@@ -79,10 +80,10 @@ public class UtilisateurService implements IServiceUtilisateur{
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     @Override
     public void modifier(int id, Utilisateur user) {
-        String requete="UPDATE utilisateur set photo_profil=?,langitude=?,latitude=?,username=?,username_canonical=?,email=?,email_canonical=?,enabled=?,salt=?,password=?,roles=? where id=?";
+
+        String requete="UPDATE utilisateur set photo_profil=?,langitude=?,latitude=?,username=?,username_canonical=?,email=?,email_canonical=?,enabled=?,salt=?,password=?,roles=?,prenom=? where id=?";
         PreparedStatement pre=null;
         try {
             System.out.println(user);
@@ -107,8 +108,9 @@ public class UtilisateurService implements IServiceUtilisateur{
                 pre.setString(11,"a:1:{i:0;s:11:\"ROLE_CLIENT\";}");
             if(user.getRoles().equals("ROLE_ETABLISSEMENT"))
                 pre.setString(11,"a:1:{i:0;s:18:\"ROLE_ETABLISSEMENT\";}");
+            pre.setString(12, user.getPrenom());
             if(id==user.getId())
-            pre.setInt(12, id);
+            pre.setInt(13, id);
             else System.out.println("be carfull error id ");
             pre.executeUpdate();
             System.out.println("Utilisateur Modifier avec succés");
@@ -116,7 +118,6 @@ public class UtilisateurService implements IServiceUtilisateur{
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     @Override
     public ArrayList<Utilisateur> selectAll() {
         ArrayList<Utilisateur> users = new ArrayList<>();
@@ -127,7 +128,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             rs = ste.executeQuery("SELECT * FROM utilisateur");
             users = new ArrayList<>();
             while (rs.next()){
-                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16))));
+                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16)),rs.getString(17)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
@@ -139,12 +140,10 @@ public class UtilisateurService implements IServiceUtilisateur{
         ArrayList<Utilisateur> users = new ArrayList<>();
         ResultSet rs;
         try {
-
-            //rs = ste.executeQuery("SELECT (id,photo_profil,langitude,latitude,username,username_canonical,email,email_canonical,enabled,salt,password) FROM `utilisateur`");
             rs = ste.executeQuery("SELECT * FROM utilisateur where enabled=1");
             users = new ArrayList<>();
             while (rs.next()){
-                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16))));
+                users.add(new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16)),rs.getString(17)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,7 +159,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             ste=connection.createStatement();
             rs=ste.executeQuery("SELECT * from utilisateur where id="+id);
             if(rs.next()) {
-                user = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getShort(10), rs.getString(11), rs.getString(12), rs.getDate(13), rs.getString(14), rs.getDate(15), serializePHPtoJava(rs.getString(16)));
+                user=new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16)),rs.getString(17));
             }
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -176,7 +175,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             ste=connection.createStatement();
             rs=ste.executeQuery("SELECT * from utilisateur where username="+username);
             if(rs.next()) {
-                user = new Utilisateur(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getShort(10), rs.getString(11), rs.getString(12), rs.getDate(13), rs.getString(14), rs.getDate(15), serializePHPtoJava(rs.getString(16)));
+                user=new Utilisateur(rs.getInt(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getShort(10),rs.getString(11),rs.getString(12),rs.getDate(13),rs.getString(14),rs.getDate(15),serializePHPtoJava(rs.getString(16)),rs.getString(17));
             }
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);

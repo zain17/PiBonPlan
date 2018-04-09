@@ -6,7 +6,12 @@
 package gui.Routers;
 
 import gui.Events.AjoutEvents;
+import gui.Events.ListEvents;
 import gui.Main;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,21 +21,17 @@ import java.util.logging.Logger;
  */
 public class RoutingEvents {
     private Main main;
-    
-    public RoutingEvents(Main main) 
-    {
+    private AjoutEvents ajoutEvents;
+    private ListEvents listEvents;
+
+    public RoutingEvents(Main main, ListEvents listEvents) throws IOException {
         this.main = main;
+        this.listEvents = listEvents;
     }
-    
-    public void gotoAjoutE() {
-        try {
-               AjoutEvents ae = (AjoutEvents) main.replaceSceneContent("AjoutEvents.fxml");
-            ae.setApp(main);
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    public void fromListToAdd() throws IOException {
+        listEvents.getContained().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/Events/AjoutEvents.fxml")));
     }
-    
     
     
 }

@@ -43,6 +43,16 @@ public class Utilisateur   {
     private String confirmationToken;
     private Date passwordRequestedAt;
     private String roles;
+    private String prenom;
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
     private ArrayList<Revue> revues;
     private Etablissement etablissement;
     private ArrayList<Experience> experiences;
@@ -81,7 +91,7 @@ public class Utilisateur   {
         this.roles = roles;
     }
 
-    public Utilisateur(Integer id, String photoProfil, Double langitude, Double latitude, int etablissement_id, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String salt, String password, Date lastLogin, String confirmationToken, Date passwordRequestedAt, String roles) {
+    public Utilisateur(Integer id, String photoProfil, Double langitude, Double latitude, int etablissement_id, String username, String usernameCanonical, String email, String emailCanonical, short enabled, String salt, String password, Date lastLogin, String confirmationToken, Date passwordRequestedAt, String roles,String prenom) {
         this.id = id;
         this.photoProfil = photoProfil;
         this.langitude = langitude;
@@ -99,6 +109,7 @@ public class Utilisateur   {
         this.roles = roles;
         etablissement=new Etablissement();
         this.etablissement.setId(etablissement_id);
+        this.prenom=prenom;
     }
 
     public Integer getId() {
@@ -290,4 +301,6 @@ public class Utilisateur   {
                 ", experiences=" + experiences +
                 '}'+"\n";
     }
+
+
 }

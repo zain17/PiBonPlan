@@ -26,7 +26,7 @@
                <graphic>
                   <FontAwesomeIconView glyphName="MAP" size="18" />
                </graphic></Button>
-            <Button fx:id="blogRech" contentDisplay="TOP" mnemonicParsing="false" onAction="#Events" prefHeight="100.0" prefWidth="100.0" text="Events">
+            <Button fx:id="blogRech" contentDisplay="TOP" mnemonicParsing="false" onAction="#events" prefHeight="100.0" prefWidth="100.0" text="Events">
                <graphic>
                   <FontAwesomeIconView glyphName="CALENDAR" size="18" />
                </graphic></Button>
@@ -82,8 +82,7 @@
             <MenuButton fx:id="cmb_username" mnemonicParsing="false" style="-fx-background-color: white;" text="Nom">
               <items>
                 <MenuItem fx:id="menubtn_clickEditer" mnemonicParsing="false" onAction="#profilEdit" text="Editer" />
-                <MenuItem mnemonicParsing="false" text="Profil" />
-                  <MenuItem mnemonicParsing="false" text="Déconnecter" />
+                  <MenuItem fx:id="menu_logout" mnemonicParsing="false" onAction="#logout" text="Déconnecter" />
               </items>
                <HBox.margin>
                   <Insets left="530.0" />

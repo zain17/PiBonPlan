@@ -20,12 +20,13 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class FormUtilisateur implements Initializable {
+    private Main app;
     RoutingGestionProfilContainer routingGestionProfilContainer= new RoutingGestionProfilContainer(this.app,this);
     @FXML
     private  AnchorPane conteneurProfil;
     @FXML
     private ToggleButton etat_AD;
-    private Main app;
+
     public CheckBox chb_roleClient;
     @FXML
     private Button btn_enregistrer;
@@ -56,7 +57,7 @@ public class FormUtilisateur implements Initializable {
     }
     public void loadUserInfo(Utilisateur u){
         UtilisateurService usev=new UtilisateurService();
-        txt_nom.setText(u.getUsername());
+        txt_nom.setText(u.getPrenom());
         txt_prenom.setText(u.getUsername());
         txt_email.setText(u.getEmail());
         txt_password.setText("");
@@ -68,7 +69,7 @@ public class FormUtilisateur implements Initializable {
     public void readNewInfoUser(Utilisateur u) throws IOException {
         if (dataValidation()) {
             u.setUsername(txt_prenom.getText());
-            u.setUsernameCanonical(txt_nom.getText());
+            u.setUsernameCanonical(txt_prenom.getText());
             u.setEmail(txt_email.getText());
             u.setEmailCanonical(txt_email.getText());
             String pwclair=txt_confirmpass.getText();
@@ -87,6 +88,7 @@ public class FormUtilisateur implements Initializable {
             u.setEnabled(new Short("1"));
             if(etat_AD.isSelected())
                 u.setEnabled((short) 0);
+            u.setPrenom(txt_nom.getText());
                 usserv.modifier(app.getLoggedUser().getId(),u);
               routingGestionProfilContainer.returnFromEdit();
         }else
