@@ -157,7 +157,7 @@ public class ContainerController implements Initializable {
     }
     
       @FXML
-       private void Events(ActionEvent event) throws IOException {
+       private void events(ActionEvent event) throws IOException {
          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/ListEvents.fxml"));
 
         AnchorPane parentContent = fxmlLoader.load();

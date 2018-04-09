@@ -1,9 +1,12 @@
 package gui.Events;
 
+import gui.ContainerController;
 import gui.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import gui.Routers.RoutingEvents;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,10 +18,22 @@ import javafx.util.Duration;
 
 public class ListEvents implements Initializable {
     private Main app;
-     
+    RoutingEvents routingEvents=new RoutingEvents(this.app,this);
     @FXML
     private AnchorPane contained;
-    
+
+    public ListEvents() throws IOException {
+
+    }
+
+    public AnchorPane getContained() {
+        return contained;
+    }
+
+    public void setContained(AnchorPane contained) {
+        this.contained = contained;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -40,16 +55,10 @@ public class ListEvents implements Initializable {
     }
         @FXML
     private void ajout(ActionEvent event) throws IOException {
-         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/AjoutEvents.fxml"));
-
-        AnchorPane parentContent = fxmlLoader.load();
-           AjoutEvents c = (AjoutEvents) fxmlLoader.getController();
-      
-        c.setApp(app);
-         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
-        setNode(parentContent);
-        
+           routingEvents.fromListToAdd();
     }
-    
-    
+
+
+    public void addEvents(ActionEvent actionEvent) {
+    }
 }

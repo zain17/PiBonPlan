@@ -20,12 +20,13 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class FormUtilisateur implements Initializable {
+    private Main app;
     RoutingGestionProfilContainer routingGestionProfilContainer= new RoutingGestionProfilContainer(this.app,this);
     @FXML
     private  AnchorPane conteneurProfil;
     @FXML
     private ToggleButton etat_AD;
-    private Main app;
+
     public CheckBox chb_roleClient;
     @FXML
     private Button btn_enregistrer;
