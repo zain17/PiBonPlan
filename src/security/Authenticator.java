@@ -34,9 +34,7 @@ public class Authenticator {
     }
     public static void loadAuthentificators(){
         UtilisateurService useserv=new UtilisateurService();
-        ArrayList<Utilisateur> users=useserv.selectAll();
-        System.out.println(users.size());
-        System.out.println(users.get(26));
+        ArrayList<Utilisateur> users=useserv.selectAllEnabled();
         for (Utilisateur utilisateur:
                 users) {
             USERS.put(utilisateur.getUsername(),utilisateur);
