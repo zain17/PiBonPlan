@@ -21,7 +21,6 @@ public interface IServiceUtilisateur extends IService<Utilisateur>{
     public int  nbEvents(int iduser);
 
     ArrayList<Utilisateur> selectAllEnabled();
-
     public Utilisateur selectOne(String username);
-
+    boolean hasEtablissement(int id);
 }
