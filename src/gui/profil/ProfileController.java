@@ -2,6 +2,7 @@ package gui.profil;
 
 import entites.Utilisateur;
 import gui.Main;
+import gui.Routers.RoutingGestionProfilContainer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,11 +13,13 @@ import javafx.scene.layout.AnchorPane;
 import services.UtilisateurService;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.net.Authenticator;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
+    RoutingGestionProfilContainer routingGestionProfilContainer= new RoutingGestionProfilContainer(this.app,this);
     @FXML
     private AnchorPane contneurProfil;
     @FXML
@@ -40,9 +43,18 @@ public class ProfileController implements Initializable {
     private Main app;
     private Utilisateur userHand;
 
-    public ProfileController() {
+    public ProfileController() throws IOException {
 
     }
+
+    public AnchorPane getContneurProfil() {
+        return contneurProfil;
+    }
+
+    public void setContneurProfil(AnchorPane contneurProfil) {
+        this.contneurProfil = contneurProfil;
+    }
+
     public void setApp(Main app) {
         System.out.println("setApp prompt");
         this.app = app;
@@ -73,6 +85,11 @@ public class ProfileController implements Initializable {
         lbl_nbEvents.setText(String.valueOf(usev.nbEvents(u.getId())));
         lbl_nbExperience.setText(String.valueOf(usev.nbExperiences(u.getId())));
         lbl_nbRevue.setText(String.valueOf(usev.nbRevues(u.getId())));
+    }
+    @FXML
+    public void voirEtablissement(ActionEvent actionEvent) throws IOException {
+        routingGestionProfilContainer.profileToEtablissement();
+
     }
 
 }

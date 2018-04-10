@@ -123,4 +123,7 @@ public class FormUtilisateur implements Initializable {
     public void setConteneurProfil(AnchorPane conteneurProfil) {
         this.conteneurProfil = conteneurProfil;
     }
+
+    public FormUtilisateur() {
+    }
 }

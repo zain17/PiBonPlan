@@ -33,6 +33,6 @@
       <Label fx:id="lbl_nbExperience" layoutX="452.0" layoutY="210.0" text="12" />
       <Label fx:id="lbl_nbRevue" layoutX="573.0" layoutY="210.0" text="23" />
       <Label fx:id="lbl_nbEvents" layoutX="705.0" layoutY="210.0" text="2" />
-      <Hyperlink fx:id="H_gotoMyEtab" layoutX="594.0" layoutY="149.0" text="gotomyetabProfil" />
+      <Hyperlink fx:id="H_gotoMyEtab" layoutX="594.0" layoutY="149.0" onAction="#voirEtablissement" text="gotomyetabProfil" />
     </children>
 </AnchorPane>
