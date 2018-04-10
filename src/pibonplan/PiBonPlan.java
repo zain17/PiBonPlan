@@ -22,9 +22,6 @@ public class PiBonPlan {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
-//        int gouvid=serviceGouvernorat.g
-        System.out.println(serviceGouvernorat.getGouvernoratIdByHerName("Monastir"));
 
 //
 
