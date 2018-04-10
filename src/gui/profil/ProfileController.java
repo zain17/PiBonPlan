@@ -69,8 +69,9 @@ public class ProfileController implements Initializable {
     }
     public void loadUserInfo(Utilisateur u){
         UtilisateurService usev=new UtilisateurService();
+        boolean hasEtablissement=usev.hasEtablissement(u.getId());
         if(u.getRoles().equals("ROLE_ETABLISSEMENT")){
-            if(u.getEtablissement()!=null){
+            if(!hasEtablissement){
                 H_gotoMyEtab.setText("Voir l'établissement");
             }
             else
@@ -88,7 +89,10 @@ public class ProfileController implements Initializable {
     }
     @FXML
     public void voirEtablissement(ActionEvent actionEvent) throws IOException {
-        routingGestionProfilContainer.profileToEtablissement();
+        if(H_gotoMyEtab.getText().equals("Voir l'établissement"))
+        routingGestionProfilContainer.profileToEtablissementEdit();
+        if(H_gotoMyEtab.getText().equals("Créer mon établissement"))
+            routingGestionProfilContainer.profileToEtablissement();
 
     }
 

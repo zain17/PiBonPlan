@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class FormEtablissementController implements Initializable {
     private Main application;
-    //RoutingGestionProfilContainer routingGestionProfilContainer= new RoutingGestionProfilContainer(this.application,this);
+    RoutingGestionProfilContainer routingGestionProfilContainer= new RoutingGestionProfilContainer(this.application,this);
     @FXML private JFXButton btn_Anuuler;
     @FXML private JFXButton btn_ajouter;
     @FXML private AnchorPane container_formEtab;
