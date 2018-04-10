@@ -2,15 +2,19 @@ package gui.profil;
 
 
 import com.jfoenix.controls.*;
+import entites.Etablissement;
 import gui.Main;
 import gui.Routers.RoutingGestionProfilContainer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import services.EtablissementService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.*;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class FormEtablissementController implements Initializable {
@@ -51,5 +55,32 @@ public class FormEtablissementController implements Initializable {
     }
 
     public void onAjoutEtab(ActionEvent actionEvent) {
+        Etablissement etablissementAajouter = new Etablissement();
+        readFormData(etablissementAajouter);
+        EtablissementService etServ=new EtablissementService();
+        System.out.println("BEOFRE PERSIST+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(etablissementAajouter);
+        etServ.ajouter(etablissementAajouter);
+    }
+    public void readFormData(Etablissement etabToAdd) {
+        if (valideData()){
+            etabToAdd.setNom(txt_nom.getText());
+        etabToAdd.setAdresse(txt_adresse.getText());
+        etabToAdd.setGouvernorat(cmb_gouv.getSelectionModel().getSelectedItem().toString());
+        etabToAdd.setVille(cmb_ville.getSelectionModel().getSelectedItem().toString());
+        etabToAdd.setType(cmb_type.getSelectionModel().getSelectedItem().toString());
+        etabToAdd.setLatitude(Double.valueOf(txt_lat.getText()));
+        etabToAdd.setLongitude(Double.valueOf(txt_lang.getText()));
+        }
+    }
+
+    private boolean valideData() {
+        if(!txt_nom.getText().isEmpty() &&!txt_adresse.getText().isEmpty()&&!cmb_gouv.getSelectionModel().getSelectedItem().toString().isEmpty()&&!!cmb_ville.getSelectionModel().getSelectedItem().toString().isEmpty()&&!cmb_type.getSelectionModel().getSelectedItem().toString().isEmpty()){
+
+            return true;
+
+        }
+        System.out.println("*************Data NOT VALID");
+        return false;
     }
 }

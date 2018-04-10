@@ -6,11 +6,7 @@
 package pibonplan;
 
 
-import services.ArticleService;
-import services.EtablissementService;
-import services.EvenementService;
-import services.IServiceEtablissement;
-import services.UtilisateurService;
+import services.*;
 
 
 /**
@@ -23,13 +19,16 @@ public class PiBonPlan {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
+        System.out.println(serviceGouvernorat.selectAllEager());
+       // ServiceVille serviceVille=new ServiceVille();
+//        System.out.println(serviceVille.selectAllByGouvernorat(1));
 //
 
-        EvenementService es = new EvenementService ();
-        ArticleService as = new ArticleService();
-        System.out.println(as.findAll());
-        System.out.println(es.selectAll());
+//        EvenementService es = new EvenementService ();
+//        ArticleService as = new ArticleService();
+//        System.out.println(as.findAll());
+//        System.out.println(es.selectAll());
 
     }
     
