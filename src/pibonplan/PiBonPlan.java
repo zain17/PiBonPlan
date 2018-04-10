@@ -6,7 +6,10 @@
 package pibonplan;
 
 
+import entites.Gouvernorat;
 import services.*;
+
+import java.util.ArrayList;
 
 
 /**
@@ -20,9 +23,9 @@ public class PiBonPlan {
      */
     public static void main(String[] args) {
         ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
-        System.out.println(serviceGouvernorat.selectAllEager());
-       // ServiceVille serviceVille=new ServiceVille();
-//        System.out.println(serviceVille.selectAllByGouvernorat(1));
+//        int gouvid=serviceGouvernorat.g
+        System.out.println(serviceGouvernorat.getGouvernoratIdByHerName("Monastir"));
+
 //
 
 //        EvenementService es = new EvenementService ();

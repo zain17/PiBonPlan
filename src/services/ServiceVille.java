@@ -38,4 +38,18 @@ public class ServiceVille {
         }
         return  villes;
     }
+//    public ArrayList<Ville> selectAllByGouvernoratId(String stringg){
+//        ArrayList<Ville> villes = new ArrayList<>();
+//        ResultSet rs;
+//        try {
+//            rs = ste.executeQuery("SELECT * FROM Ville where id_gouvernorat=ville='"+stringg+"'");
+//            villes = new ArrayList<>();
+//            while (rs.next()){
+//                villes.add(new Ville(rs.getInt(1),rs.getString(2)));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return  villes;
+//    }
 }

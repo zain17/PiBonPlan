@@ -56,4 +56,20 @@ public class ServiceGouvernorat {
         }
         return  gouvernorats;
     }
+    public int getGouvernoratIdByHerName(String gouvname){
+        ServiceVille serviceVille=new ServiceVille();
+        ArrayList<Gouvernorat> gouvernorats = new ArrayList<>();
+        ResultSet rs;
+        try {
+            rs = ste.executeQuery("SELECT * FROM Gouvernorat where name= '"+gouvname+"'");
+            gouvernorats = new ArrayList<>();
+            while (rs.next()){
+                serviceVille.selectAllByGouvernorat(rs.getInt(1));
+                gouvernorats.add(new Gouvernorat(rs.getInt(1),rs.getString(2),serviceVille.selectAllByGouvernorat(rs.getInt(1))));
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  gouvernorats.get(0).getId();
+    }
 }

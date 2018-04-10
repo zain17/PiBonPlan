@@ -3,17 +3,24 @@ package gui.profil;
 
 import com.jfoenix.controls.*;
 import entites.Etablissement;
+import entites.Gouvernorat;
+import entites.Ville;
 import gui.Main;
 import gui.Routers.RoutingGestionProfilContainer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import services.EtablissementService;
+import services.ServiceGouvernorat;
+import services.ServiceVille;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -47,7 +54,7 @@ public class FormEtablissementController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        loadForm();
     }
 
     public void onAnnulerAjoutET(ActionEvent actionEvent) throws IOException {
@@ -73,6 +80,20 @@ public class FormEtablissementController implements Initializable {
         etabToAdd.setLongitude(Double.valueOf(txt_lang.getText()));
         }
     }
+    public void loadForm(){
+        ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
+        ArrayList<Gouvernorat> gouvernorats=serviceGouvernorat.selectAllEager();
+        ArrayList<String>gouvernoratsStream=new ArrayList<>();
+        gouvernorats.stream().forEach(gouvernorat -> gouvernoratsStream.add(gouvernorat.getName()));
+        ArrayList<String>gouvernoratsStreamVilles=new ArrayList<>();
+        ObservableList<String> gouvernoratObservableList = FXCollections.observableArrayList(gouvernoratsStream);
+        ServiceVille serviceVille=new ServiceVille();
+        cmb_gouv.setItems(gouvernoratObservableList);
+
+
+
+
+    }
 
     private boolean valideData() {
         if(!txt_nom.getText().isEmpty() &&!txt_adresse.getText().isEmpty()&&!cmb_gouv.getSelectionModel().getSelectedItem().toString().isEmpty()&&!!cmb_ville.getSelectionModel().getSelectedItem().toString().isEmpty()&&!cmb_type.getSelectionModel().getSelectedItem().toString().isEmpty()){
@@ -82,5 +103,17 @@ public class FormEtablissementController implements Initializable {
         }
         System.out.println("*************Data NOT VALID");
         return false;
+    }
+    @FXML
+    public void onChangeSelection(ActionEvent actionEvent) {
+        ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
+        ServiceVille serviceVille=new ServiceVille();
+        String gouvname=cmb_gouv.getSelectionModel().getSelectedItem().toString();
+        ArrayList<Ville> villes=serviceVille.selectAllByGouvernorat(serviceGouvernorat.getGouvernoratIdByHerName(cmb_gouv.getSelectionModel().getSelectedItem().toString()));
+        ArrayList<String>villesStream=new ArrayList<>();
+        villes.stream().forEach(gouvernorat -> villesStream.add(gouvernorat.getName()));
+        ArrayList<String>gouvernoratsStreamVilles=new ArrayList<>();
+        ObservableList<String> villeObs = FXCollections.observableArrayList(villesStream);
+        cmb_ville.setItems(villeObs);
     }
 }

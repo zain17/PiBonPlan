@@ -15,6 +15,11 @@ public class Ville {
         this.id = id;
     }
 
+    public Ville(int anInt, String string) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
