@@ -61,10 +61,9 @@ public class Paginator  {
     box.setStyle("-fx-background-color: white;");
     int page = pageIndex * itemsPerPage;
     System.out.println("PAGGGGGE " + page);
-    if (pages - 1 == page) {
-        itemsPerPage = list.size() - (itemsPerPage * (pages - 1));
-    }
-    for (int i = page; i < page + itemsPerPage; i++) {
+
+    int toIndex = Math.min(page + itemsPerPage, list.size());
+    for (int i = page; i <  toIndex; i++) {
       
        
         try {
@@ -111,18 +110,9 @@ public class Paginator  {
   public AnchorPane getPaginator() throws Exception {
     
       
-      if (list.size() > itemsPerPage ) {
-          if (list.size() % itemsPerPage != 0) {
-              pages  = (list.size() / itemsPerPage) + 1;
-              
-          }
-          else
-              pages = (list.size() / itemsPerPage);
-      }
-      else
-          itemsPerPage = list.size();
    
-    pagination = new Pagination(pages, 0);
+   
+    pagination = new Pagination(list.size() / itemsPerPage + 1, 0);
    // pagination.setStyle("-fx-border-color:red;");
      pagination.setStyle("-fx-background-color: white;");
     pagination.setPageFactory((Integer pageIndex) -> createPage(pageIndex));
