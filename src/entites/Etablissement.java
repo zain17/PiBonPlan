@@ -28,7 +28,8 @@ public class Etablissement   {
     private Boolean estActive;
     private String type;    
     private String description;
-    private String photo;    
+    private String photo;
+    private Date horraire_f;
     private ArrayList<Revue> revues;
     private ArrayList<Experience> experiences;
     private ArrayList<Catalogue> catalogues;
@@ -51,7 +52,7 @@ public class Etablissement   {
         this.photo = photo;
     }
     
-    public Etablissement(Integer id, String nom, String adresse, String gouvernorat, String ville, Double note, Date horraire, Double longitude, Double latitude, Boolean estActive, String type, String description, String photo) {
+    public Etablissement(Integer id, String nom, String adresse, String gouvernorat, String ville, Double note, Date horraire, Double longitude, Double latitude, Boolean estActive, String type, String description, String photo,Date horrairef) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -65,6 +66,7 @@ public class Etablissement   {
         this.type = type;
         this.description = description;
         this.photo = photo;
+        this.horraire_f=horrairef;
     }
     
     public Etablissement(Integer id) {
@@ -175,6 +177,14 @@ public class Etablissement   {
         this.photo = photo;
     }
 
+    public Date getHorraire_f() {
+        return horraire_f;
+    }
+
+    public void setHorraire_f(Date horraire_f) {
+        this.horraire_f = horraire_f;
+    }
+
     public ArrayList<Revue> getRevues() {
         return revues;
     }
@@ -235,6 +245,7 @@ public class Etablissement   {
                 ", type='" + type + '\'' +
                 ", description='" + description + '\'' +
                 ", photo='" + photo + '\'' +
+                ", horraire_f=" + horraire_f +
                 ", revues=" + revues +
                 ", experiences=" + experiences +
                 ", catalogues=" + catalogues +

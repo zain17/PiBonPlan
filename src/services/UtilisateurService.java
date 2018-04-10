@@ -7,6 +7,7 @@ package services;
 
 import Util.DataSource;
 import Util.SerializedPhpParser;
+import entites.Etablissement;
 import entites.Utilisateur;
 
 import java.sql.*;
@@ -243,5 +244,10 @@ public class UtilisateurService implements IServiceUtilisateur{
             strResultat= strResultat.substring(3,strResultat.length()-1);
         }
         return strResultat;
+    }
+    @Override
+    public boolean hasEtablissement(int id) {
+        Utilisateur ut= this.selectOne(id);
+        return (ut.getEtablissement()==null || ut.getEtablissement().getId()<1);
     }
 }

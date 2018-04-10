@@ -21,4 +21,5 @@ public interface IServiceEtablissement extends IService<Etablissement>{
     public ArrayList<Etablissement> selectBest();
     public ArrayList<Etablissement> selectBestByType(String type);//Select les 5 meilleurs etablissement par type(café,loisir.etc..)
     public ArrayList<Etablissement> selectNear();//Select les établissements qui sont proches de cordonnés de l'utilisateur
+
 }
