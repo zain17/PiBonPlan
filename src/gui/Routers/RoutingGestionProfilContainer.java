@@ -33,7 +33,6 @@ public class RoutingGestionProfilContainer {
 
     public void returnFromEdit() throws IOException {
             currentFormUtilisateur.getConteneurProfil().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/profil/profile.fxml")));
-
     }
 
     public void profileToEtablissement() throws IOException {

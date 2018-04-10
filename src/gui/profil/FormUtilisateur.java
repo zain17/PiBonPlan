@@ -90,7 +90,7 @@ public class FormUtilisateur implements Initializable {
                 u.setEnabled((short) 0);
             u.setPrenom(txt_nom.getText());
                 usserv.modifier(app.getLoggedUser().getId(),u);
-              routingGestionProfilContainer.returnFromEdit();
+
         }else
             System.out.println("DATA not valid");
 
@@ -102,15 +102,17 @@ public class FormUtilisateur implements Initializable {
     }
 
 
-    public void onClickEnregistrer(ActionEvent actionEvent) {
+    public void onClickEnregistrer(ActionEvent actionEvent) throws IOException {
         try {
             readNewInfoUser(app.getLoggedUser());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        routingGestionProfilContainer.returnFromEdit();
     }
 
-    public void onAnnuller(ActionEvent actionEvent) {
+    public void onAnnuller(ActionEvent actionEvent) throws IOException {
+        routingGestionProfilContainer.returnFromEdit();
     }
     public void gotoProfile() throws IOException {
         conteneurProfil.getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/profil/profile.fxml")));
