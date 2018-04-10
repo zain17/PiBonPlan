@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -45,7 +46,8 @@ public class FormEtablissementController implements Initializable {
 
     }
 
-    public void onAnnulerAjoutET(ActionEvent actionEvent) {
+    public void onAnnulerAjoutET(ActionEvent actionEvent) throws IOException {
+        routingGestionProfilContainer.returnFromEtabVersProfile();
     }
 
     public void onAjoutEtab(ActionEvent actionEvent) {

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,6 +29,14 @@ public class FormEtablissementEditController implements Initializable {
     @FXML private JFXButton btn_Anuuler;
     @FXML private JFXButton btn_modifier;
 
+    public AnchorPane getContainer_formEtabEdit() {
+        return container_formEtabEdit;
+    }
+
+    public void setContainer_formEtabEdit(AnchorPane container_formEtabEdit) {
+        this.container_formEtabEdit = container_formEtabEdit;
+    }
+
     public FormEtablissementEditController() {
 
     }
@@ -37,7 +46,9 @@ public class FormEtablissementEditController implements Initializable {
 
     }
     @FXML
-    public void onAnnulerModif(ActionEvent actionEvent) {
+    public void onAnnulerModif(ActionEvent actionEvent) throws IOException {
+        routingGestionProfilContainer.returnFromEditEtabVersProfile();
+
     }
     @FXML
     public void onModifEtab(ActionEvent actionEvent) {
