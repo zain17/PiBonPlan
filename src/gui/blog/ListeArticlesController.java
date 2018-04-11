@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -26,22 +27,29 @@ public class ListeArticlesController implements Initializable {
     @FXML
     private AnchorPane blogWidget;
     @FXML
-    private AnchorPane listeContainer;
+    public AnchorPane listeContainer;
+    @FXML
+    private VBox rechContainer;
+    private BlogContainerController blogcontroller;
 
-    public void setListeContainer(AnchorPane listeContainer) {
+    public void setPaginatorContainer(Pagination paginator, BlogContainerController c) {
         listeContainer.setMinWidth(600);
         listeContainer.setMinHeight(600);
         System.out.println(Authenticator.getCurrentAuth().getEmail());
-        ScrollPane scroller = new ScrollPane(listeContainer);
+        paginator.setMinHeight(600);
+        paginator.setMinWidth(600);
+       
+        ScrollPane scroller = new ScrollPane(paginator);
         scroller.setMinWidth(600);
         scroller.setMinHeight(600);
         scroller.setStyle("-fx-background:color: white;");
-        listeContainer.setTopAnchor(scroller, 0.0);
-        listeContainer.setLeftAnchor(scroller, 0.0);
-        listeContainer.setRightAnchor(scroller, 0.0);
-        listeContainer.setBottomAnchor(scroller, 0.0);
-        
+        listeContainer.setTopAnchor(scroller, 10.0);
+        listeContainer.setLeftAnchor(scroller, 10.0);
+        listeContainer.setRightAnchor(scroller, 10.0);
+        listeContainer.setBottomAnchor(scroller, 10.0);
+       
         this.listeContainer.getChildren().addAll(scroller);
+        this.blogcontroller = c;
     }
 
     /**
@@ -55,5 +63,7 @@ public class ListeArticlesController implements Initializable {
     void setApp(Main app) {
      this.app = app;
     }
+
+   
     
 }

@@ -13,22 +13,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-
-<AnchorPane id="AnchorPane" fx:id="blogWidget" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="gui.blog.LireArticleController">
+<AnchorPane id="AnchorPane" fx:id="blogWidget" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.LireArticleController">
    <children>
       <HBox layoutX="21.0" layoutY="8.0" prefHeight="39.0" prefWidth="574.0">
          <children>
-            <Label fx:id="titre" text="Label">
+            <Label fx:id="titre" text="Label" textFill="#0046b0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Hyperlink prefHeight="15.0" prefWidth="69.0" style="-fx-background-color: white;" text="Modifier">
+            <Hyperlink onAction="#modifierArticle" prefHeight="15.0" prefWidth="69.0" style="-fx-background-color: white;" text="Modifier">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Hyperlink>
-            <Hyperlink prefWidth="87.0" text="Supprimer" textAlignment="CENTER" textFill="#fa023c" />
+            <Hyperlink onAction="#supprimerArticle" prefWidth="87.0" text="Supprimer" textAlignment="CENTER" textFill="#fa023c" />
             <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="27.0" stylesheets="@../CSS/MenuButtons.css">
                <graphic>
                   <FontAwesomeIconView fill="#0046b0" glyphName="SAVE" size="13" textAlignment="CENTER" />
@@ -49,14 +48,14 @@
                   </Button>
                </children>
             </HBox>
-            <Label text="Commentaires:">
+            <Label text="Commentaires:" textFill="#0046b0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
             <ScrollPane fx:id="commentaires" prefHeight="161.0" prefWidth="549.0" style="-fx-background-color: white;">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="532.0" />
               </content>
             </ScrollPane>
          </children>

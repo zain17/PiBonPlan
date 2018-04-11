@@ -16,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import services.ArticleService;
 
 /**
  * FXML Controller class
@@ -37,6 +39,10 @@ public class ArticleElementController implements Initializable {
 
     private Article article;
     private AnchorPane listeContainer;
+    private VBox boxParent;
+    @FXML
+    private VBox directParent;
+    private BlogContainerController blogController;
 
     public Article getArticle() {
         return article;
@@ -84,7 +90,12 @@ public class ArticleElementController implements Initializable {
     }
 
     @FXML
-    private void loadsupprimerArticle(ActionEvent event) {
+    private void loadsupprimerArticle(ActionEvent event) throws Exception {
+        ArticleService aS = new ArticleService();
+        aS.supprimer(article);
+        this.directParent.setVisible(false);
+        this.directParent.setManaged(false);
+        this.blogController.listeArticleAction(event);
     }
 
     void setPaginatorParent(AnchorPane paginatorParent) {
@@ -100,6 +111,14 @@ public class ArticleElementController implements Initializable {
         listeContainer.getChildren().setAll(forInserting);
         
         
+    }
+
+    void setBoxParent(VBox box) {
+        this.boxParent = box;
+    }
+
+    void setBlogController(BlogContainerController blogContainerController) {
+       this.blogController = blogContainerController;
     }
     
 }

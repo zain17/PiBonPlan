@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="532.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.CommentaireController">
+   <children>
+      <HBox prefHeight="26.0" prefWidth="600.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="username" text="Label">
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <padding>
+                  <Insets top="2.0" />
+               </padding>
+            </Label>
+            <Hyperlink fx:id="modifier" alignment="TOP_CENTER" contentDisplay="TOP" onAction="#modifierCommentaire" text="Modifier">
+               <font>
+                  <Font size="8.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="3.0" />
+               </HBox.margin></Hyperlink>
+            <Hyperlink fx:id="supprimer" onAction="#supprimerCommentaire" text="Supprimer" textFill="#fa023c">
+               <font>
+                  <Font size="8.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="3.0" />
+               </HBox.margin></Hyperlink>
+         </children>
+      </HBox>
+      <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="199.126953125">
+         <font>
+            <Font size="20.0" />
+         </font></Text>
+   </children>
+</VBox>

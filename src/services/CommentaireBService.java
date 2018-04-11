@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author aminos
  */
 public class CommentaireBService {
-	private Connection con = DataSource.getInstance().getCon();
+	public Connection con = DataSource.getInstance().getCon();
 
 	
 	public int ajouter(CommentaireB c) {
@@ -80,17 +80,21 @@ public class CommentaireBService {
 
 	public int modifier(CommentaireB c) {
 		int ret = -1;
+                
 			String req = "UPDATE commentaire_b SET"
 				+ " text = ?"
 				+ " WHERE id = ?" ;
 		PreparedStatement pre;
 		try {
+                   // System.out.println(c.getId());
 			pre = con.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
 			pre.setString(1, c.getText());
 			pre.setInt(2, c.getId());
 			
 			pre.executeUpdate();
 			ret = c.getId();
+                        con.commit();
+                      
 		
 		
 		} catch (SQLException ex) {
