@@ -255,16 +255,16 @@ public class EtablissementService implements IServiceEtablissement{
         }
         return count;
     }
-    public int  nbExperiences(int iduser) {
+    public int  nbExperiences(int idetab) {
         int count=0;
         ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM experience where etablissement_id=");
+        count = getCount(idetab, count, "SELECT count(*) FROM experience where etablissement_id=");
         return count;
     }
-    public int  nbRevues(int iduser) {
+    public int  nbRevues(int idetab) {
         int count=0;
         ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM revues where etablissement_id=");
+        count = getCount(idetab, count, "SELECT count(*) FROM revues where etablissement_id=");
         return count;
     }
 
