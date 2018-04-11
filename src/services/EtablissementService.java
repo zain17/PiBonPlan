@@ -264,7 +264,7 @@ public class EtablissementService implements IServiceEtablissement{
     public int  nbRevues(int idetab) {
         int count=0;
         ResultSet rs;
-        count = getCount(idetab, count, "SELECT count(*) FROM revues where etablissement_id=");
+        count = getCount(idetab, count, "SELECT count(*) FROM revue where etablissement_id=");
         return count;
     }
 

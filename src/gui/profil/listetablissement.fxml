@@ -37,6 +37,7 @@
       <Label fx:id="lbl_nbexp" layoutX="139.0" layoutY="235.0" text="nbExp" />
       <Label fx:id="lbl_nbRevue" layoutX="250.0" layoutY="235.0" text="nbRevue" />
       <Label fx:id="lbl_note" layoutX="58.0" layoutY="235.0" text="Note" />
-      <Hyperlink fx:id="hlink_visiter" layoutX="51.0" layoutY="277.0" text="Visiter" />
+      <Hyperlink fx:id="hlink_visiter" layoutX="51.0" layoutY="277.0" onAction="#gotoEtablissentProfile" text="Visiter" />
+      <Label fx:id="lbl_oubFermer" layoutX="250.0" layoutY="280.0" text="Ouvert/Fermet" />
    </children>
 </AnchorPane>

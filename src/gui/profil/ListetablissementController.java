@@ -9,6 +9,7 @@ import entites.Etablissement;
 import gui.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -32,7 +33,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListetablissementController implements MapComponentInitializedListener,Initializable {
-
+    @FXML private Label lbl_oubFermer;
     @FXML private GoogleMapView mapView;
     GoogleMap map;
     @FXML private TableColumn<Etablissement, String> tablecol_desc;
@@ -77,8 +78,12 @@ public class ListetablissementController implements MapComponentInitializedListe
         tablecol_photo.setCellValueFactory(new PropertyValueFactory<>("Photo"));
         tablecol_horrairef.setCellValueFactory(new PropertyValueFactory<>("horraire_f"));
         tableView_listetab.setItems(etablissements);
-        lbl_nbexp.setText(String.valueOf(etabServ.nbExperiences(selectedEtab.getId())));
-        lbl_note.setText(selectedEtab.getNote().toString());
+        Etablissement firstSelected=new Etablissement();
+        tableView_listetab.getSelectionModel().selectFirst();
+        firstSelected=tableView_listetab.getSelectionModel().getSelectedItem();
+        lbl_nbexp.setText(String.valueOf(etabServ.nbExperiences(firstSelected.getId())));
+        lbl_nbRevue.setText(String.valueOf(etabServ.nbRevues(firstSelected.getId())));
+        lbl_note.setText(firstSelected.getNote().toString());
 
     }
 
@@ -117,5 +122,13 @@ public class ListetablissementController implements MapComponentInitializedListe
     @FXML
     public void takeSelectedEtab(MouseEvent mouseEvent) {
         selectedEtab = tableView_listetab.getSelectionModel().getSelectedItem();
+        EtablissementService etabServ=new EtablissementService();
+        lbl_nbexp.setText(String.valueOf(etabServ.nbExperiences(selectedEtab.getId())));
+        lbl_nbRevue.setText(String.valueOf(etabServ.nbRevues(selectedEtab.getId())));
+        lbl_note.setText(selectedEtab.getNote().toString());
+    }
+    @FXML
+    public void gotoEtablissentProfile(ActionEvent actionEvent) {
+
     }
 }
