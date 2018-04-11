@@ -47,7 +47,6 @@ public class RoutingGestionProfilContainer {
     public void profileToEtablissement() throws IOException {
         currentProfileController.getContneurProfil().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/profil/formEtablissement.fxml")));
     }
-
     public void profileToEtablissementEdit() throws IOException {
         currentProfileController.getContneurProfil().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/profil/formEtablissementEdit.fxml")));
     }

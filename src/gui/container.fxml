@@ -46,7 +46,7 @@
       </VBox>
       <HBox prefHeight="73.0" prefWidth="1000.0" style="-fx-border-width: 0 0 0 0; -fx-border-color: black;" stylesheets="@CSS/HeaderStyle.css">
          <children>
-            <ImageView fitHeight="50.0" fitWidth="144.0" pickOnBounds="true">
+            <ImageView fx:id="homeBP" fitHeight="50.0" fitWidth="144.0" onMouseClicked="#returnToListEtablissement" pickOnBounds="true">
                <image>
                   <Image url="@../images/utilisateur/LoginLogo.png" />
                </image>
