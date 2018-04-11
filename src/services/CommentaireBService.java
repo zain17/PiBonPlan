@@ -6,6 +6,7 @@
 package services;
 
 import Util.DataSource;
+import entites.Article;
 import entites.CommentaireB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -131,7 +132,36 @@ public class CommentaireBService {
 			
 	}
 
-	
+	public ArrayList<CommentaireB> findByArticle(Article article) {
+            ArrayList<CommentaireB> ret = null;
+		try {
+			String req = "SELECT c.id,c.article_id,c.text,c.auteurn,c.auteur FROM commentaire_b c, article a where a.id = c.article_id and a.id = ? ";
+			PreparedStatement pre;
+			pre = con.prepareStatement(req);
+                        pre.setInt(1, article.getId());
+			ResultSet rs = pre.executeQuery();
+			ret = new ArrayList();
+			CommentaireB x;
+			while (rs.next()) {
+				try {
+					x = new CommentaireB();
+					x.setId(rs.getInt(1));
+					ArticleService s = new ArticleService();
+					x.setArticle(s.find(rs.getInt(2)));
+					x.setText(rs.getString(3));
+					x.setAuteur(rs.getInt(5));
+					x.setAuteurn(rs.getString(4));
+					ret.add(x);
+				} catch (SQLException ex) {
+					Logger.getLogger(CommentaireBService.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				
+			}
+		} catch (SQLException ex) {			
+			Logger.getLogger(CommentaireBService.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return ret;
+        }
 
 	public CommentaireB find(int id) {
 		CommentaireB ret = null;
