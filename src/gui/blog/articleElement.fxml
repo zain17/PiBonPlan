@@ -9,7 +9,7 @@
 
 <VBox prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.ArticleElementController">
    <children>
-      <Hyperlink fx:id="titre" text="Hyperlink">
+      <Hyperlink fx:id="titre" onAction="#lireArticle" text="Hyperlink">
          <VBox.margin>
             <Insets />
          </VBox.margin>
