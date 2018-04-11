@@ -150,7 +150,6 @@ public class EtablissementService implements IServiceEtablissement{
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("onnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnne");
 
         System.out.println(etab);
         return etab;
