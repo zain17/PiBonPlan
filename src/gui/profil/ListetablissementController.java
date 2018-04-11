@@ -12,33 +12,36 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebView;
 import services.EtablissementService;
-import com.lynden.gmapsfx.GoogleMapView;
-import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.LatLong;
-import com.lynden.gmapsfx.javascript.object.MapOptions;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-import javafx.application.Application;
 
 import static com.lynden.gmapsfx.javascript.object.MapTypeIdEnum.ROADMAP;
 import static javafx.application.Application.launch;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ListetablissementController implements MapComponentInitializedListener,Initializable {
-    @FXML
-    GoogleMapView mapView;
+
+    @FXML private GoogleMapView mapView;
     GoogleMap map;
+    @FXML private TableColumn<Etablissement, String> tablecol_desc;
+    @FXML private TableColumn<Etablissement, String> tablecol_type;
+    @FXML private Label lbl_nbexp;
+    @FXML private Label lbl_nbRevue;
+    @FXML private Label lbl_note;
+    @FXML private Hyperlink hlink_visiter;
+    @FXML private TableColumn<Etablissement, String> tablecol_horrairef;
     @FXML private TableColumn<Etablissement,Integer> tablecol_id;
     @FXML private TableColumn<Etablissement,String> tablecol_nom;
     @FXML private TableColumn<Etablissement,String> tablecol_adresse;
@@ -51,8 +54,8 @@ public class ListetablissementController implements MapComponentInitializedListe
     @FXML private TableColumn<Etablissement,Boolean> tablecol_active;
     @FXML private TableColumn<Etablissement,String> tablecol_photo;
     @FXML private ImageView image_photoetab;
-    @FXML private WebView webview_map;
     @FXML private TableView<Etablissement> tableView_listetab;
+    private Etablissement selectedEtab=new Etablissement();
     private Main app;
 
     @Override
@@ -68,9 +71,14 @@ public class ListetablissementController implements MapComponentInitializedListe
         tablecol_horraire.setCellValueFactory(new PropertyValueFactory<>("Horraire"));
         tablecol_long.setCellValueFactory(new PropertyValueFactory<>("Longitude"));
         tablecol_lati.setCellValueFactory(new PropertyValueFactory<>("Latitude"));
+        tablecol_desc.setCellValueFactory(new PropertyValueFactory<>("description"));
+        tablecol_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         tablecol_active.setCellValueFactory(new PropertyValueFactory<>("estActive"));
         tablecol_photo.setCellValueFactory(new PropertyValueFactory<>("Photo"));
+        tablecol_horrairef.setCellValueFactory(new PropertyValueFactory<>("horraire_f"));
         tableView_listetab.setItems(etablissements);
+        lbl_nbexp.setText(String.valueOf(etabServ.nbExperiences(selectedEtab.getId())));
+        lbl_note.setText(selectedEtab.getNote().toString());
 
     }
 
@@ -105,5 +113,9 @@ public class ListetablissementController implements MapComponentInitializedListe
         Marker marker = new Marker( markerOptions );
 
         map.addMarker(marker);
+    }
+    @FXML
+    public void takeSelectedEtab(MouseEvent mouseEvent) {
+        selectedEtab = tableView_listetab.getSelectionModel().getSelectedItem();
     }
 }
