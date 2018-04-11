@@ -38,7 +38,7 @@ public class EtablissementService implements IServiceEtablissement{
     }
     @Override
     public void ajouter(Etablissement t) {
-        String req = "INSERT INTO Etablissement (nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,est_active,type,description,photo,horraire_f) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
+        String req = "INSERT INTO etablissement (nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,est_active,type,description,photo,horraire_f) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement pre;
         try {
             pre = con.prepareStatement(req);
@@ -64,7 +64,7 @@ public class EtablissementService implements IServiceEtablissement{
 
     @Override
     public void supprimer(int id) {
-        String SQL = "DELETE FROM Etablissement WHERE id = ? ";
+        String SQL = "DELETE FROM etablissement WHERE id = ? ";
         PreparedStatement pre = null;
         try {
             // get a connection and then in your try catch for executing your delete... 
@@ -78,7 +78,7 @@ public class EtablissementService implements IServiceEtablissement{
 
     @Override
     public void modifier(int id, Etablissement t) {
-        String SQL = "UPDATE Etablissement SET nom=?,adresse=?,gouvernorat=?,ville=?,note=?,horraire=?,longitude=?,latitude=?,est_active=?,type=?,description=?,photo=?,horraire_f=? WHERE id = ?";
+        String SQL = "UPDATE etablissement SET nom=?,adresse=?,gouvernorat=?,ville=?,note=?,horraire=?,longitude=?,latitude=?,est_active=?,type=?,description=?,photo=?,horraire_f=? WHERE id = ?";
         
         PreparedStatement pre=null;
         try {  

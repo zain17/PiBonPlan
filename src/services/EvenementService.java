@@ -30,7 +30,7 @@ public class EvenementService implements IService<Evenements> {
     @Override
     public void ajouter(Evenements t) 
     {
-        String req="INSERT INTO Evenements (nom,description,lieu,date,dateF,adresse,tel,rating,prix,brochure,nbPlace,type) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)" ; 
+        String req="INSERT INTO evenements (nom,description,lieu,date,dateF,adresse,tel,rating,prix,brochure,nbPlace,type) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)" ; 
 		try {
 			pre = con.prepareStatement(req);
                         pre.setString(1, t.getNom());
