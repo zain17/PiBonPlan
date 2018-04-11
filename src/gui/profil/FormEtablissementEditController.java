@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import security.Authenticator;
 import services.EtablissementService;
@@ -110,21 +111,6 @@ public class FormEtablissementEditController implements Initializable {
             etabToAdd.setLongitude(Double.valueOf(txt_lang.getText()));
         }
     }
-//    public void loadForm(){
-//        ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
-//        ArrayList<Gouvernorat> gouvernorats=serviceGouvernorat.selectAllEager();
-//        ArrayList<String>gouvernoratsStream=new ArrayList<>();
-//        gouvernorats.stream().forEach(gouvernorat -> gouvernoratsStream.add(gouvernorat.getName()));
-//        ArrayList<String>gouvernoratsStreamVilles=new ArrayList<>();
-//        ObservableList<String> gouvernoratObservableList = FXCollections.observableArrayList(gouvernoratsStream);
-//        ServiceVille serviceVille=new ServiceVille();
-//        cmb_gouv.setItems(gouvernoratObservableList);
-//        ArrayList<String> types=new ArrayList<String>();
-//        types.add("restaurant");types.add("shopping");types.add("cafe");types.add("loisirs");
-//        ObservableList<String> typeObser = FXCollections.observableArrayList(types);
-//        cmb_type.setItems(typeObser);
-//    }
-
     private boolean valideData() {
         if(!txt_nom.getText().isEmpty() &&!txt_adresse.getText().isEmpty()&&!cmb_gouv.getSelectionModel().getSelectedItem().toString().isEmpty()&&!cmb_ville.getSelectionModel().getSelectedItem().toString().isEmpty()&&!cmb_type.getSelectionModel().getSelectedItem().toString().isEmpty()){
 
@@ -147,7 +133,8 @@ public class FormEtablissementEditController implements Initializable {
         cmb_ville.setItems(villeObs);
     }
     @FXML
-    public void loadTypes(ActionEvent actionEvent) {
+    public void loadTypes(MouseEvent mouseEvent) {
+                cmb_type.getSelectionModel().clearSelection();
         ArrayList<String> types=new ArrayList<String>();
         types.add("restaurant");types.add("shopping");types.add("cafe");types.add("loisirs");
         ObservableList<String> typeObser = FXCollections.observableArrayList(types);
