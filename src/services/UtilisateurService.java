@@ -45,7 +45,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             else
                 pre.setDouble(2,user.getLangitude());
             if(user.getLatitude()==null)
-                pre.setDouble(3,Types.NULL);
+                pre.setDouble(3,Types.DOUBLE);
             else
                 pre.setDouble(3,user.getLatitude());
             pre.setString(4, user.getUsername());
