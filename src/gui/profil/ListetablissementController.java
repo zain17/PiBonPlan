@@ -61,6 +61,7 @@ public class ListetablissementController implements MapComponentInitializedListe
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        mapView.addMapInializedListener(this);
         EtablissementService etabServ=new EtablissementService();
         ObservableList<Etablissement> etablissements= FXCollections.observableList(etabServ.selectAll());
         tablecol_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
