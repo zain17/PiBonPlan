@@ -103,11 +103,11 @@ public class EtablissementService implements IServiceEtablissement{
             pre.setString(i++, t.getAdresse());
             pre.setString(i++, t.getGouvernorat());
             pre.setString(i++, t.getVille());
-            pre.setDouble(i++, t.getNote());
+            pre.setDouble(i++, 1);
             pre.setDate(i++, (Date)t.getHorraire());
             pre.setDouble(i++, t.getLongitude());
             pre.setDouble(i++, t.getLatitude());
-            pre.setBoolean(i++, t.getEstActive());
+            pre.setBoolean(i++, true);
             pre.setString(i++, t.getType());
             pre.setString(i++, t.getDescription());
             pre.setString(i++, t.getPhoto());
@@ -150,8 +150,6 @@ public class EtablissementService implements IServiceEtablissement{
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
-
-        System.out.println(etab);
         return etab;
     }
 

@@ -58,7 +58,6 @@ public class FormEtablissementEditController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         EtablissementService es=new EtablissementService();
         Etablissement etablissement=es.selectOne(Authenticator.getCurrentAuth().getEtablissement().getId());
-        System.out.println(etablissement);
         loadFormData(etablissement);
     }
     @FXML
@@ -67,9 +66,15 @@ public class FormEtablissementEditController implements Initializable {
 
     }
     @FXML
-    public void onModifEtab(ActionEvent actionEvent) {
-
+    public void onModifEtab(ActionEvent actionEvent) throws IOException {
+        EtablissementService ets=new EtablissementService();
+        Etablissement etabTomodif=new Etablissement();
+        etabTomodif=Authenticator.getCurrentAuth().getEtablissement();
+        readFormData(etabTomodif);
+        ets.modifier(etabTomodif.getId(),etabTomodif);
+        routingGestionProfilContainer.returnFromEditEtabVersProfile();
     }
+
     public void loadFormData(Etablissement etabuser){
         ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
         ArrayList<Gouvernorat> gouvernorats=serviceGouvernorat.selectAllEager();
