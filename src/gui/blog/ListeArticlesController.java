@@ -64,6 +64,8 @@ public class ListeArticlesController implements Initializable {
        
         this.listeContainer.getChildren().addAll(scroller);
         this.blogcontroller = c;
+        this.blogcontroller.app = this.app;
+
         this.tags.setVisible(false);
         this.tags.setManaged(false);
     }

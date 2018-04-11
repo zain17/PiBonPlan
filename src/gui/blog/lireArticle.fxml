@@ -28,7 +28,7 @@
                </HBox.margin>
             </Hyperlink>
             <Hyperlink fx:id="supprimer" onAction="#supprimerArticle" prefWidth="87.0" text="Supprimer" textAlignment="CENTER" textFill="#fa023c" />
-            <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="27.0" stylesheets="@../CSS/MenuButtons.css">
+            <Button mnemonicParsing="false" onAction="#exporterPDF" prefHeight="28.0" prefWidth="27.0" stylesheets="@../CSS/MenuButtons.css">
                <graphic>
                   <FontAwesomeIconView fill="#0046b0" glyphName="SAVE" size="13" textAlignment="CENTER" />
                </graphic>

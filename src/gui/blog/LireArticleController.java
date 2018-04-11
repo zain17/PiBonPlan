@@ -5,11 +5,16 @@
  */
 package gui.blog;
 
+import Util.Html2PDF;
 import entites.Article;
 import entites.CommentaireB;
+import gui.Main;
+import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +33,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Window;
 import security.Authenticator;
 import services.ArticleService;
 import services.CommentaireBService;
@@ -62,6 +69,7 @@ public class LireArticleController implements Initializable {
     private Hyperlink modifier;
     @FXML
     private Hyperlink supprimer;
+    public Window app;
 
     public Article getArticle() {
         return article;
@@ -77,7 +85,7 @@ public class LireArticleController implements Initializable {
 
     void setArticle(Article article) throws IOException {
         this.article = article;
-        
+
         texte.getEngine().loadContent(this.article.getTexte());
         titre.setText(this.article.getTitre());
         if (!Authenticator.getCurrentAuth().getUsername().equals(this.article.getAuteurn())) {
@@ -140,17 +148,17 @@ public class LireArticleController implements Initializable {
 
     @FXML
     private void modifierArticle(ActionEvent event) throws IOException {
-                URL res = getClass().getResource("/gui/blog/modifierArticle.fxml");
+        URL res = getClass().getResource("/gui/blog/modifierArticle.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(res);
-          AnchorPane toInsert = (AnchorPane) fxmlLoader.load();
-        ModifierArticleController c = (ModifierArticleController)fxmlLoader.getController();
-        System.out.println("ArticleNull ? "  + this.article != null);
+        AnchorPane toInsert = (AnchorPane) fxmlLoader.load();
+        ModifierArticleController c = (ModifierArticleController) fxmlLoader.getController();
+        System.out.println("ArticleNull ? " + this.article != null);
         System.out.println("ControllerNull ? " + c != null);
         c.setArticle(this.article);
         c.setEditorText(this.article.getTexte());
         c.setTitreText(this.article.getTitre());
-      
-       blogWidget.getChildren().setAll(toInsert);
+
+        blogWidget.getChildren().setAll(toInsert);
     }
 
     @FXML
@@ -158,6 +166,24 @@ public class LireArticleController implements Initializable {
         ArticleService aS = new ArticleService();
         aS.supprimer(article);
         this.blogController.listeArticleAction(event);
+    }
+
+    @FXML
+    private void exporterPDF(ActionEvent event) {
+        try {
+            DirectoryChooser chooser = new DirectoryChooser();
+            chooser.setTitle("Choisir dossier de destination");
+            File defaultDirectory = new File(".");
+            chooser.setInitialDirectory(defaultDirectory);
+            System.out.println(this.blogController.app != null);
+            File selectedDirectory = chooser.showDialog(Main.stage);
+            String html = "<h1>" + this.article.getTitre() + "</h1>"+"<div>"+this.article.getTexte()+"</div>";
+            Html2PDF.convert(html, selectedDirectory.getAbsolutePath() + "/"+LocalDate.now()+".pdf");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(LireArticleController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LireArticleController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
