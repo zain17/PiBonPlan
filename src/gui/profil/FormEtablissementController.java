@@ -4,6 +4,7 @@ package gui.profil;
 import com.jfoenix.controls.*;
 import entites.Etablissement;
 import entites.Gouvernorat;
+import entites.Utilisateur;
 import entites.Ville;
 import gui.Main;
 import gui.Routers.RoutingGestionProfilContainer;
@@ -13,9 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import security.Authenticator;
 import services.EtablissementService;
 import services.ServiceGouvernorat;
 import services.ServiceVille;
+import services.UtilisateurService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +63,7 @@ public class FormEtablissementController implements Initializable {
     public void onAnnulerAjoutET(ActionEvent actionEvent) throws IOException {
         routingGestionProfilContainer.returnFromEtabVersProfile();
     }
-
+    @FXML
     public void onAjoutEtab(ActionEvent actionEvent) {
         Etablissement etablissementAajouter = new Etablissement();
         readFormData(etablissementAajouter);
@@ -68,6 +71,8 @@ public class FormEtablissementController implements Initializable {
         System.out.println("BEOFRE PERSIST+++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println(etablissementAajouter);
         etServ.ajouter(etablissementAajouter);
+        UtilisateurService us=new UtilisateurService();
+        us.affectEtabToUser(Authenticator.getCurrentAuth(),etServ.getLastInsertedId());
     }
     public void readFormData(Etablissement etabToAdd) {
         if (valideData()){
@@ -96,7 +101,7 @@ public class FormEtablissementController implements Initializable {
     }
 
     private boolean valideData() {
-        if(!txt_nom.getText().isEmpty() &&!txt_adresse.getText().isEmpty()&&!cmb_gouv.getSelectionModel().getSelectedItem().toString().isEmpty()&&!!cmb_ville.getSelectionModel().getSelectedItem().toString().isEmpty()&&!cmb_type.getSelectionModel().getSelectedItem().toString().isEmpty()){
+        if(!txt_nom.getText().isEmpty() &&!txt_adresse.getText().isEmpty()&&!cmb_gouv.getSelectionModel().getSelectedItem().toString().isEmpty()&&!cmb_ville.getSelectionModel().getSelectedItem().toString().isEmpty()&&!cmb_type.getSelectionModel().getSelectedItem().toString().isEmpty()){
 
             return true;
 

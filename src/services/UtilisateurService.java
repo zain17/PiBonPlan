@@ -83,7 +83,6 @@ public class UtilisateurService implements IServiceUtilisateur{
     }
     @Override
     public void modifier(int id, Utilisateur user) {
-
         String requete="UPDATE utilisateur set photo_profil=?,langitude=?,latitude=?,username=?,username_canonical=?,email=?,email_canonical=?,enabled=?,salt=?,password=?,roles=?,prenom=? where id=?";
         PreparedStatement pre=null;
         try {
@@ -249,5 +248,18 @@ public class UtilisateurService implements IServiceUtilisateur{
     public boolean hasEtablissement(int id) {
         Utilisateur ut= this.selectOne(id);
         return (ut.getEtablissement()==null || ut.getEtablissement().getId()<1);
+    }
+    public void affectEtabToUser(Utilisateur user,int idEtab){
+        String requete="UPDATE utilisateur set etablissement_id=? where id=?";
+        PreparedStatement pre=null;
+        try {
+            pre = connection.prepareStatement(requete);
+            pre.setInt(1, idEtab);
+            pre.setInt(2, user.getId());
+            pre.executeUpdate();
+            System.out.println("Utilisateur AFFECTER PAR ETAB avec succés");
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
