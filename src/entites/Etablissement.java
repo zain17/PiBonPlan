@@ -52,7 +52,7 @@ public class Etablissement   {
         this.photo = photo;
     }
     
-    public Etablissement(Integer id, String nom, String adresse, String gouvernorat, String ville, Double note, Date horraire, Double longitude, Double latitude, Boolean estActive, String type, String description, String photo,Date horrairef) {
+    public Etablissement(Integer id, String nom, String adresse, String gouvernorat, String ville, Double note, Date horraire, Double longitude, Double latitude, Boolean estActive, String description, String type, String photo,Date horrairef) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -63,8 +63,8 @@ public class Etablissement   {
         this.longitude = longitude;
         this.latitude = latitude;
         this.estActive = estActive;
-        this.type = type;
         this.description = description;
+        this.type = type;
         this.photo = photo;
         this.horraire_f=horrairef;
     }

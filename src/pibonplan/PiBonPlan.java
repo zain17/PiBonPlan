@@ -6,11 +6,10 @@
 package pibonplan;
 
 
-import services.ArticleService;
-import services.EtablissementService;
-import services.EvenementService;
-import services.IServiceEtablissement;
-import services.UtilisateurService;
+import entites.Gouvernorat;
+import services.*;
+
+import java.util.ArrayList;
 
 
 /**
@@ -26,10 +25,10 @@ public class PiBonPlan {
 
 //
 
-        EvenementService es = new EvenementService ();
-        ArticleService as = new ArticleService();
-        System.out.println(as.findAll());
-        System.out.println(es.selectAll());
+//        EvenementService es = new EvenementService ();
+//        ArticleService as = new ArticleService();
+//        System.out.println(as.findAll());
+//        System.out.println(es.selectAll());
 
     }
     
