@@ -6,13 +6,16 @@
 package gui.blog;
 
 import entites.Article;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.HTMLEditor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,6 +34,9 @@ public class ModifierArticleController implements Initializable {
     @FXML
     private HTMLEditor editor;
     private Article article;
+    BlogContainerController blogController;
+    @FXML
+    private AnchorPane blogWidget;
 
     /**
      * Initializes the controller class.
@@ -41,7 +47,7 @@ public class ModifierArticleController implements Initializable {
     }    
 
     @FXML
-    private void modifierArticle(ActionEvent event) {
+    private void modifierArticle(ActionEvent event) throws IOException {
          ArticleService aS = new ArticleService();
       
         String texte = editor.getHtmlText();
@@ -58,6 +64,13 @@ public class ModifierArticleController implements Initializable {
         a.setId(this.article.getId());
         System.out.println(article.getId());
         aS.modifier(a);
+          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/lireArticle.fxml"));
+        AnchorPane forInserting  = (AnchorPane) fxmlLoader.load();
+        LireArticleController c = (LireArticleController) fxmlLoader.getController();
+        c.setArticle(this.article);
+        c.blogController = blogController;
+        blogWidget.getChildren().setAll(forInserting);
+        
     }
 
     void setArticle(Article article) {

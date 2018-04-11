@@ -85,6 +85,7 @@ public class ArticleElementController implements Initializable {
         c.setArticle(this.article);
         c.setEditorText(this.article.getTexte());
         c.setTitreText(this.article.getTitre());
+        c.blogController = this.blogController;
       
        listeContainer.getChildren().setAll(toInsert);
     }
