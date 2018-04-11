@@ -64,7 +64,7 @@ public class FormEtablissementController implements Initializable {
         routingGestionProfilContainer.returnFromEtabVersProfile();
     }
     @FXML
-    public void onAjoutEtab(ActionEvent actionEvent) {
+    public void onAjoutEtab(ActionEvent actionEvent) throws IOException {
         Etablissement etablissementAajouter = new Etablissement();
         readFormData(etablissementAajouter);
         EtablissementService etServ=new EtablissementService();
@@ -73,6 +73,7 @@ public class FormEtablissementController implements Initializable {
         etServ.ajouter(etablissementAajouter);
         UtilisateurService us=new UtilisateurService();
         us.affectEtabToUser(Authenticator.getCurrentAuth(),etServ.getLastInsertedId());
+        routingGestionProfilContainer.returnFromEtabVersProfile();
     }
     public void readFormData(Etablissement etabToAdd) {
         if (valideData()){
