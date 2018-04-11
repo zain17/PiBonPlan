@@ -89,10 +89,10 @@ public class FormEtablissementController implements Initializable {
         ObservableList<String> gouvernoratObservableList = FXCollections.observableArrayList(gouvernoratsStream);
         ServiceVille serviceVille=new ServiceVille();
         cmb_gouv.setItems(gouvernoratObservableList);
-
-
-
-
+        ArrayList<String> types=new ArrayList<String>();
+        types.add("restaurant");types.add("shopping");types.add("cafe");types.add("loisirs");
+        ObservableList<String> typeObser = FXCollections.observableArrayList(types);
+        cmb_type.setItems(typeObser);
     }
 
     private boolean valideData() {
