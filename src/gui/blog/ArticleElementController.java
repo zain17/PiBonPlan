@@ -90,5 +90,16 @@ public class ArticleElementController implements Initializable {
     void setPaginatorParent(AnchorPane paginatorParent) {
        this.listeContainer = paginatorParent;
     }
+
+    @FXML
+    private void lireArticle(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/lireArticle.fxml"));
+        AnchorPane forInserting  = (AnchorPane) fxmlLoader.load();
+        LireArticleController c = (LireArticleController) fxmlLoader.getController();
+        c.setArticle(this.article);
+        listeContainer.getChildren().setAll(forInserting);
+        
+        
+    }
     
 }

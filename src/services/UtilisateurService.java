@@ -202,7 +202,7 @@ public class UtilisateurService implements IServiceUtilisateur{
     public int nbRevues(int iduser) {
         int count=0;
             ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM Revue where utilisateur_id=");
+        count = getCount(iduser, count, "SELECT count(*) FROM revue where utilisateur_id=");
         return count;
     }
 
@@ -211,14 +211,14 @@ public class UtilisateurService implements IServiceUtilisateur{
     public int nbExperiences(int iduser) {
         int count=0;
         ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM Experience where utilisateur_id=");
+        count = getCount(iduser, count, "SELECT count(*) FROM experience where utilisateur_id=");
         return count;
     }
     @Override
     public int  nbEvents(int iduser) {
         int count=0;
         ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM Evenements where utilisateur_id=");
+        count = getCount(iduser, count, "SELECT count(*) FROM evenements where utilisateur_id=");
         return count;
     }
     //Méthode pour compter l'apparition d'une id dans un tableau

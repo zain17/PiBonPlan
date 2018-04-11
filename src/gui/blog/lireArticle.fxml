@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+
+<AnchorPane id="AnchorPane" fx:id="blogWidget" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="gui.blog.LireArticleController">
+   <children>
+      <HBox layoutX="21.0" layoutY="8.0" prefHeight="39.0" prefWidth="574.0">
+         <children>
+            <Label fx:id="titre" text="Label">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Hyperlink prefHeight="15.0" prefWidth="69.0" style="-fx-background-color: white;" text="Modifier">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Hyperlink>
+            <Hyperlink prefWidth="87.0" text="Supprimer" textAlignment="CENTER" textFill="#fa023c" />
+            <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="27.0" stylesheets="@../CSS/MenuButtons.css">
+               <graphic>
+                  <FontAwesomeIconView fill="#0046b0" glyphName="SAVE" size="13" textAlignment="CENTER" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <WebView fx:id="texte" layoutX="21.0" layoutY="59.0" prefHeight="241.0" prefWidth="559.0" />
+      <VBox layoutX="21.0" layoutY="317.0" prefHeight="279.0" prefWidth="549.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextArea fx:id="commentaire" prefHeight="75.0" prefWidth="333.0" promptText="Laisser un commentaire..." style="-fx-border-radius: 0; -fx-border-color: black; -fx-border-width: 1 0 1 1;" />
+                  <Button fx:id="commentButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#creerCommentaire" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 1 1 1 0;" stylesheets="@../CSS/MenuButtons.css" text="Commenter">
+                     <graphic>
+                        <FontAwesomeIconView fill="#0046b0" glyphName="COMMENT" size="18" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <Label text="Commentaires:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <ScrollPane fx:id="commentaires" prefHeight="161.0" prefWidth="549.0" style="-fx-background-color: white;">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
