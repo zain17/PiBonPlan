@@ -243,6 +243,30 @@ public class EtablissementService implements IServiceEtablissement{
         }
         return count;
     }
+    private int getCount(int iduser, int count, String s) {
+        ResultSet rs;
+        try {
+            rs = ste.executeQuery(s +iduser);
+            while (rs.next()){
+                count=rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    public int  nbExperiences(int iduser) {
+        int count=0;
+        ResultSet rs;
+        count = getCount(iduser, count, "SELECT count(*) FROM experience where etablissement_id=");
+        return count;
+    }
+    public int  nbRevues(int iduser) {
+        int count=0;
+        ResultSet rs;
+        count = getCount(iduser, count, "SELECT count(*) FROM revues where etablissement_id=");
+        return count;
+    }
 
 
 
