@@ -22,9 +22,6 @@ public class PiBonPlan {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-//
-
 //        EvenementService es = new EvenementService ();
 //        ArticleService as = new ArticleService();
 //        System.out.println(as.findAll());

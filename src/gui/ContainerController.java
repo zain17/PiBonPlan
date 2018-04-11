@@ -11,6 +11,7 @@ import gui.Events.ListEvents;
 
 import entites.Utilisateur;
 import gui.Routers.RoutingGestionProfil;
+import gui.Routers.RoutingGestionProfilContainer;
 import gui.blog.AjouterArticleController;
 import gui.blog.BlogContainerController;
 import gui.blog.RechercherArticleController;
@@ -30,6 +31,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import security.Authenticator;
@@ -42,7 +44,6 @@ import static java.lang.Thread.sleep;
  * @author aminos
  */
 public class ContainerController implements Initializable {
-
     @FXML
     private MenuItem menu_logout;
     @FXML
@@ -99,6 +100,7 @@ public class ContainerController implements Initializable {
         setNode(parentContent);
         
     }
+
     
    public void setNode(Node node) {
         contained.getChildren().clear();
@@ -130,19 +132,6 @@ public class ContainerController implements Initializable {
         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);
     }
-    @FXML
-    private void listeEtab(ActionEvent event) throws IOException {
-         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
-
-        AnchorPane parentContent = fxmlLoader.load();
-           ListetablissementController c = (ListetablissementController) fxmlLoader.getController();
-      
-        c.setApp(app);
-         // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
-        setNode(parentContent);
-    }
-    
-    
      @FXML
     private void ajout(ActionEvent event) throws IOException {
          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/AjoutEvents.fxml"));
@@ -182,5 +171,13 @@ public class ContainerController implements Initializable {
         Authenticator.setCurrentAuth(null);
         RoutingGestionProfil r = new RoutingGestionProfil(this.app);
         r.gotoLogin();
+    }
+    @FXML
+    public void gotoToListEtablissement(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
+        AnchorPane parentContent = fxmlLoader.load();
+        ListetablissementController cs = (ListetablissementController) fxmlLoader.getController();
+        cs.setApp(app);
+        setNode(parentContent);
     }
 }

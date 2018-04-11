@@ -228,5 +228,46 @@ public class EtablissementService implements IServiceEtablissement{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public int nbEtab( ) {
+        int count=0;
+        ResultSet rs;
+        try {
+
+            String s="SELECT count(*) FROM etablissement";
+            rs = ste.executeQuery(s );
+            while (rs.next()){
+                count=rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    private int getCount(int iduser, int count, String s) {
+        ResultSet rs;
+        try {
+            rs = ste.executeQuery(s +iduser);
+            while (rs.next()){
+                count=rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    public int  nbExperiences(int idetab) {
+        int count=0;
+        ResultSet rs;
+        count = getCount(idetab, count, "SELECT count(*) FROM experience where etablissement_id=");
+        return count;
+    }
+    public int  nbRevues(int idetab) {
+        int count=0;
+        ResultSet rs;
+        count = getCount(idetab, count, "SELECT count(*) FROM revue where etablissement_id=");
+        return count;
+    }
+
+
 
 }
