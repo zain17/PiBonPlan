@@ -120,9 +120,9 @@
             <JFXTextField fx:id="photo_frontale" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <JFXTextField fx:id="txt_lang" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <JFXTextField fx:id="txt_lat" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <JFXComboBox fx:id="cmb_type" prefHeight="25.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <JFXComboBox fx:id="cmb_type" onAction="#loadTypes" prefHeight="25.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <JFXComboBox fx:id="cmb_ville" prefHeight="25.0" prefWidth="339.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <JFXComboBox fx:id="cmb_gouv" prefHeight="25.0" prefWidth="324.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXComboBox fx:id="cmb_gouv" onAction="#onChangeSelection" prefHeight="25.0" prefWidth="324.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <JFXTextArea fx:id="txt_adresse" prefHeight="83.0" prefWidth="464.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>

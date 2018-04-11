@@ -150,6 +150,9 @@ public class EtablissementService implements IServiceEtablissement{
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("onnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnne");
+
+        System.out.println(etab);
         return etab;
     }
 
@@ -204,7 +207,6 @@ public class EtablissementService implements IServiceEtablissement{
             rs = ste.executeQuery("SELECT * from etablissement where ville='"+ville+"'");
             etablissements = new ArrayList<>();
             while (rs.next()){
-
                 etablissements.add(new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getDate(14)));
             }
         } catch (SQLException ex) {
