@@ -54,6 +54,7 @@ public class AjouterArticleController implements Initializable {
     private TextField tagsTexte;
     @FXML
     private AnchorPane blogWidget;
+    BlogContainerController blogController;
 
     /**
      * Initializes the controller class.
@@ -90,10 +91,12 @@ public class AjouterArticleController implements Initializable {
             }
         }
         
-        URL res = getClass().getResource("/gui/blog/rechercherArticle.fxml");
-        AnchorPane toInsert = (AnchorPane) FXMLLoader.load(res);
-        blogWidget.getChildren().setAll(toInsert);
-
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/lireArticle.fxml"));
+        AnchorPane forInserting  = (AnchorPane) fxmlLoader.load();
+        LireArticleController c = (LireArticleController) fxmlLoader.getController();
+        c.setArticle(a);
+        c.blogController = blogController;
+        blogWidget.getChildren().setAll(forInserting);
        
         
       

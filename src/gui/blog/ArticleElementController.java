@@ -75,7 +75,7 @@ public class ArticleElementController implements Initializable {
         this.listeContainer = listeContainer;
     }
     @FXML
-    private void loadmodifierArticle(ActionEvent event) throws IOException {
+    public void loadmodifierArticle(ActionEvent event) throws IOException {
         URL res = getClass().getResource("/gui/blog/modifierArticle.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(res);
           AnchorPane toInsert = (AnchorPane) fxmlLoader.load();
@@ -108,6 +108,7 @@ public class ArticleElementController implements Initializable {
         AnchorPane forInserting  = (AnchorPane) fxmlLoader.load();
         LireArticleController c = (LireArticleController) fxmlLoader.getController();
         c.setArticle(this.article);
+        c.blogController = blogController;
         listeContainer.getChildren().setAll(forInserting);
         
         

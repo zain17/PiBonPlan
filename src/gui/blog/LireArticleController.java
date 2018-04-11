@@ -29,6 +29,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import security.Authenticator;
+import services.ArticleService;
 import services.CommentaireBService;
 
 /**
@@ -56,6 +57,11 @@ public class LireArticleController implements Initializable {
     private VBox box;
     CommentaireB commenT;
     Text cMTxt;
+    BlogContainerController blogController;
+    @FXML
+    private Hyperlink modifier;
+    @FXML
+    private Hyperlink supprimer;
 
     public Article getArticle() {
         return article;
@@ -71,8 +77,15 @@ public class LireArticleController implements Initializable {
 
     void setArticle(Article article) throws IOException {
         this.article = article;
+        
         texte.getEngine().loadContent(this.article.getTexte());
         titre.setText(this.article.getTitre());
+        if (!Authenticator.getCurrentAuth().getUsername().equals(this.article.getAuteurn())) {
+            modifier.setVisible(false);
+            modifier.setManaged(false);
+            supprimer.setVisible(false);
+            supprimer.setManaged(false);
+        }
         box = new VBox(3);
         box.setMaxSize(VBox.USE_PREF_SIZE, VBox.USE_PREF_SIZE);
         box.setStyle("-fx-background-color: white;");
@@ -123,6 +136,28 @@ public class LireArticleController implements Initializable {
         }
         commentaire.clear();
 
+    }
+
+    @FXML
+    private void modifierArticle(ActionEvent event) throws IOException {
+                URL res = getClass().getResource("/gui/blog/modifierArticle.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(res);
+          AnchorPane toInsert = (AnchorPane) fxmlLoader.load();
+        ModifierArticleController c = (ModifierArticleController)fxmlLoader.getController();
+        System.out.println("ArticleNull ? "  + this.article != null);
+        System.out.println("ControllerNull ? " + c != null);
+        c.setArticle(this.article);
+        c.setEditorText(this.article.getTexte());
+        c.setTitreText(this.article.getTitre());
+      
+       blogWidget.getChildren().setAll(toInsert);
+    }
+
+    @FXML
+    private void supprimerArticle(ActionEvent event) throws Exception {
+        ArticleService aS = new ArticleService();
+        aS.supprimer(article);
+        this.blogController.listeArticleAction(event);
     }
 
 }

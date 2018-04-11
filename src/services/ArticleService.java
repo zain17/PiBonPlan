@@ -224,10 +224,11 @@ public class ArticleService  {
         public ArrayList find(String texte) {
 		ArrayList<Article> ret = null;
 		try {
-			String req = "SELECT * FROM article WHERE texte LIKE ?";
+			String req = "SELECT * FROM article WHERE texte LIKE ? OR titre LIKE ?";
 			PreparedStatement pre;
 			pre = con.prepareStatement(req);
                         pre.setString(1, "%"+texte+"%");
+                        pre.setString(2, "%"+texte+"%");
 		
 			ResultSet rs = pre.executeQuery();
 			ret = new ArrayList();

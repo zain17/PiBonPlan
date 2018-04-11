@@ -22,12 +22,12 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Hyperlink onAction="#modifierArticle" prefHeight="15.0" prefWidth="69.0" style="-fx-background-color: white;" text="Modifier">
+            <Hyperlink fx:id="modifier" onAction="#modifierArticle" prefHeight="15.0" prefWidth="69.0" style="-fx-background-color: white;" text="Modifier">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Hyperlink>
-            <Hyperlink onAction="#supprimerArticle" prefWidth="87.0" text="Supprimer" textAlignment="CENTER" textFill="#fa023c" />
+            <Hyperlink fx:id="supprimer" onAction="#supprimerArticle" prefWidth="87.0" text="Supprimer" textAlignment="CENTER" textFill="#fa023c" />
             <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="27.0" stylesheets="@../CSS/MenuButtons.css">
                <graphic>
                   <FontAwesomeIconView fill="#0046b0" glyphName="SAVE" size="13" textAlignment="CENTER" />
