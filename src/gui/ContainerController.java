@@ -173,7 +173,7 @@ public class ContainerController implements Initializable {
         r.gotoLogin();
     }
     @FXML
-    public void returnToListEtablissement(MouseEvent mouseEvent) throws IOException {
+    public void gotoToListEtablissement(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
         AnchorPane parentContent = fxmlLoader.load();
         ListetablissementController cs = (ListetablissementController) fxmlLoader.getController();
