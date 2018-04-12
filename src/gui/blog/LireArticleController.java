@@ -118,8 +118,8 @@ public class LireArticleController implements Initializable {
             commenT.setText(commentaire.getText());
 
             cS.modifier(commenT);
-    
-               cMTxt.setText(commentaire.getText());
+           cMTxt.setText(commentaire.getText());
+         
             commenT = null;
             updating = false;
             cMTxt = null;

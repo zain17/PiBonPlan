@@ -93,8 +93,7 @@ public class CommentaireBService {
 			
 			pre.executeUpdate();
 			ret = c.getId();
-             
-                      
+
 		
 		
 		} catch (SQLException ex) {
