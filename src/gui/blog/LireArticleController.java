@@ -118,12 +118,8 @@ public class LireArticleController implements Initializable {
             commenT.setText(commentaire.getText());
 
             cS.modifier(commenT);
-            try {
-                cS.con.commit();
-                cMTxt.setText(commentaire.getText());
-            } catch (SQLException ex) {
-                Logger.getLogger(LireArticleController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           cMTxt.setText(commentaire.getText());
+         
             commenT = null;
             updating = false;
             cMTxt = null;
