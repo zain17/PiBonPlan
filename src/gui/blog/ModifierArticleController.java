@@ -67,7 +67,8 @@ public class ModifierArticleController implements Initializable {
           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/lireArticle.fxml"));
         AnchorPane forInserting  = (AnchorPane) fxmlLoader.load();
         LireArticleController c = (LireArticleController) fxmlLoader.getController();
-        c.setArticle(this.article);
+        this.article = a;
+        c.setArticle(a);
         c.blogController = blogController;
         blogWidget.getChildren().setAll(forInserting);
         
