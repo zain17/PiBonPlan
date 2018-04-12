@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -9,29 +10,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="contained" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Events.AjoutEvents">
+<AnchorPane fx:id="contained" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Events.AjoutEvents">
    <children>
       <Label layoutX="40.0" layoutY="140.0" text="Nom d'evenements" />
-      <TextField layoutX="205.0" layoutY="136.0" />
+      <TextField fx:id="n" layoutX="205.0" layoutY="136.0" />
       <Label layoutX="40.0" layoutY="216.0" text="Adresse" />
       <Label layoutX="41.0" layoutY="300.0" text="Téléphone" />
-      <TextField layoutX="205.0" layoutY="212.0" />
-      <TextField layoutX="214.0" layoutY="296.0" />
+      <TextField fx:id="a" layoutX="205.0" layoutY="212.0" />
+      <TextField fx:id="t" layoutX="205.0" layoutY="296.0" />
       <Text layoutX="310.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout Evénement">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>
       </Text>
-      <DatePicker layoutX="214.0" layoutY="380.0" prefHeight="26.0" prefWidth="152.0" />
-      <Label layoutX="41.0" layoutY="384.0" text="Date Debut" />
+      <DatePicker fx:id="dd" editable="false" layoutX="214.0" layoutY="380.0" prefHeight="26.0" prefWidth="152.0" />
+      <Label layoutX="41.0" layoutY="384.0" text="Date" />
       <Label layoutX="479.0" layoutY="140.0" text="Prix" />
-      <TextField layoutX="617.0" layoutY="136.0" />
-      <Label layoutX="61.0" layoutY="449.0" text="Image" />
-      <Button layoutX="245.0" layoutY="441.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="73.0" style="-fx-background-color: gray;" text="Parcourir" />
+      <TextField fx:id="p" layoutX="617.0" layoutY="136.0" />
+      <Label layoutX="474.0" layoutY="229.0" text="Image" />
+      <Button fx:id="photo" layoutX="657.0" layoutY="217.0" mnemonicParsing="false" onAction="#UploadImage" prefHeight="34.0" prefWidth="73.0" style="-fx-background-color: gray;" text="Parcourir" />
       <Label layoutX="459.0" layoutY="321.0" text="Description" />
-      <TextArea layoutX="596.0" layoutY="296.0" prefHeight="119.0" prefWidth="194.0" />
-      <Label layoutX="467.0" layoutY="226.0" text="Date Fin" />
-      <DatePicker layoutX="617.0" layoutY="221.0" prefHeight="26.0" prefWidth="152.0" />
-      <Button layoutX="375.0" layoutY="527.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="184.0" style="-fx-background-color: #4CAF50;" text="Sauvegarder " />
+      <TextArea fx:id="des" layoutX="596.0" layoutY="296.0" prefHeight="119.0" prefWidth="194.0" />
+      <Button fx:id="e" layoutX="375.0" layoutY="527.0" mnemonicParsing="false" onAction="#enregistrer" prefHeight="34.0" prefWidth="184.0" style="-fx-background-color: #4CAF50;" text="Sauvegarder " />
+       
+      <Label layoutX="41.0" layoutY="457.0" text="Lieu" />
+      <ComboBox fx:id="cb" editable="true" layoutX="215.0" layoutY="452.0" prefWidth="150.0" promptText="Gouvernorat" />
    </children>
 </AnchorPane>
