@@ -54,6 +54,7 @@ import static java.lang.Thread.sleep;
  * @author aminos
  */
 public class ContainerController implements Initializable {
+    @FXML ListetablissementController cs;
     @FXML
     private  JFXComboBox cmbfx_gouv;
     @FXML
@@ -83,6 +84,8 @@ public class ContainerController implements Initializable {
     @FXML
     private Button profileB;
     private Main app;
+    private String gouvernoratSelected="";
+    private String villeSelected="";
     /**
      * Initializes the controller class.
      */
@@ -231,13 +234,15 @@ public class ContainerController implements Initializable {
             villeToSave=cmbfx_ville.getSelectionModel().getSelectedItem().toString();
         return villeToSave;
     }
-
+    @FXML
     public void gotoToListEtablissementRech(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
         AnchorPane parentContent = fxmlLoader.load();
-        ListetablissementController cs = (ListetablissementController) fxmlLoader.getController();
-        cs.setApp(app);
+         cs = (ListetablissementController) fxmlLoader.getController();
+        //Les savedSearchINFO sont envoyées après
         cs.saveSearchInfo(readCustumInfoSearchGouv(),readCustumInfoSearchVille());
+        cs.setApp(app);
+        //System.out.println(readCustumInfoSearchGouv()+readCustumInfoSearchVille());
         setNode(parentContent);
     }
 }

@@ -20,18 +20,21 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.web.WebView;
 import services.EtablissementService;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 
+import javax.annotation.PostConstruct;
+
 import static com.lynden.gmapsfx.javascript.object.MapTypeIdEnum.ROADMAP;
 import static javafx.application.Application.launch;
 
+import java.io.CharArrayReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ListetablissementController implements MapComponentInitializedListener,Initializable {
     @FXML private Label lbl_oubFermer;
@@ -59,13 +62,27 @@ public class ListetablissementController implements MapComponentInitializedListe
     @FXML private TableView<Etablissement> tableView_listetab;
     private Etablissement selectedEtab=new Etablissement();
     private Main app;
-    private String savedGouvernorat="";
-    private String savedVille="";
+    private String  savedGouvernorat;
+    private String savedVille;
+    @PostConstruct
+    public  void saveSearchCriteria(){
+        System.out.println("ihavepost");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mapView.addMapInializedListener(this);
         EtablissementService etabServ=new EtablissementService();
-        ObservableList<Etablissement> etablissements= FXCollections.observableList(etabServ.selectAll());
+        ArrayList<Etablissement> dataToshow=new ArrayList<>();
+        System.out.println("savedGouvernorat"+savedGouvernorat);System.out.println("ssavedVille"+savedVille);
+        if((savedGouvernorat!=""&&savedVille!=""))
+        dataToshow= etabServ.selectByGouvernorat(savedGouvernorat);
+        if((savedGouvernorat!="")&&(savedVille==""))
+            dataToshow=etabServ.selectByGouvernorat(savedGouvernorat);
+        System.out.println(dataToshow);
+
+        // TODO :warring jusqu'a mnt les établissements ne sont pas filtrés par les gouvernorats et les villes etablissemnts to filter
+        ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
         tablecol_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         tablecol_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         tablecol_adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
@@ -84,11 +101,25 @@ public class ListetablissementController implements MapComponentInitializedListe
         Etablissement firstSelected=new Etablissement();
         tableView_listetab.getSelectionModel().selectFirst();
         firstSelected=tableView_listetab.getSelectionModel().getSelectedItem();
-        lbl_nbexp.setText(String.valueOf(etabServ.nbExperiences(firstSelected.getId())));
-        lbl_nbRevue.setText(String.valueOf(etabServ.nbRevues(firstSelected.getId())));
-        lbl_note.setText(firstSelected.getNote().toString());
+        //lbl_nbexp.setText(String.valueOf(etabServ.nbExperiences(firstSelected.getId())));
+        //lbl_nbRevue.setText(String.valueOf(etabServ.nbRevues(firstSelected.getId())));
+        //lbl_note.setText(firstSelected.getNote().toString());
+    }
+    public ArrayList<Etablissement> returnFiltredStreamByGouv(){
+        EtablissementService etablissementService=new EtablissementService();
+        return etablissementService.selectByGouvernorat(savedGouvernorat);
+    }
+    public ArrayList<Etablissement> returnFiltredStreamByVille(){
+        EtablissementService etablissementService=new EtablissementService();
+        return etablissementService.selectByVille(savedVille);
     }
 
+
+    public void saveSearchInfo(String gouvFromContainer,String villeFromContainer){
+        System.out.println("in saveSearchInfo():"+gouvFromContainer+villeFromContainer);
+        this.savedGouvernorat=gouvFromContainer;
+        this.savedVille=villeFromContainer;
+    }
     public void setApp(Main app) {
         this.app = app;
     }
@@ -131,14 +162,6 @@ public class ListetablissementController implements MapComponentInitializedListe
     }
     @FXML
     public void gotoEtablissentProfile(ActionEvent actionEvent) {
+    }
 
-    }
-    public ArrayList<Etablissement> returnFiltredStream(){
-        //if()
-        return null;
-    }
-    public void saveSearchInfo(String gouvFromContainer,String villeFromContainer){
-        this.savedGouvernorat=gouvFromContainer;
-        this.savedVille=villeFromContainer;
-    }
 }
