@@ -26,6 +26,8 @@ public class UtilisateurService implements IServiceUtilisateur{
     public UtilisateurService() {
 
         try {
+            System.out.println("DataSource.getInstance().getCon()" + DataSource.getInstance().getCon() == null);
+            
             ste=DataSource.getInstance().getCon().createStatement();
         }
         catch (SQLException e) {
