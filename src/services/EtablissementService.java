@@ -28,7 +28,6 @@ public class EtablissementService implements IServiceEtablissement{
     private final Connection con=DataSource.getInstance().getCon();
     private Statement ste=null;
     public EtablissementService() {
-        System.out.println("EtablissementService");
                     try {
                              ste=DataSource.getInstance().getCon().createStatement();
                     }
