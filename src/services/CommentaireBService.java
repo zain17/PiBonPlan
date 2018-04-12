@@ -93,7 +93,6 @@ public class CommentaireBService {
 			
 			pre.executeUpdate();
 			ret = c.getId();
-                 
                       
 		
 		
