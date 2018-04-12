@@ -28,7 +28,7 @@ public class ServiceVille {
         ArrayList<Ville> villes = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT * FROM Ville where id_gouvernorat="+gouvId);
+            rs = ste.executeQuery("SELECT * FROM ville where id_gouvernorat="+gouvId);
             villes = new ArrayList<>();
             while (rs.next()){
                 villes.add(new Ville(rs.getInt(1),rs.getString(2),new Gouvernorat(gouvId)));
