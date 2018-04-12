@@ -2,6 +2,7 @@ package gui;
 
 import entites.Utilisateur;
 import gui.Routers.RoutingBlog;
+import gui.Routers.RoutingEvents;
 import gui.Routers.RoutingGestionProfil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,8 @@ public class Main extends Application {
     private Utilisateur loggedUser=new Utilisateur();
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);
+    private RoutingEvents re = new RoutingEvents(this);
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
