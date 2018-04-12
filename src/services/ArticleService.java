@@ -256,6 +256,39 @@ public class ArticleService  {
 		return ret;
 			
 	}
+        
+        
+        public ArrayList<Tag> getTags(Article a) {
+                            ArrayList<Tag> ret = null;
+
+            try {
+                
+                String req = "select t.id, t.name from tag as t, article as a,  article_tag as at where t.id = at.tag_id AND at.article_id = a.id and a.id = ?";
+                PreparedStatement pre;
+                pre = con.prepareStatement(req);
+                pre.setInt(1, a.getId());
+                ret = new ArrayList();
+                ResultSet rs = pre.executeQuery();
+			Tag x;
+			while (rs.next()) {
+				try {
+					x = new Tag();
+					x.setId(rs.getInt(1));
+                                        
+					x.setName(rs.getString(2));
+				
+					ret.add(x);
+				} catch (SQLException ex) {
+					Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				
+			}
+            } catch (SQLException ex) {
+                Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return ret;
+           
+        }
 
 	
 
