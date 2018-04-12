@@ -47,7 +47,7 @@
       </ScrollPane>
       <AnchorPane prefHeight="102.0" prefWidth="1000.0" AnchorPane.bottomAnchor="898.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-             <TextArea fx:id="description" prefHeight="78.0" prefWidth="55" promptText="Exprimer vous !!" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="666.0" AnchorPane.topAnchor="0.0" />
+             <TextArea fx:id="description" prefHeight="78.0" prefWidth="55" text="Exprimer vous !!" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="666.0" AnchorPane.topAnchor="0.0" />
              <ImageView fx:id="img" fitHeight="78.0" fitWidth="168.0" layoutX="635" pickOnBounds="true" preserveRatio="true" />
    
             <Button fx:id="uploim" layoutX="435.0" onAction="#uploadBtnAction" prefHeight="78.0" prefWidth="120" text="choisir image" />

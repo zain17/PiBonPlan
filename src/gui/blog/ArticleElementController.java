@@ -16,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import services.ArticleService;
 
 /**
  * FXML Controller class
@@ -37,6 +39,10 @@ public class ArticleElementController implements Initializable {
 
     private Article article;
     private AnchorPane listeContainer;
+    private VBox boxParent;
+    @FXML
+    private VBox directParent;
+    private BlogContainerController blogController;
 
     public Article getArticle() {
         return article;
@@ -69,7 +75,7 @@ public class ArticleElementController implements Initializable {
         this.listeContainer = listeContainer;
     }
     @FXML
-    private void loadmodifierArticle(ActionEvent event) throws IOException {
+    public void loadmodifierArticle(ActionEvent event) throws IOException {
         URL res = getClass().getResource("/gui/blog/modifierArticle.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(res);
           AnchorPane toInsert = (AnchorPane) fxmlLoader.load();
@@ -79,16 +85,42 @@ public class ArticleElementController implements Initializable {
         c.setArticle(this.article);
         c.setEditorText(this.article.getTexte());
         c.setTitreText(this.article.getTitre());
+        c.blogController = this.blogController;
       
        listeContainer.getChildren().setAll(toInsert);
     }
 
     @FXML
-    private void loadsupprimerArticle(ActionEvent event) {
+    private void loadsupprimerArticle(ActionEvent event) throws Exception {
+        ArticleService aS = new ArticleService();
+        aS.supprimer(article);
+        this.directParent.setVisible(false);
+        this.directParent.setManaged(false);
+        this.blogController.listeArticleAction(event);
     }
 
     void setPaginatorParent(AnchorPane paginatorParent) {
        this.listeContainer = paginatorParent;
+    }
+
+    @FXML
+    private void lireArticle(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/lireArticle.fxml"));
+        AnchorPane forInserting  = (AnchorPane) fxmlLoader.load();
+        LireArticleController c = (LireArticleController) fxmlLoader.getController();
+        c.setArticle(this.article);
+        c.blogController = blogController;
+        listeContainer.getChildren().setAll(forInserting);
+        
+        
+    }
+
+    void setBoxParent(VBox box) {
+        this.boxParent = box;
+    }
+
+    void setBlogController(BlogContainerController blogContainerController) {
+       this.blogController = blogContainerController;
     }
     
 }

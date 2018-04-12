@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 public class Main extends Application {
 
-    public Stage stage;
+    public static Stage stage;
     private Utilisateur loggedUser=new Utilisateur();
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);

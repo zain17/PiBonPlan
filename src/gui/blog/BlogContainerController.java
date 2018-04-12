@@ -34,6 +34,7 @@ public class BlogContainerController implements Initializable {
     @FXML
     public AnchorPane blogWidget;
 
+    
     /**
      * Initializes the controller class.
      */
@@ -45,16 +46,16 @@ public class BlogContainerController implements Initializable {
     @FXML
     public void listeArticleAction(ActionEvent event) throws IOException, Exception {
         FXMLLoader fXMlLoader = new FXMLLoader(getClass().getResource("/gui/blog/listeArticles.fxml"));
-        AnchorPane parentContent = fXMlLoader.load();
+        AnchorPane childrenContent = fXMlLoader.load();
         ListeArticlesController c = (ListeArticlesController) fXMlLoader.getController();
         ArticleService aS = new ArticleService();
         ArrayList<Article> list = aS.findAll();
         
-        System.out.println("BlogContainerController, 52 " + list.size() + "titre " + list.get(0).getTexte());
-        Paginator p = new Paginator(list, 3, blogWidget);
-        c.setListeContainer(p.getPaginator());
+//        System.out.println("BlogContainerController, 52 " + list.size() + "titre " + list.get(0).getTexte());
+        Paginator p = new Paginator(list, 3, c.listeContainer, this);
+        c.setPaginatorContainer(p.getPaginator(), this);
         c.setApp(app);
-        setNode(parentContent);
+        setNode(childrenContent);
     }
 
     @FXML
@@ -63,6 +64,7 @@ public class BlogContainerController implements Initializable {
 
         AnchorPane parentContent = fxmlLoader.load();
         AjouterArticleController c = (AjouterArticleController) fxmlLoader.getController();
+        c.blogController = this;
       
         c.setApp(app);
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");

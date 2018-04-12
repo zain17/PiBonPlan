@@ -7,6 +7,7 @@ package services;
 
 import Util.DataSource;
 import Util.SerializedPhpParser;
+import entites.Etablissement;
 import entites.Utilisateur;
 
 import java.sql.*;
@@ -46,7 +47,7 @@ public class UtilisateurService implements IServiceUtilisateur{
             else
                 pre.setDouble(2,user.getLangitude());
             if(user.getLatitude()==null)
-                pre.setDouble(3,Types.NULL);
+                pre.setDouble(3,Types.DOUBLE);
             else
                 pre.setDouble(3,user.getLatitude());
             pre.setString(4, user.getUsername());
@@ -84,7 +85,6 @@ public class UtilisateurService implements IServiceUtilisateur{
     }
     @Override
     public void modifier(int id, Utilisateur user) {
-
         String requete="UPDATE utilisateur set photo_profil=?,langitude=?,latitude=?,username=?,username_canonical=?,email=?,email_canonical=?,enabled=?,salt=?,password=?,roles=?,prenom=? where id=?";
         PreparedStatement pre=null;
         try {
@@ -204,7 +204,7 @@ public class UtilisateurService implements IServiceUtilisateur{
     public int nbRevues(int iduser) {
         int count=0;
             ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM Revue where utilisateur_id=");
+        count = getCount(iduser, count, "SELECT count(*) FROM revue where utilisateur_id=");
         return count;
     }
 
@@ -213,14 +213,14 @@ public class UtilisateurService implements IServiceUtilisateur{
     public int nbExperiences(int iduser) {
         int count=0;
         ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM Experience where utilisateur_id=");
+        count = getCount(iduser, count, "SELECT count(*) FROM experience where utilisateur_id=");
         return count;
     }
     @Override
     public int  nbEvents(int iduser) {
         int count=0;
         ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM Evenements where utilisateur_id=");
+        count = getCount(iduser, count, "SELECT count(*) FROM evenements where utilisateur_id=");
         return count;
     }
     //Méthode pour compter l'apparition d'une id dans un tableau
@@ -245,5 +245,23 @@ public class UtilisateurService implements IServiceUtilisateur{
             strResultat= strResultat.substring(3,strResultat.length()-1);
         }
         return strResultat;
+    }
+    @Override
+    public boolean hasEtablissement(int id) {
+        Utilisateur ut= this.selectOne(id);
+        return (ut.getEtablissement()==null || ut.getEtablissement().getId()<1);
+    }
+    public void affectEtabToUser(Utilisateur user,int idEtab){
+        String requete="UPDATE utilisateur set etablissement_id=? where id=?";
+        PreparedStatement pre=null;
+        try {
+            pre = connection.prepareStatement(requete);
+            pre.setInt(1, idEtab);
+            pre.setInt(2, user.getId());
+            pre.executeUpdate();
+            System.out.println("Utilisateur AFFECTER PAR ETAB avec succés");
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

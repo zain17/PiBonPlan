@@ -25,13 +25,17 @@ public class BlogServicesTests {
         //CommentaireBService cServ = new CommentaireBService();
         //System.out.println(aServ.find(36));
         //cServ.ajouter(cB);
-        TagService tS = new TagService();
+        //TagService tS = new TagService();
         //Tag t = new Tag("");
         //tS.ajouter(t, 36);
         
         //System.out.println(aServ.findByTag(t).size());
-        System.out.println(tS.find(new Tag("musique")));
-        tS.supprimer("musique");
+        //System.out.println(tS.find(new Tag("musique")));
+       // tS.supprimer("musique");
+       CommentaireBService cS = new CommentaireBService();
+       CommentaireB c = new CommentaireB("modified",  "admin", 69);
+       c.setId(10);
+       cS.modifier(c);
         
     }
 }

@@ -31,14 +31,16 @@ public class Paginator  {
   private Pagination pagination;
   private ArrayList<Article> list;
   private int itemsPerPage;
+  public BlogContainerController blogContainerController;
   int pages = 1;
   private AnchorPane paginatorParent;
 
-    public Paginator(Pagination pagination, ArrayList<Article> list, int itemsPerPage, AnchorPane parent) {
+    public Paginator(ArrayList<Article> list, int itemsPerPage, AnchorPane parent, BlogContainerController c) {
         this.pagination = pagination;
         this.list = list;
         this.itemsPerPage = itemsPerPage;
         paginatorParent = parent;
+        this.blogContainerController = c;
     }
 
     public Paginator() {
@@ -61,10 +63,9 @@ public class Paginator  {
     box.setStyle("-fx-background-color: white;");
     int page = pageIndex * itemsPerPage;
     System.out.println("PAGGGGGE " + page);
-    if (pages - 1 == page) {
-        itemsPerPage = list.size() - (itemsPerPage * (pages - 1));
-    }
-    for (int i = page; i < page + itemsPerPage; i++) {
+
+    int toIndex = Math.min(page + itemsPerPage, list.size());
+    for (int i = page; i <  toIndex; i++) {
       
        
         try {
@@ -73,6 +74,8 @@ public class Paginator  {
         
             element = loader.load();
             ArticleElementController c = (ArticleElementController) loader.getController();
+            c.setBlogController(this.blogContainerController);
+            c.setBoxParent(box);
             c.setPaginatorParent(this.paginatorParent);
             c.setArticle(list.get(i));
             c.setTitre(list.get(i).getTitre());
@@ -108,32 +111,25 @@ public class Paginator  {
   }
 
  
-  public AnchorPane getPaginator() throws Exception {
+  public Pagination getPaginator() throws Exception {
     
       
-      if (list.size() > itemsPerPage ) {
-          if (list.size() % itemsPerPage != 0) {
-              pages  = (list.size() / itemsPerPage) + 1;
-              
-          }
-          else
-              pages = (list.size() / itemsPerPage);
-      }
-      else
-          itemsPerPage = list.size();
    
-    pagination = new Pagination(pages, 0);
+   
+    pagination = new Pagination(list.size() / itemsPerPage + 1, 0);
    // pagination.setStyle("-fx-border-color:red;");
      pagination.setStyle("-fx-background-color: white;");
     pagination.setPageFactory((Integer pageIndex) -> createPage(pageIndex));
-  
+  /*
     AnchorPane anchor = new AnchorPane();
     anchor.setStyle("-fx-background-color: white;");
+    
     AnchorPane.setTopAnchor(pagination, 10.0);
     AnchorPane.setRightAnchor(pagination, 10.0);
     AnchorPane.setBottomAnchor(pagination, 10.0);
     AnchorPane.setLeftAnchor(pagination, 10.0);
     anchor.getChildren().addAll(pagination);
-    return anchor;
+*/
+    return pagination;
   }
 }

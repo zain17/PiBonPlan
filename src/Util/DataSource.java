@@ -8,6 +8,7 @@ package Util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
@@ -50,6 +51,11 @@ public class DataSource {
 	}
 
 	public Connection getCon() {
+        try {
+            con.setAutoCommit(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(DataSource.class.getName()).log(Level.SEVERE, null, ex);
+        }
 		return con;
 	}
 }

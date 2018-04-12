@@ -9,12 +9,11 @@
 
 <AnchorPane id="AnchorPane" fx:id="blogWidget" maxHeight="600.0" maxWidth="803.0" prefHeight="600.0" prefWidth="803.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.ListeArticlesController">
    <children>
-      <AnchorPane fx:id="listeContainer" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" />
-      <VBox layoutX="600.0" prefHeight="600.0" prefWidth="203.0">
+      <VBox fx:id="rechContainer" layoutX="600.0" prefHeight="600.0" prefWidth="203.0">
          <children>
             <Label text="Rechercher:" />
-            <TextField />
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <TextField fx:id="recherche" onKeyPressed="#rechercherArticle" />
+            <VBox fx:id="tags" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tags" />
                   <HBox prefHeight="100.0" prefWidth="200.0" />
@@ -22,5 +21,6 @@
             </VBox>
          </children>
       </VBox>
+      <AnchorPane fx:id="listeContainer" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white;" />
    </children>
 </AnchorPane>

@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author ASUS
  */
 public class EtablissementService implements IServiceEtablissement{
-    public static int lastInsertedId=0;
+    public  int lastInsertedId=0;
     private final Connection con=DataSource.getInstance().getCon();
     private Statement ste=null;
     public EtablissementService() {
@@ -36,26 +36,42 @@ public class EtablissementService implements IServiceEtablissement{
                         System.out.println(e.getMessage());
                     }
     }
+
+    public int getLastInsertedId() {
+        return lastInsertedId;
+    }
+
+    public void setLastInsertedId(int lastInsertedId) {
+        this.lastInsertedId = lastInsertedId;
+    }
+
     @Override
     public void ajouter(Etablissement t) {
-        String req = "INSERT INTO Etablissement (nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,est_active,type,description,photo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)" ;
+        String req = "INSERT INTO etablissement (nom,adresse,gouvernorat,ville,note,horraire,longitude,latitude,est_active,type,description,photo,horraire_f) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)" ;
 		PreparedStatement pre;
         try {
-            pre = con.prepareStatement(req);
+            pre = con.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
             int i=1;
             pre.setString(i++, t.getNom());
             pre.setString(i++, t.getAdresse());
             pre.setString(i++, t.getGouvernorat());
             pre.setString(i++, t.getVille());
-            pre.setDouble(i++, t.getNote());
+            pre.setDouble(i++, 1);
             pre.setDate(i++, new Date(2017, 03, 16));
             pre.setDouble(i++, t.getLongitude());
             pre.setDouble(i++, t.getLatitude());
-            pre.setBoolean(i++, t.getEstActive());
+            pre.setBoolean(i++, true);
             pre.setString(i++, t.getType());
-            pre.setString(i++, t.getDescription());
-            pre.setString(i++, t.getPhoto());	
+            pre.setString(i++, "Description");
+            pre.setString(i++, t.getPhoto());
+            pre.setDate(i++,  new Date(2017, 03, 16));
             pre.executeUpdate();
+            ResultSet rs = pre.getGeneratedKeys();
+            if(rs.next())
+            {
+                lastInsertedId = rs.getInt(1);
+                System.out.println("LAST ID INSERTED "+lastInsertedId);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
         }		
@@ -63,7 +79,7 @@ public class EtablissementService implements IServiceEtablissement{
 
     @Override
     public void supprimer(int id) {
-        String SQL = "DELETE FROM Etablissement WHERE id = ? ";
+        String SQL = "DELETE FROM etablissement WHERE id = ? ";
         PreparedStatement pre = null;
         try {
             // get a connection and then in your try catch for executing your delete... 
@@ -77,7 +93,7 @@ public class EtablissementService implements IServiceEtablissement{
 
     @Override
     public void modifier(int id, Etablissement t) {
-        String SQL = "UPDATE Etablissement SET nom=?,adresse=?,gouvernorat=?,ville=?,note=?,horraire=?,longitude=?,latitude=?,est_active=?,type=?,description=?,photo WHERE id = ?";
+        String SQL = "UPDATE etablissement SET nom=?,adresse=?,gouvernorat=?,ville=?,note=?,horraire=?,longitude=?,latitude=?,est_active=?,type=?,description=?,photo=?,horraire_f=? WHERE id = ?";
         
         PreparedStatement pre=null;
         try {  
@@ -87,14 +103,15 @@ public class EtablissementService implements IServiceEtablissement{
             pre.setString(i++, t.getAdresse());
             pre.setString(i++, t.getGouvernorat());
             pre.setString(i++, t.getVille());
-            pre.setDouble(i++, t.getNote());
+            pre.setDouble(i++, 1);
             pre.setDate(i++, (Date)t.getHorraire());
             pre.setDouble(i++, t.getLongitude());
             pre.setDouble(i++, t.getLatitude());
-            pre.setBoolean(i++, t.getEstActive());
+            pre.setBoolean(i++, true);
             pre.setString(i++, t.getType());
             pre.setString(i++, t.getDescription());
             pre.setString(i++, t.getPhoto());
+            pre.setDate(i++, (Date)t.getHorraire_f());
             pre.setInt(i++, id);
             pre.executeUpdate();
         } catch (SQLException ex) {
@@ -110,8 +127,7 @@ public class EtablissementService implements IServiceEtablissement{
             rs = ste.executeQuery("SELECT * from etablissement");
             etablissements = new ArrayList<>();
 		while (rs.next()){
-		
-		etablissements.add(new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13)));
+		etablissements.add(new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getDate(14)));
 		}
         } catch (SQLException ex) {
             Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,7 +145,7 @@ public class EtablissementService implements IServiceEtablissement{
             ste=con.createStatement();
             final ResultSet rs=ste.executeQuery("SELECT * from etablissement where id="+id);
             if(rs.next())
-            etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13));
+               etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getDate(14));
 
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
@@ -154,10 +170,9 @@ public class EtablissementService implements IServiceEtablissement{
 
         try {
             ste=con.createStatement();
-            final ResultSet rs=ste.executeQuery("SELECT * from etablissement where nom="+nom);
+            final ResultSet rs=ste.executeQuery("SELECT * from etablissement where nom='"+nom+"'");
             if(rs.next())
-                etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13));
-
+                etab=new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getDate(14));
         } catch (SQLException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
@@ -169,11 +184,10 @@ public class EtablissementService implements IServiceEtablissement{
         ArrayList<Etablissement> etablissements = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT * from etablissement where gouvernorat="+gouvernorat);
+            rs = ste.executeQuery("SELECT * from etablissement where etablissement.gouvernorat = '"+gouvernorat+"'");
             etablissements = new ArrayList<>();
             while (rs.next()){
-
-                etablissements.add(new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13)));
+                etablissements.add(new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getDate(14)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
@@ -187,11 +201,10 @@ public class EtablissementService implements IServiceEtablissement{
         ArrayList<Etablissement> etablissements = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT * from etablissement where ville="+ville);
+            rs = ste.executeQuery("SELECT * from etablissement where ville='"+ville+"'");
             etablissements = new ArrayList<>();
             while (rs.next()){
-
-                etablissements.add(new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13)));
+                etablissements.add(new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getDate(14)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
@@ -215,6 +228,46 @@ public class EtablissementService implements IServiceEtablissement{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-  
-    
+    public int nbEtab( ) {
+        int count=0;
+        ResultSet rs;
+        try {
+
+            String s="SELECT count(*) FROM etablissement";
+            rs = ste.executeQuery(s );
+            while (rs.next()){
+                count=rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    private int getCount(int iduser, int count, String s) {
+        ResultSet rs;
+        try {
+            rs = ste.executeQuery(s +iduser);
+            while (rs.next()){
+                count=rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
+    }
+    public int  nbExperiences(int idetab) {
+        int count=0;
+        ResultSet rs;
+        count = getCount(idetab, count, "SELECT count(*) FROM experience where etablissement_id=");
+        return count;
+    }
+    public int  nbRevues(int idetab) {
+        int count=0;
+        ResultSet rs;
+        count = getCount(idetab, count, "SELECT count(*) FROM revue where etablissement_id=");
+        return count;
+    }
+
+
+
 }
