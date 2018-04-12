@@ -15,14 +15,17 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -35,6 +38,7 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import security.Authenticator;
 import services.ArticleService;
 import services.CommentaireBService;
@@ -70,6 +74,7 @@ public class LireArticleController implements Initializable {
     @FXML
     private Hyperlink supprimer;
     public Window app;
+    ListeArticlesController listeArtC;
 
     public Article getArticle() {
         return article;
@@ -161,9 +166,32 @@ public class LireArticleController implements Initializable {
     private void supprimerArticle(ActionEvent event) throws Exception {
         ArticleService aS = new ArticleService();
         aS.supprimer(article);
-        this.blogController.listeArticleAction(event);
+         FXMLLoader fXMlLoader = new FXMLLoader(getClass().getResource("/gui/blog/listeArticles.fxml"));
+        AnchorPane childrenContent = fXMlLoader.load();
+        ListeArticlesController c = (ListeArticlesController) fXMlLoader.getController();
+        
+        ArrayList<Article> list = aS.findAll();
+        
+//        System.out.println("BlogContainerController, 52 " + list.size() + "titre " + list.get(0).getTexte());
+        Paginator p = new Paginator(list, 3, c, this.blogController);
+        c.setPaginatorContainer(p.getPaginator(), this.blogController);
+       
+        setNode(childrenContent);
+        //this.blogController.listeArticleAction(event);
     }
 
+       public void setNode(Node node) {
+        blogWidget.getChildren().clear();
+        blogWidget.getChildren().add((Node) node);
+
+        FadeTransition ft = new FadeTransition(Duration.millis(1000));
+        ft.setNode(node);
+        ft.setFromValue(0.1);
+        ft.setToValue(1);
+        ft.setCycleCount(1);
+        ft.setAutoReverse(false);
+        ft.play();
+    }
     @FXML
     private void exporterPDF(ActionEvent event) {
         try {

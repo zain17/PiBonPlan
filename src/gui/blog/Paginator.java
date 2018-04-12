@@ -10,6 +10,7 @@ package gui.blog;
  * @author aminos
  */
 import entites.Article;
+import entites.Tag;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import security.Authenticator;
 import services.ArticleService;
+import services.TagService;
 
 public class Paginator  {
   private Pagination pagination;
@@ -34,12 +36,14 @@ public class Paginator  {
   public BlogContainerController blogContainerController;
   int pages = 1;
   private AnchorPane paginatorParent;
+    private ListeArticlesController listC;
 
-    public Paginator(ArrayList<Article> list, int itemsPerPage, AnchorPane parent, BlogContainerController c) {
+    public Paginator(ArrayList<Article> list, int itemsPerPage, ListeArticlesController lst, BlogContainerController c) {
         this.pagination = pagination;
         this.list = list;
         this.itemsPerPage = itemsPerPage;
-        paginatorParent = parent;
+        this.listC = lst;
+        paginatorParent = lst.listeContainer;
         this.blogContainerController = c;
     }
 
@@ -77,6 +81,24 @@ public class Paginator  {
             c.setBlogController(this.blogContainerController);
             c.setBoxParent(box);
             c.setPaginatorParent(this.paginatorParent);
+            c.listeArtC = listC;
+            //ArticleService aS = new ArticleService();
+            //System.out.println(aS.getTags(list.get(i)));
+            //System.out.println(c.listeArtC);
+            /*
+            for (Tag t : aS.getTags(list.get(i))) {
+            FXMLLoader tagsLoader = new FXMLLoader(getClass().getResource("/gui/blog/tag.fxml"));
+            VBox tags = tagsLoader.load();
+            TagController tC = tagsLoader.getController();
+            tC.blogContainer = this.blogContainerController;
+            tC.listeContainer = this.paginatorParent;
+            tC.tag.setText(t.getName());
+              c.listeArtC.tagLabs.getChildren().add(tags);
+            }
+            */
+            
+          
+            c.setArtC(listC);
             c.setArticle(list.get(i));
             c.setTitre(list.get(i).getTitre());
             c.setAuthor(list.get(i).getAuteurn(), list.get(i).getCreated().toString());
@@ -86,7 +108,7 @@ public class Paginator  {
                 c.supprimer.setManaged(false);
                 c.modifier.setVisible(false);
                 c.modifier.setManaged(false);
-            };
+            }
             aText = Jsoup.parse(aText).text();
             c.setText(aText.substring(0, aText.length()/10) + "...");
             System.out.println(list.get(i).getTexte() + "*****");
