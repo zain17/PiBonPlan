@@ -17,8 +17,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import security.Authenticator;
 import services.ArticleService;
 
 /**
@@ -33,6 +36,10 @@ public class BlogContainerController implements Initializable {
     private AnchorPane contained;
     @FXML
     public AnchorPane blogWidget;
+    @FXML
+    private Button ecrire;
+    @FXML
+    private VBox menu;
 
     
     /**
@@ -40,7 +47,11 @@ public class BlogContainerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        if (!Authenticator.getCurrentAuth().getUsername().equals("admin")) {
+            ecrire.setVisible(false);
+            ecrire.setManaged(false);
+            menu.setPrefHeight(100);
+        }
     }    
 
     @FXML

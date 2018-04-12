@@ -7,14 +7,14 @@
 
 <AnchorPane id="AnchorPane" fx:id="contained" maxHeight="600.0" maxWidth="903.0" prefHeight="600.0" prefWidth="903.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.blog.BlogContainerController">
    <children>
-      <VBox layoutX="803.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 2 0 3 2;">
+      <VBox fx:id="menu" layoutX="803.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 2 0 3 2;">
          <children>
             <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#listeArticleAction" prefHeight="100.0" prefWidth="100.0" stylesheets="@../CSS/MenuButtons.css" text="Acceuil">
                <graphic>
                   <FontAwesomeIconView fill="#0046b0" glyphName="BOOK" size="18" />
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#creeArticleAction" prefHeight="100.0" prefWidth="100.0" stylesheets="@../CSS/MenuButtons.css" text="Ecrire">
+            <Button fx:id="ecrire" contentDisplay="TOP" mnemonicParsing="false" onAction="#creeArticleAction" prefHeight="100.0" prefWidth="100.0" stylesheets="@../CSS/MenuButtons.css" text="Ecrire">
                <graphic>
                   <FontAwesomeIconView fill="#0046b0" glyphName="PENCIL" size="18" />
                </graphic>
