@@ -45,6 +45,8 @@ public class ListeArticlesController implements Initializable {
     private TextField recherche;
     @FXML
     public VBox tags;
+    @FXML
+    public VBox tagLabs;
 
     public void setPaginatorContainer(Pagination paginator, BlogContainerController c) {
         listeContainer.setMinWidth(600);
@@ -87,7 +89,7 @@ public class ListeArticlesController implements Initializable {
         ArticleService aS = new ArticleService();
         ArrayList<Article> list = aS.find(recherche.getText());
 //        System.out.println("listeController, 52 " + list.size() + "titre " + list.get(0).getTexte());
-        Paginator p = new Paginator(list, 3, this.listeContainer, this.blogcontroller);
+        Paginator p = new Paginator(list, 3, this, this.blogcontroller);
         this.setPaginatorContainer(p.getPaginator(), this.blogcontroller);
         this.setApp(app);
         

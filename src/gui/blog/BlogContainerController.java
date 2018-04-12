@@ -52,7 +52,7 @@ public class BlogContainerController implements Initializable {
         ArrayList<Article> list = aS.findAll();
         
 //        System.out.println("BlogContainerController, 52 " + list.size() + "titre " + list.get(0).getTexte());
-        Paginator p = new Paginator(list, 3, c.listeContainer, this);
+        Paginator p = new Paginator(list, 3, c, this);
         c.setPaginatorContainer(p.getPaginator(), this);
         c.setApp(app);
         setNode(childrenContent);
