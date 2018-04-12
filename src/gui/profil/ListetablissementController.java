@@ -59,8 +59,8 @@ public class ListetablissementController implements MapComponentInitializedListe
     @FXML private TableView<Etablissement> tableView_listetab;
     private Etablissement selectedEtab=new Etablissement();
     private Main app;
-    private String SelectedGouvernorat;
-    private String SelectedVille;
+    private String savedGouvernorat="";
+    private String savedVille="";
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mapView.addMapInializedListener(this);
@@ -137,7 +137,8 @@ public class ListetablissementController implements MapComponentInitializedListe
         //if()
         return null;
     }
-    public void saveSearchInfo(){
-
+    public void saveSearchInfo(String gouvFromContainer,String villeFromContainer){
+        this.savedGouvernorat=gouvFromContainer;
+        this.savedVille=villeFromContainer;
     }
 }
