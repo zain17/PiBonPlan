@@ -29,7 +29,7 @@ public class ServiceGouvernorat {
         ArrayList<Gouvernorat> gouvernorats = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT * FROM Gouvernorat");
+            rs = ste.executeQuery("SELECT * FROM gouvernorat");
             gouvernorats = new ArrayList<>();
             while (rs.next()){
                 gouvernorats.add(new Gouvernorat(rs.getInt(1),rs.getString(2)));
@@ -44,7 +44,7 @@ public class ServiceGouvernorat {
         ArrayList<Gouvernorat> gouvernorats = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT * FROM Gouvernorat");
+            rs = ste.executeQuery("SELECT * FROM gouvernorat");
             gouvernorats = new ArrayList<>();
             while (rs.next()){
                 serviceVille.selectAllByGouvernorat(rs.getInt(1));
@@ -61,7 +61,7 @@ public class ServiceGouvernorat {
         ArrayList<Gouvernorat> gouvernorats = new ArrayList<>();
         ResultSet rs;
         try {
-            rs = ste.executeQuery("SELECT * FROM Gouvernorat where name= '"+gouvname+"'");
+            rs = ste.executeQuery("SELECT * FROM gouvernorat where name= '"+gouvname+"'");
             gouvernorats = new ArrayList<>();
             while (rs.next()){
                 serviceVille.selectAllByGouvernorat(rs.getInt(1));

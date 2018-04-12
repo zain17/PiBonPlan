@@ -17,12 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author Sboula
  */
-public class EvenementService implements IService<Evenements> {
+public class EvenementService implements EventsInterface<Evenements> {
 	private Connection con = DataSource.getInstance().getCon();
                 PreparedStatement pre;
 
@@ -30,28 +32,25 @@ public class EvenementService implements IService<Evenements> {
     @Override
     public void ajouter(Evenements t) 
     {
-        String req="INSERT INTO evenements (nom,description,lieu,date,dateF,adresse,tel,rating,prix,brochure,nbPlace,type) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)" ; 
+        String req="INSERT INTO evenements (nom,description,date,adresse,tel,prix,brochure,type,utilisateur_id) VALUES(?,?,?,?,?,?,?,?,?)" ; 
 		try {
 			pre = con.prepareStatement(req);
                         pre.setString(1, t.getNom());
                         pre.setString(2, t.getDescription());
-			pre.setString(3, t.getLieu());
-			pre.setDate(4, (Date) t.getDate());
-			pre.setDate(5, (Date) t.getDateF());
-			pre.setString(6,t.getAdresse());
-			pre.setString(7, t.getTel());
-			pre.setInt(8, t.getRating());
-			pre.setFloat(9, t.getPrix());
-			pre.setString(10, t.getBrochure());
-			pre.setInt(11, t.getNbPlace());
-                        pre.setString(12,t.getType());
-                        
-			
-			pre.executeUpdate();
+			pre.setDate(3, (Date) t.getDate());
+			pre.setString(4,t.getAdresse());    
+			pre.setString(5, t.getTel());
+			pre.setFloat(6, t.getPrix());
+			pre.setString(7, t.getBrochure());
+                        pre.setString(8,t.getType());
+                        pre.setInt(9, 5);
+                         pre.executeUpdate();
 			
 		
 		
 		} catch (SQLException ex) {
+                    			Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+
 		}
 		
     }
@@ -75,11 +74,14 @@ public class EvenementService implements IService<Evenements> {
     public void modifier(int id, Evenements t) {
                         int ret = -1;
 			String req = "UPDATE evenements SET"
-				+ " nom = ?, description = ?,"
-				+ " lieu= ?, date = ? ,"
-				+ " dateF = ?, adresse = ?,"
-				+ " tel = ?, rating = ?,"
-                                +"prix = ?,brochure= ?,nbPlace=?"
+				+ " nom = ?, "
+                                + "description = ?,"
+				+ " lieu= ?,"
+                                + " date = ? ,"
+				+ "  adresse = ?,"
+				+ " tel = ?,"
+                                +"prix = ?,"
+                                + "brochure= ?,"
                                 +"type=? "
 				+ " WHERE id = ?" ;   
                         try {
@@ -88,14 +90,12 @@ public class EvenementService implements IService<Evenements> {
 			pre.setString(2, t.getDescription());
 			pre.setString(3, t.getLieu());
 			pre.setDate(4, (Date) t.getDate());
-                        pre.setDate(5, (Date) t.getDateF());
-			pre.setString(6,t.getAdresse());
-			pre.setString(7, t.getTel());
-                        pre.setInt(8, t.getRating());
-			pre.setFloat(9, t.getPrix());
-                        pre.setString(10, t.getBrochure());
-                        pre.setInt(11, t.getNbPlace());
-                        pre.setString(12, t.getType());
+			pre.setString(5,t.getAdresse());
+			pre.setString(6, t.getTel());
+                      
+			pre.setFloat(7, t.getPrix());
+                        pre.setString(8, t.getBrochure());
+                        pre.setString(9, t.getType());
                         
 			
 			pre.executeUpdate();
@@ -111,7 +111,58 @@ public class EvenementService implements IService<Evenements> {
     }
 
     @Override
-    public ArrayList<Evenements> selectAll()  {
+    public ObservableList<Evenements> selectAll()  {
+
+       
+        ObservableList<Evenements> eve = FXCollections.observableArrayList();
+        
+            try {
+            
+                        
+                       String req = "SELECT * FROM evenements";
+			PreparedStatement pre;
+			pre = con.prepareStatement(req);
+		
+			ResultSet rs = pre.executeQuery();
+		
+			
+
+                  while (rs.next())
+                  {
+                      Evenements e = new Evenements();
+                       e.setId(rs.getInt(1));
+                        e.setDescription(rs.getString(2));
+			e.setLieu(rs.getString(3));
+			e.setDate(rs.getDate(4));
+                        e.setDateF(rs.getDate(5));
+		        e.setAdresse(rs.getString(7));
+			e   .setTel(rs.getString(8));
+                        e.setRating(rs.getInt(9));
+			e.setPrix((int) rs.getFloat(10));
+                        e.setBrochure(rs.getString(11));
+                        e.setNbPlace(rs.getInt(12));
+                        e.setType(rs.getString(13));
+
+
+                      eve.add(e);
+                                
+                        
+                        
+                        
+                        
+                        
+                        
+                  }
+            } catch (SQLException ex) {
+                Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+	                  return eve;
+
+                 }
+    
+    
+   /* @Override
+    public ArrayList<Gou> selectAllGov()  {
 
        
         ArrayList<Evenements> eve = new ArrayList<>();
@@ -159,6 +210,8 @@ public class EvenementService implements IService<Evenements> {
 	                  return eve;
 
                  }
+    
+    */
 
     @Override
     public Evenements selectOne(int id) {
@@ -172,6 +225,11 @@ public class EvenementService implements IService<Evenements> {
 
     @Override
     public int lastIdAdded() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Evenements> selectAllGov() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
