@@ -203,7 +203,6 @@ public class ContainerController implements Initializable {
         AnchorPane parentContent = fxmlLoader.load();
         ListetablissementController cs = (ListetablissementController) fxmlLoader.getController();
         cs.setApp(app);
-        cs.saveSearchInfo(readCustumInfoSearchGouv(),readCustumInfoSearchVille());
         setNode(parentContent);
     }
     @FXML
@@ -233,4 +232,12 @@ public class ContainerController implements Initializable {
         return villeToSave;
     }
 
+    public void gotoToListEtablissementRech(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
+        AnchorPane parentContent = fxmlLoader.load();
+        ListetablissementController cs = (ListetablissementController) fxmlLoader.getController();
+        cs.setApp(app);
+        cs.saveSearchInfo(readCustumInfoSearchGouv(),readCustumInfoSearchVille());
+        setNode(parentContent);
+    }
 }
