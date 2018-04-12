@@ -4,6 +4,7 @@ import Util.RssThread;
 import com.ernieyu.feedparser.Item;
 import entites.Utilisateur;
 import gui.Routers.RoutingBlog;
+import gui.Routers.RoutingEvents;
 import gui.Routers.RoutingGestionProfil;
 import gui.Routers.RoutingPost;
 import javafx.application.Application;
@@ -30,9 +31,12 @@ public class Main extends Application {
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);
 
+
+
     private  RoutingPost eeee = new RoutingPost(this);
 
     public List<Item> rssList;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {

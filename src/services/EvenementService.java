@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import security.Authenticator;
 
 /**
  *
@@ -32,7 +33,7 @@ public class EvenementService implements EventsInterface<Evenements> {
     @Override
     public void ajouter(Evenements t) 
     {
-        String req="INSERT INTO evenements (nom,description,date,adresse,tel,prix,brochure,type,utilisateur_id) VALUES(?,?,?,?,?,?,?,?,?)" ; 
+        String req="INSERT INTO evenements (nom,description,date,adresse,tel,prix,brochure,lieu,type,utilisateur_id) VALUES(?,?,?,?,?,?,?,?,?,?)" ; 
 		try {
 			pre = con.prepareStatement(req);
                         pre.setString(1, t.getNom());
@@ -42,8 +43,9 @@ public class EvenementService implements EventsInterface<Evenements> {
 			pre.setString(5, t.getTel());
 			pre.setFloat(6, t.getPrix());
 			pre.setString(7, t.getBrochure());
-                        pre.setString(8,t.getType());
-                        pre.setInt(9, 5);
+                        pre.setString(8,t.getLieu());
+                        pre.setString(9,t.getType());
+                        pre.setInt(10, t.getU().getId());
                          pre.executeUpdate();
 			
 		
@@ -117,11 +119,15 @@ public class EvenementService implements EventsInterface<Evenements> {
         ObservableList<Evenements> eve = FXCollections.observableArrayList();
         
             try {
-            
                         
-                       String req = "SELECT * FROM evenements";
+                       String req = "SELECT * FROM evenements WHERE utilisateur_id = ? ";
+                       
 			PreparedStatement pre;
+                        
 			pre = con.prepareStatement(req);
+                        
+                        pre.setInt(1,Authenticator.getCurrentAuth().getId());
+                        
 		
 			ResultSet rs = pre.executeQuery();
 		
@@ -130,17 +136,23 @@ public class EvenementService implements EventsInterface<Evenements> {
                   while (rs.next())
                   {
                       Evenements e = new Evenements();
+                      
+                      
                        e.setId(rs.getInt(1));
-                        e.setDescription(rs.getString(2));
-			e.setLieu(rs.getString(3));
-			e.setDate(rs.getDate(4));
-                        e.setDateF(rs.getDate(5));
-		        e.setAdresse(rs.getString(7));
-			e   .setTel(rs.getString(8));
-                        e.setRating(rs.getInt(9));
-			e.setPrix((int) rs.getFloat(10));
-                        e.setBrochure(rs.getString(11));
-                        e.setNbPlace(rs.getInt(12));
+                       e.setNom(rs.getString(2));
+                        e.setDescription(rs.getString(3));
+                        e.setDate(rs.getDate(4));
+                          e.setNbPlace(rs.getInt(5));
+			e.setLieu(rs.getString(6));
+                        e.setPrix((int) rs.getFloat(7));
+                        e.setBrochure(rs.getString(8));
+			e.setAdresse(rs.getString(9));
+                        e.setTel(rs.getString(10));
+
+                        e.setDateF(rs.getDate(11));
+                        System.out.println( rs.getInt(12));
+                        
+                       e.getU().setId(rs.getInt(12));
                         e.setType(rs.getString(13));
 
 
