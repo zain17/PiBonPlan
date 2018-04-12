@@ -203,6 +203,7 @@ public class ContainerController implements Initializable {
         AnchorPane parentContent = fxmlLoader.load();
         ListetablissementController cs = (ListetablissementController) fxmlLoader.getController();
         cs.setApp(app);
+        cs.saveSearchInfo(readCustumInfoSearchGouv(),readCustumInfoSearchVille());
         setNode(parentContent);
     }
     @FXML
@@ -218,6 +219,18 @@ public class ContainerController implements Initializable {
             ObservableList<String> villeObs = FXCollections.observableArrayList(villesStream);
             cmbfx_ville.setItems(villeObs);
         }
+    }
+    public String readCustumInfoSearchGouv(){
+        String gouvTosave="";
+        if(cmbfx_gouv.getSelectionModel().getSelectedIndex()>-1)
+            gouvTosave=cmbfx_gouv.getSelectionModel().getSelectedItem().toString();
+        return gouvTosave;
+    }
+    public String readCustumInfoSearchVille(){
+        String villeToSave="";
+        if(cmbfx_ville.getSelectionModel().getSelectedIndex()>-1)
+            villeToSave=cmbfx_gouv.getSelectionModel().getSelectedItem().toString();
+        return villeToSave;
     }
 
 }
