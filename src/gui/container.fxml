@@ -63,8 +63,8 @@
             <TextField layoutX="127.0" layoutY="29.0" maxHeight="46.0" maxWidth="321.0" prefHeight="31.0" prefWidth="199.0" promptText="Rechercher" style="-fx-border-width: 1 1 1 1;" styleClass="-fx-background" />
             <FontAwesomeIconView glyphName="SEARCH" layoutX="282.0" layoutY="51.0" size="20" wrappingWidth="35.9999774992466" />
             <JFXComboBox fx:id="cmbfx_gouv" layoutX="350.0" layoutY="32.0" prefHeight="25.0" prefWidth="184.0" />
-            <JFXComboBox fx:id="cmbfx_ville" layoutX="569.0" layoutY="32.0" prefHeight="25.0" prefWidth="177.0" />
-            <JFXButton fx:id="btn_rechercher" layoutX="762.0" layoutY="32.0" onAction="#gotoToListEtablissement" prefHeight="31.0" prefWidth="98.0" text="Rechercher" />
+            <JFXComboBox fx:id="cmbfx_ville" layoutX="569.0" layoutY="32.0" onMouseClicked="#loadVilleWithBygouv" prefHeight="25.0" prefWidth="177.0" />
+            <JFXButton fx:id="btn_rechercher" layoutX="762.0" layoutY="32.0" onMouseClicked="#gotoToListEtablissement" prefHeight="31.0" prefWidth="98.0" text="Rechercher" />
          </children>
       </AnchorPane>
    </children>

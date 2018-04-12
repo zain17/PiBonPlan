@@ -6,6 +6,10 @@
 package gui;
 
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import entites.Gouvernorat;
+import entites.Ville;
 import gui.Events.AjoutEvents;
 import gui.Events.ListEvents;
 
@@ -19,10 +23,13 @@ import gui.profil.FormUtilisateur;
 import gui.profil.ListetablissementController;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import gui.profil.ProfileController;
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,10 +38,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import security.Authenticator;
+import services.ServiceGouvernorat;
+import services.ServiceVille;
 
 import static java.lang.Thread.sleep;
 
@@ -44,6 +54,14 @@ import static java.lang.Thread.sleep;
  * @author aminos
  */
 public class ContainerController implements Initializable {
+    @FXML
+    private  JFXComboBox cmbfx_gouv;
+    @FXML
+    private  JFXButton btn_rechercher;
+    @FXML
+    private  JFXComboBox cmbfx_ville;
+    @FXML
+    private ImageView homeBP;
     @FXML
     private MenuItem menu_logout;
     @FXML
@@ -70,6 +88,13 @@ public class ContainerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
+        ArrayList<Gouvernorat> gouvernorats=serviceGouvernorat.selectAllEager();
+        ArrayList<String>gouvernoratsStream=new ArrayList<>();
+        gouvernorats.stream().forEach(gouvernorat -> gouvernoratsStream.add(gouvernorat.getName()));
+        ArrayList<String>gouvernoratsStreamVilles=new ArrayList<>();
+        ObservableList<String> gouvernoratObservableList = FXCollections.observableArrayList(gouvernoratsStream);
+        cmbfx_gouv.setItems(gouvernoratObservableList);
         cmb_username.setText(Authenticator.getCurrentAuth().getUsername());//Afficher le nom de l'utilisateur courrant
     }
 
@@ -180,4 +205,19 @@ public class ContainerController implements Initializable {
         cs.setApp(app);
         setNode(parentContent);
     }
+    @FXML
+    public void loadVilleWithBygouv(MouseEvent mouseEvent) {
+        if(cmbfx_gouv.getSelectionModel().getSelectedIndex()>-1){
+            ServiceGouvernorat serviceGouvernorat=new ServiceGouvernorat();
+            ServiceVille serviceVille=new ServiceVille();
+            String gouvname=cmbfx_gouv.getSelectionModel().getSelectedItem().toString();
+            ArrayList<Ville> villes=serviceVille.selectAllByGouvernorat(serviceGouvernorat.getGouvernoratIdByHerName(cmbfx_gouv.getSelectionModel().getSelectedItem().toString()));
+            ArrayList<String>villesStream=new ArrayList<>();
+            villes.stream().forEach(gouvernorat -> villesStream.add(gouvernorat.getName()));
+            ArrayList<String>gouvernoratsStreamVilles=new ArrayList<>();
+            ObservableList<String> villeObs = FXCollections.observableArrayList(villesStream);
+            cmbfx_ville.setItems(villeObs);
+        }
+    }
+
 }
