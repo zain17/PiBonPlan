@@ -176,7 +176,7 @@ public class ContainerController implements Initializable {
 
         AnchorPane parentContent = fxmlLoader.load();
            ListEvents c = (ListEvents) fxmlLoader.getController();
-      
+
         c.setApp(app);
          // System.out.println((c.app.getLoggedUser().getUsername() != null) + "****");
         setNode(parentContent);

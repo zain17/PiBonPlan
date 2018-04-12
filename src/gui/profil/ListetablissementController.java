@@ -29,6 +29,7 @@ import static com.lynden.gmapsfx.javascript.object.MapTypeIdEnum.ROADMAP;
 import static javafx.application.Application.launch;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -58,7 +59,8 @@ public class ListetablissementController implements MapComponentInitializedListe
     @FXML private TableView<Etablissement> tableView_listetab;
     private Etablissement selectedEtab=new Etablissement();
     private Main app;
-
+    private String SelectedGouvernorat;
+    private String SelectedVille;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mapView.addMapInializedListener(this);
@@ -85,7 +87,6 @@ public class ListetablissementController implements MapComponentInitializedListe
         lbl_nbexp.setText(String.valueOf(etabServ.nbExperiences(firstSelected.getId())));
         lbl_nbRevue.setText(String.valueOf(etabServ.nbRevues(firstSelected.getId())));
         lbl_note.setText(firstSelected.getNote().toString());
-
     }
 
     public void setApp(Main app) {
@@ -130,6 +131,13 @@ public class ListetablissementController implements MapComponentInitializedListe
     }
     @FXML
     public void gotoEtablissentProfile(ActionEvent actionEvent) {
+
+    }
+    public ArrayList<Etablissement> returnFiltredStream(){
+        //if()
+        return null;
+    }
+    public void saveSearchInfo(){
 
     }
 }
