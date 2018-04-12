@@ -229,7 +229,7 @@ public class ContainerController implements Initializable {
     public String readCustumInfoSearchVille(){
         String villeToSave="";
         if(cmbfx_ville.getSelectionModel().getSelectedIndex()>-1)
-            villeToSave=cmbfx_gouv.getSelectionModel().getSelectedItem().toString();
+            villeToSave=cmbfx_ville.getSelectionModel().getSelectedItem().toString();
         return villeToSave;
     }
 
