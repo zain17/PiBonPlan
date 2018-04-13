@@ -166,7 +166,6 @@ public class ListetablissementController implements MapComponentInitializedListe
     }
     @FXML
     public void loadDataRecherche(ActionEvent mouseEvent) {
-        System.out.println(lbl_selectedGouv.getText());
         tableView_listetab.refresh();
         EtablissementService etabServ=new EtablissementService();
         ArrayList<Etablissement> dataToshow=new ArrayList<>();
