@@ -204,7 +204,7 @@ public class UtilisateurService implements IServiceUtilisateur{
     public int nbRevues(int iduser) {
         int count=0;
             ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM revue where utilisateur_id=");
+        count = getCount(iduser, count, "SELECT count(*) FROM revueee where iduser=");
         return count;
     }
 
@@ -213,7 +213,7 @@ public class UtilisateurService implements IServiceUtilisateur{
     public int nbExperiences(int iduser) {
         int count=0;
         ResultSet rs;
-        count = getCount(iduser, count, "SELECT count(*) FROM experience where utilisateur_id=");
+        count = getCount(iduser, count, "SELECT count(*) FROM experiences where iduser=");
         return count;
     }
     @Override
