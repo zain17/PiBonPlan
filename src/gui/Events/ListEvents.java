@@ -54,6 +54,8 @@ public class ListEvents implements Initializable {
     @FXML
     private Button searchEmpsBtn;
     
+    
+ 
 
     public ListEvents() throws IOException {
 
@@ -131,7 +133,21 @@ public class ListEvents implements Initializable {
     
     @FXML
     private void modifier(ActionEvent event) throws IOException {
-     routingEvents.fromListToMod();
+   // routingEvents.fromListToMod();
+    
+     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/modifyEvents.fxml"));
+
+       AnchorPane forInserting = fxmlLoader.load();
+        ModifyEventsController c = (ModifyEventsController) fxmlLoader.getController();
+        int eid = Integer.parseInt(this.eid.getText());
+        //eid hia l id textfield
+        
+        c.setUser(eid);
+        
+        //boutton hedha update ihez interface evenements ! 
+            
+            
+ 
 
       
     }

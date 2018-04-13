@@ -66,7 +66,7 @@ public class ModifyEventsController implements Initializable {
     @FXML private DatePicker dd ; 
     @FXML private Button img ;
     @FXML private TextField id ;
-   
+    public int bo ;
     @FXML private TextField ty ;
         private Evenements esav  ;
     private EvenementService eservice=new EvenementService();
@@ -100,6 +100,9 @@ public class ModifyEventsController implements Initializable {
     }
     
     
+    public void setUser(int user_id){
+    this.bo = user_id;
+    }
     
  
     @FXML
@@ -142,9 +145,7 @@ public class ModifyEventsController implements Initializable {
      
      
     public void enregistrer(ActionEvent actionEvent) {
-        
-    
-    
+       
        if(dd.getValue()== null){
            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);   
     alert1.setTitle("Information Dialog");
@@ -223,15 +224,17 @@ public class ModifyEventsController implements Initializable {
                
                
                System.out.println(Integer.parseInt(id.getText())) ; 
+               
+            Evenements e =  eservice.find(bo) ;
+             
     esav.setId(Integer.parseInt(id.getText()));
-    esav.setNom(n.getText());
+  n.setText(e.getNom());
     esav.setAdresse(a.getText());
     esav.setTel(t.getText());
     esav.setBrochure(srcFile.getName());
     esav.setDescription(des.getText());
     esav.setPrix(Integer.parseInt(p.getText()));
     esav.setLieu((String)cb.getValue());
-    esav.setU(Authenticator.getCurrentAuth());
                
                eservice.modifier(esav);
            
@@ -242,4 +245,14 @@ public class ModifyEventsController implements Initializable {
            } 
     
    
-}}
+}
+
+
+
+
+
+
+
+
+
+}
