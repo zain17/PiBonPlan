@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class FormEtablissementEditController implements Initializable {
+    @FXML private JFXButton btn_suppr;
     private Main application;
     RoutingGestionProfilContainer routingGestionProfilContainer= new RoutingGestionProfilContainer(this.application,this);
     @FXML private AnchorPane container_formEtabEdit;
@@ -144,5 +145,8 @@ public class FormEtablissementEditController implements Initializable {
         types.add("restaurant");types.add("shopping");types.add("cafe");types.add("loisirs");
         ObservableList<String> typeObser = FXCollections.observableArrayList(types);
         cmb_type.setItems(typeObser);
+    }
+
+    public void onSupprime(ActionEvent actionEvent) {
     }
 }

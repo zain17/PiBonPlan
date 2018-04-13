@@ -141,5 +141,10 @@
             <Font size="32.0" />
          </font>
       </Label>
+      <JFXButton fx:id="btn_suppr" layoutX="134.0" layoutY="529.0" onAction="#onSupprime" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: #77B5FE;" text="Supprimer">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
