@@ -64,6 +64,10 @@ public class ModifierArticleController implements Initializable {
         a.setId(this.article.getId());
         System.out.println(article.getId());
         aS.modifier(a);
+        
+        
+        
+        
           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/lireArticle.fxml"));
         AnchorPane forInserting  = (AnchorPane) fxmlLoader.load();
         LireArticleController c = (LireArticleController) fxmlLoader.getController();

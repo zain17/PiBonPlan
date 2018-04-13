@@ -5,6 +5,7 @@
  */
 package services;
 
+import entites.Evenements;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
@@ -16,10 +17,10 @@ import javafx.collections.ObservableList;
 public interface EventsInterface<T> {
      public void ajouter(T t);
      public void supprimer(int id);
-     public void modifier(int id,T t);
+     public void modifier(T t);
+     public Evenements find( int id) ; 
      public ObservableList<T> selectAll();
-     public ArrayList<T> selectAllGov();
-     public T selectOne(int id);
-    public boolean existId(int id);
-    public  int  lastIdAdded();
+     public ObservableList<T> selectALL ();
+
+ 
 }
