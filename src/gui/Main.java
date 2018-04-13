@@ -36,14 +36,14 @@ public class Main extends Application {
     private  RoutingPost eeee = new RoutingPost(this);
 
     public List<Item> rssList;
-
+    RssThread rs;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
             stage = primaryStage;
             stage.setTitle("Bienvenue à Bon Plan");
-            RssThread rs = new RssThread("Rss reader", this);
+            rs = new RssThread("Rss reader", this);
             rs.start();
 //            stage.setWidth(500);
 
@@ -53,6 +53,11 @@ public class Main extends Application {
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Override
+    public void stop() {
+        this.rs.stop();
     }
     public static void main(String[] args) {
         Application.launch(Main.class, (java.lang.String[])null);
