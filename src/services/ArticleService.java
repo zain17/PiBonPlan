@@ -178,6 +178,8 @@ public class ArticleService  {
 				}
 				
 			}
+                        
+                        
 		} catch (SQLException ex) {			
 			Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
 		}

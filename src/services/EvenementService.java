@@ -237,8 +237,53 @@ public class EvenementService implements EventsInterface<Evenements> {
 
     @Override
     public Evenements find(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+       
+		
+		Evenements e = null;
+		try {
+			String req = "SELECT * FROM evenements WHERE id = ?";
+			PreparedStatement pre;
+			pre = con.prepareStatement(req);
+			pre.setInt(1, id);
+			ResultSet rs = pre.executeQuery();
+			
+			if (rs.next()) {
+				try {
+                                    e= new Evenements();
+                                     e.setId(rs.getInt(1));
+                       e.setNom(rs.getString(2));
+                        e.setDescription(rs.getString(3));
+                        e.setDate(rs.getDate(4));
+                        e.setNbPlace(rs.getInt(5));
+			e.setLieu(rs.getString(6));
+                        e.setPrix((int) rs.getFloat(7));
+                        e.setBrochure(rs.getString(8));
+			e.setAdresse(rs.getString(9));
+                        e.setTel(rs.getString(10));
+
+                        e.setDateF(rs.getDate(11));
+                        System.out.println( rs.getInt(12));
+                        
+                       e.getU().setId(rs.getInt(12));
+                        e.setType(rs.getString(13));
+					
+                                    
+                                    
+				} catch (SQLException ex) {
+					Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+				}
+				
+			}
+                        
+                        
+		} catch (SQLException ex) {			
+			Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return e;
+			
+	}
+    
+    
 
     @Override
     public ObservableList<Evenements> selectALL()  {
