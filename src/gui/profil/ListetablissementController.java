@@ -38,6 +38,10 @@ public class ListetablissementController implements MapComponentInitializedListe
     public Label lbl_selectedGouv;
     public Label lbl_selectedVille;
     public JFXButton btn_refrech;
+    public JFXButton btn_restaurant;
+    public JFXButton btn_cafe;
+    public JFXButton btn_shopping;
+    public JFXButton btn_loisirs;
     @FXML private AnchorPane ancchild;
     @FXML private Label lbl_oubFermer;
     @FXML private GoogleMapView mapView;
@@ -174,6 +178,42 @@ public class ListetablissementController implements MapComponentInitializedListe
             dataToshow= returnFiltredStreamByGouv();
         if((lbl_selectedGouv.getText()!="")&&(lbl_selectedVille.getText()!=""))
             dataToshow=returnFiltredStreamByVille();
+        ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
+        tableView_listetab.setItems(etablissements);
+    }
+
+    public void clickRestaurant(ActionEvent actionEvent) {
+        tableView_listetab.refresh();
+        EtablissementService etabServ=new EtablissementService();
+        ArrayList<Etablissement> dataToshow=new ArrayList<>();
+            dataToshow=etabServ.selectBestByType("restaurant");
+        ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
+        tableView_listetab.setItems(etablissements);
+    }
+
+    public void clickCafe(ActionEvent actionEvent) {
+        tableView_listetab.refresh();
+        EtablissementService etabServ=new EtablissementService();
+        ArrayList<Etablissement> dataToshow=new ArrayList<>();
+        dataToshow=etabServ.selectBestByType("cafe");
+        ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
+        tableView_listetab.setItems(etablissements);
+    }
+
+    public void clickShopping(ActionEvent actionEvent) {
+        tableView_listetab.refresh();
+        EtablissementService etabServ=new EtablissementService();
+        ArrayList<Etablissement> dataToshow=new ArrayList<>();
+        dataToshow=etabServ.selectBestByType("shopping");
+        ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
+        tableView_listetab.setItems(etablissements);
+    }
+
+    public void clickLoisirs(ActionEvent actionEvent) {
+        tableView_listetab.refresh();
+        EtablissementService etabServ=new EtablissementService();
+        ArrayList<Etablissement> dataToshow=new ArrayList<>();
+        dataToshow=etabServ.selectBestByType("loisirs");
         ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
         tableView_listetab.setItems(etablissements);
     }

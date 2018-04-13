@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="ancchild" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ListetablissementController">
+<AnchorPane fx:id="ancchild" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ListetablissementController">
    <children>
       <ImageView fx:id="image_photoetab" fitHeight="180.0" fitWidth="337.0" layoutX="8.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -43,5 +43,9 @@
       <Label fx:id="lbl_selectedGouv" layoutX="37.0" layoutY="6.0" text="Label" visible="false" />
       <Label fx:id="lbl_selectedVille" layoutX="92.0" layoutY="6.0" text="Label" visible="false" />
       <JFXButton fx:id="btn_refrech" layoutX="205.0" layoutY="2.0" onAction="#loadDataRecherche" text="Show" />
+      <JFXButton fx:id="btn_restaurant" layoutX="795.0" layoutY="134.0" onAction="#clickRestaurant" prefHeight="69.0" prefWidth="105.0" style="-fx-background-color: #3366FF;" text="Restaurant" />
+      <JFXButton fx:id="btn_cafe" layoutX="795.0" layoutY="201.0" onAction="#clickCafe" prefHeight="69.0" prefWidth="105.0" style="-fx-background-color: #FF0066;" text="Cafe" />
+      <JFXButton fx:id="btn_shopping" layoutX="795.0" layoutY="268.0" onAction="#clickShopping" prefHeight="69.0" prefWidth="105.0" style="-fx-background-color: #00FF66;" text="Shopping" />
+      <JFXButton fx:id="btn_loisirs" layoutX="795.0" layoutY="335.0" onAction="#clickLoisirs" prefHeight="69.0" prefWidth="105.0" style="-fx-background-color: #FF9933;" text="Loisirs" />
    </children>
 </AnchorPane>

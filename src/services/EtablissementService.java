@@ -219,7 +219,18 @@ public class EtablissementService implements IServiceEtablissement{
 
     @Override
     public ArrayList<Etablissement> selectBestByType(String type) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Etablissement> etablissements = new ArrayList<>();
+        ResultSet rs;
+        try {
+            rs = ste.executeQuery("SELECT * from etablissement where type='"+type+"'");
+            etablissements = new ArrayList<>();
+            while (rs.next()){
+                etablissements.add(new Etablissement(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getDate(7),rs.getDouble(8),rs.getDouble(9),rs.getBoolean(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getDate(14)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EtablissementService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return etablissements;
     }
 
     @Override
