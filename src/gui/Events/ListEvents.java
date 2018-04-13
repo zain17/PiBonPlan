@@ -46,7 +46,7 @@ public class ListEvents implements Initializable {
      @FXML
     private TableView Evtable;
   
-    private Evenements esav  ;
+    public Evenements esav  ;
     private EvenementService eservice=new EvenementService();
     RoutingEvents routingEvents=new RoutingEvents(this.app,this);
     @FXML
@@ -135,10 +135,11 @@ public class ListEvents implements Initializable {
     private void modifier(ActionEvent event) throws IOException {
    // routingEvents.fromListToMod();
     
-     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/modifyEvents.fxml"));
+     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/Events/modifyEvents.fxml"));
 
        AnchorPane forInserting = fxmlLoader.load();
         ModifyEventsController c = (ModifyEventsController) fxmlLoader.getController();
+        c.setEvenement(esav);
         int eid = Integer.parseInt(this.eid.getText());
         //eid hia l id textfield
         
@@ -146,7 +147,8 @@ public class ListEvents implements Initializable {
         
         //boutton hedha update ihez interface evenements ! 
             
-            
+            contained.getChildren().clear();
+            contained.getChildren().add(forInserting);
  
 
       

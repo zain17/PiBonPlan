@@ -247,6 +247,10 @@ public class ModifyEventsController implements Initializable {
    
 }
 
+    void setEvenement(Evenements esav) {
+        n.setText(esav.getNom());
+    }
+
 
 
 
