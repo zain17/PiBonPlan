@@ -57,6 +57,7 @@
             <MenuButton fx:id="cmb_username" layoutX="912.0" layoutY="32.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Nom">
               <items>
                 <MenuItem fx:id="menubtn_clickEditer" mnemonicParsing="false" onAction="#profilEdit" text="Editer" />
+                  <MenuItem fx:id="menubtn_clickSuppr" mnemonicParsing="false" onAction="#supprimerUtilisateur" text="Supprimer" />
                   <MenuItem fx:id="menu_logout" mnemonicParsing="false" onAction="#logout" text="Déconnecter" />
               </items>
             </MenuButton>

@@ -146,14 +146,5 @@ public class FormEtablissementEditController implements Initializable {
         cmb_type.setItems(typeObser);
     }
 
-    public void onSupprime(ActionEvent actionEvent) throws IOException {
-        EtablissementService ets=new EtablissementService();
-        Etablissement etabTomodif=new Etablissement();
-        etabTomodif=Authenticator.getCurrentAuth().getEtablissement();
-        readFormData(etabTomodif);
-        UtilisateurService usv=new UtilisateurService();
-        usv.removeEtab(Authenticator.getCurrentAuth().getId());
-        ets.supprimer(etabTomodif.getId());
-        routingGestionProfilContainer.returnFromEditEtabVersProfile();
-    }
+
 }

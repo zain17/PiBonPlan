@@ -48,6 +48,7 @@ import javafx.util.Duration;
 import security.Authenticator;
 import services.ServiceGouvernorat;
 import services.ServiceVille;
+import services.UtilisateurService;
 
 import static java.lang.Thread.sleep;
 
@@ -57,6 +58,7 @@ import static java.lang.Thread.sleep;
  * @author aminos
  */
 public class ContainerController implements Initializable {
+    @FXML private MenuItem menubtn_clickSuppr;
     @FXML private ListetablissementController childList=new ListetablissementController();
     @FXML
     private  JFXComboBox cmbfx_gouv;
@@ -250,4 +252,10 @@ public class ContainerController implements Initializable {
     }
 
 
+    public void supprimerUtilisateur(ActionEvent actionEvent) {
+        UtilisateurService utilisateurService=new UtilisateurService();
+        utilisateurService.supprimer(Authenticator.getCurrentAuth().getId());
+        RoutingGestionProfil routGP=new RoutingGestionProfil(app);
+        routGP.gotoLogin();
+    }
 }
