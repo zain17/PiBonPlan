@@ -28,6 +28,8 @@ import java.util.ResourceBundle;
 
 import gui.profil.ProfileController;
 import javafx.animation.FadeTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +38,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
@@ -54,7 +57,7 @@ import static java.lang.Thread.sleep;
  * @author aminos
  */
 public class ContainerController implements Initializable {
-    @FXML ListetablissementController cs;
+    @FXML private ListetablissementController childList=new ListetablissementController();
     @FXML
     private  JFXComboBox cmbfx_gouv;
     @FXML
@@ -84,8 +87,7 @@ public class ContainerController implements Initializable {
     @FXML
     private Button profileB;
     private Main app;
-    private String gouvernoratSelected="";
-    private String villeSelected="";
+
     /**
      * Initializes the controller class.
      */
@@ -238,11 +240,12 @@ public class ContainerController implements Initializable {
     public void gotoToListEtablissementRech(MouseEvent mouseEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/listetablissement.fxml"));
         AnchorPane parentContent = fxmlLoader.load();
-         cs = (ListetablissementController) fxmlLoader.getController();
-        //Les savedSearchINFO sont envoyées après
-        cs.saveSearchInfo(readCustumInfoSearchGouv(),readCustumInfoSearchVille());
-        cs.setApp(app);
-        //System.out.println(readCustumInfoSearchGouv()+readCustumInfoSearchVille());
+        childList = (ListetablissementController) fxmlLoader.getController();
+        childList.lbl_selectedGouv.setText(readCustumInfoSearchGouv());
+        childList.lbl_selectedVille.setText(readCustumInfoSearchVille());
+        childList.setVar_selectedGouv(readCustumInfoSearchGouv());
+        childList.setVar_selectedVille(readCustumInfoSearchVille());
+        childList.setApp(app);
         setNode(parentContent);
     }
 }
