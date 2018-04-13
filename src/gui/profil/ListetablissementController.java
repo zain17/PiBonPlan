@@ -1,5 +1,6 @@
 package gui.profil;
 
+import com.jfoenix.controls.JFXButton;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
@@ -25,22 +26,18 @@ import services.EtablissementService;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 
-import javax.annotation.PostConstruct;
-
 import static com.lynden.gmapsfx.javascript.object.MapTypeIdEnum.ROADMAP;
 import static javafx.application.Application.launch;
 
-import java.io.CharArrayReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class ListetablissementController implements MapComponentInitializedListener,Initializable {
 
     public Label lbl_selectedGouv;
     public Label lbl_selectedVille;
+    public JFXButton btn_refrech;
     @FXML private AnchorPane ancchild;
     @FXML private Label lbl_oubFermer;
     @FXML private GoogleMapView mapView;
@@ -89,18 +86,10 @@ public class ListetablissementController implements MapComponentInitializedListe
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(lbl_selectedGouv.getText());
-        System.out.println(lbl_selectedVille.getText());
         mapView.addMapInializedListener(this);
         EtablissementService etabServ=new EtablissementService();
         ArrayList<Etablissement> dataToshow=new ArrayList<>();
-        if((lbl_selectedGouv.getText()!=""&&lbl_selectedVille.getText()!=""))
-        dataToshow= returnFiltredStreamByVille();
-        if((lbl_selectedGouv.getText()!="")&&(lbl_selectedVille.getText()==""))
-            dataToshow=returnFiltredStreamByGouv();
-        else
         dataToshow=etabServ.selectAll();
-        // TODO :warring jusqu'a mnt les établissements ne sont pas filtrés par les gouvernorats et les villes etablissemnts to filter
         ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
         tablecol_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         tablecol_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -175,8 +164,18 @@ public class ListetablissementController implements MapComponentInitializedListe
     @FXML
     public void gotoEtablissentProfile(ActionEvent actionEvent) {
     }
-
-    public void loadDataRecherche(MouseEvent mouseEvent) {
-
+    @FXML
+    public void loadDataRecherche(ActionEvent mouseEvent) {
+        System.out.println(lbl_selectedGouv.getText());
+        tableView_listetab.refresh();
+        EtablissementService etabServ=new EtablissementService();
+        ArrayList<Etablissement> dataToshow=new ArrayList<>();
+        //dataToshow=etabServ.selectAll();
+        if((lbl_selectedGouv.getText()!=""&&lbl_selectedVille.getText()==""))
+            dataToshow= returnFiltredStreamByGouv();
+        if((lbl_selectedGouv.getText()!="")&&(lbl_selectedVille.getText()!=""))
+            dataToshow=returnFiltredStreamByVille();
+        ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
+        tableView_listetab.setItems(etablissements);
     }
 }
