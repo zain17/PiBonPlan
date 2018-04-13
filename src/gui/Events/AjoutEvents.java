@@ -93,16 +93,9 @@ public class AjoutEvents implements Initializable {
                 
         if (file != null) {                
             srcFile = file;
-             if (srcFile == null){
-               
-           
-     Alert alert1 = new Alert(AlertType.INFORMATION);   
-    alert1.setTitle("Information Dialog");
-    alert1.setContentText(" Selectionnez une image !");
-    alert1.showAndWait();
-           }
+             
             
-             else if (srcFile != null) {
+              if (srcFile != null) {
                 try {
                     String p = System.getProperty("user.dir")+"/src/images/evenement/"+srcFile.getName();
                     copyFile(srcFile, new File(p));
@@ -178,8 +171,15 @@ public class AjoutEvents implements Initializable {
     alert1.setContentText("TEL !!");
     alert1.showAndWait();
            }
+           else if (srcFile.getName().isEmpty()){
+               
+    Alert alert1 = new Alert(AlertType.INFORMATION);   
+    alert1.setTitle("Information Dialog");
+    alert1.setContentText("Choisir une Image !!");
+    alert1.showAndWait();
+           }
            
-           else if(Pattern.matches("[a-z]", p.getText()) || p.getText().equals("") ) {
+           else if(Pattern.matches("[a-z]", p.getText()) || p.getText().isEmpty() ) {
                Alert alert1 = new Alert(AlertType.INFORMATION);   
     alert1.setTitle("Information Dialog");
     alert1.setContentText("Prix  !!");

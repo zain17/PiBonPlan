@@ -61,20 +61,24 @@ public class EvenementService implements EventsInterface<Evenements> {
     public void supprimer(int id) {
          String req="DELETE  from evenements where  id =?" ; 
         try { 
-            PreparedStatement ste = pre.getConnection().prepareStatement(req) ;
+            
+            
+            PreparedStatement ste = con.prepareStatement(req) ;
              
             
             ste.setInt(1,id) ;
             ste.executeUpdate() ; 
             
         } catch (SQLException ex) {
+                        Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
     }
 
     @Override
-    public void modifier(int id, Evenements t) {
-                        int ret = -1;
+    public void modifier( Evenements t) {
+                     
 			String req = "UPDATE evenements SET"
 				+ " nom = ?, "
                                 + "description = ?,"
@@ -84,10 +88,11 @@ public class EvenementService implements EventsInterface<Evenements> {
 				+ " tel = ?,"
                                 +"prix = ?,"
                                 + "brochure= ?,"
-                                +"type=? "
+                               
 				+ " WHERE id = ?" ;   
                         try {
-			pre = con.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
+			pre = con.prepareStatement(req);
+                        
 			pre.setString(1, t.getNom());
 			pre.setString(2, t.getDescription());
 			pre.setString(3, t.getLieu());
@@ -95,22 +100,23 @@ public class EvenementService implements EventsInterface<Evenements> {
 			pre.setString(5,t.getAdresse());
 			pre.setString(6, t.getTel());
                       
-			pre.setFloat(7, t.getPrix());
+			pre.setInt(7, t.getPrix());
                         pre.setString(8, t.getBrochure());
-                        pre.setString(9, t.getType());
+                        pre.setInt(9, t.getId() );
                         
 			
+			
 			pre.executeUpdate();
-			ResultSet ks = pre.getGeneratedKeys();
-			if (ks.next())
-			ret = ks.getInt(1);
+	
 		
 		
 		} catch (SQLException ex) {
 			Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
 		}
-                        //No Return here 
+                     
     }
+    
+    
 
     @Override
     public ObservableList<Evenements> selectAll()  {
@@ -142,7 +148,7 @@ public class EvenementService implements EventsInterface<Evenements> {
                        e.setNom(rs.getString(2));
                         e.setDescription(rs.getString(3));
                         e.setDate(rs.getDate(4));
-                          e.setNbPlace(rs.getInt(5));
+                        e.setNbPlace(rs.getInt(5));
 			e.setLieu(rs.getString(6));
                         e.setPrix((int) rs.getFloat(7));
                         e.setBrochure(rs.getString(8));
@@ -225,26 +231,73 @@ public class EvenementService implements EventsInterface<Evenements> {
     
     */
 
+
+
+  
+
     @Override
-    public Evenements selectOne(int id) {
+    public Evenements find(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean existId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public ObservableList<Evenements> selectALL()  {
 
-    @Override
-    public int lastIdAdded() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+       
+        ObservableList<Evenements> eve = FXCollections.observableArrayList();
+        
+            try {
+                        
+                       String req = "SELECT * FROM evenements  ";
+                       
+			PreparedStatement pre;
+                        
+			pre = con.prepareStatement(req);
+                        
+                        
+		
+			ResultSet rs = pre.executeQuery();
+		
+			
 
-    @Override
-    public ArrayList<Evenements> selectAllGov() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+                  while (rs.next())
+                  {
+                      Evenements e = new Evenements();
+                      
+                      
+                       e.setId(rs.getInt(1));
+                       e.setNom(rs.getString(2));
+                        e.setDescription(rs.getString(3));
+                        e.setDate(rs.getDate(4));
+                        e.setNbPlace(rs.getInt(5));
+			e.setLieu(rs.getString(6));
+                        e.setPrix((int) rs.getFloat(7));
+                        e.setBrochure(rs.getString(8));
+			e.setAdresse(rs.getString(9));
+                        e.setTel(rs.getString(10));
 
+                        e.setDateF(rs.getDate(11));
+                        
+                       e.getU().setId(rs.getInt(12));
+                        e.setType(rs.getString(13));
+
+
+                      eve.add(e);
+                                
+                        
+                        
+                        
+                        
+                        
+                        
+                  }
+            } catch (SQLException ex) {
+                Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+	                  return eve;
+
+                 }
+    
    
     
 }

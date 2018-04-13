@@ -38,14 +38,18 @@ this.main=main ;    }
         listEvents.getContained().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/Events/AjoutEvents.fxml")));
     }
     
-    public void list() throws IOException {
-        try {
-            ListEvents login = (ListEvents) main.replaceSceneContent("/gui/Events/ListEvnts.fxml");
-            login.setApp(main);
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
+    public void fromListToMod() throws IOException {
+                listEvents.getContained().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/Events/modifyEvents.fxml")));
+
+        
     }
     
+    public void listall() throws IOException {
+ 
+                    listEvents.getContained().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/Events/Suggestion.fxml")));
+
     
+
+    }  
 }

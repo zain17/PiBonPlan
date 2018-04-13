@@ -17,9 +17,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -27,9 +29,9 @@ import services.EvenementService;
 
 public class ListEvents implements Initializable {
     private Main app;
+    @FXML
+    private TextField eid ;
 
-     @FXML
-     private Button ae ;
       @FXML
     private TableColumn<Evenements, Integer>  eveIdColumn;
     @FXML
@@ -46,18 +48,47 @@ public class ListEvents implements Initializable {
   
     private Evenements esav  ;
     private EvenementService eservice=new EvenementService();
-    @FXML 
     RoutingEvents routingEvents=new RoutingEvents(this.app,this);
     @FXML
     private AnchorPane contained;
+    @FXML
+    private Button searchEmpsBtn;
     
 
     public ListEvents() throws IOException {
 
     }
     
+    @FXML
+    private void delete(ActionEvent actionEvent) throws IOException  , ClassNotFoundException {
+   EvenementService e = new EvenementService();
+   
+   
+    if (eid.getText().isEmpty()) {
+        
+     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);   
+    alert1.setTitle("Information Dialog");
+    alert1.setContentText("Saisir le ID !!");
+    alert1.showAndWait();
+        
+    }else {
+    e.supprimer(Integer.parseInt(eid.getText()));
+         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);   
+    alert1.setTitle("Information Dialog");
+    alert1.setContentText("Evenement Supprimer !!");
+    alert1.showAndWait();
     
-     @FXML
+    }
+      
+    
+    }
+    
+    
+    
+    
+    
+    
+    
     private void populateEmployees (ObservableList<Evenements> empData) throws ClassNotFoundException {
         //Set items to the employeeTable
         Evtable.setItems(empData);
@@ -92,10 +123,22 @@ public class ListEvents implements Initializable {
     public void setApp(Main app)  {
         this.app = app;
     }
-        @FXML
-
+    
+    @FXML
     private void ajout(ActionEvent event) throws IOException {
            routingEvents.fromListToAdd();
+    }
+    
+    @FXML
+    private void modifier(ActionEvent event) throws IOException {
+     routingEvents.fromListToMod();
+
+      
+    }
+    
+    @FXML
+     private void listall(ActionEvent event) throws IOException {
+        routingEvents.listall();
     }
 }
 
