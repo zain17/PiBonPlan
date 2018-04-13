@@ -36,7 +36,7 @@
       <Hyperlink fx:id="H_gotoMyEtab" layoutX="594.0" layoutY="149.0" onAction="#voirEtablissement" text="Voir  établissement" />
       <Button fx:id="experie" layoutX="352.0" layoutY="206.0" mnemonicParsing="false" onAction="#loadexper" prefHeight="25.0" prefWidth="88.0" text="Experiences" />
       <Button fx:id="revuess" layoutX="487.0" layoutY="206.0" mnemonicParsing="false" onAction="#loadrevue" prefHeight="25.0" prefWidth="77.0" text="Revues" />
-      <Label fx:id="lbl_visiteur" layoutX="39.0" layoutY="28.0" text="0" />
+      <Label fx:id="lbl_visiteur" layoutX="39.0" layoutY="28.0" text="0" visible="false" />
      
 
     </children>
