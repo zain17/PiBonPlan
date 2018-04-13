@@ -7,6 +7,7 @@ package entites;
 
 import java.util.Collection;
 import java.util.Date;
+import security.Authenticator;
 
 
 /**
@@ -29,17 +30,30 @@ public class Evenements   {
     private String tel;
     private Integer rating;
     private String type ;
-    
+    private Utilisateur u;
+
+    public void setU(Utilisateur u) {
+        this.u = u;
+    }
+
+    public Utilisateur getU() {
+        return u;
+    }
+
+    public Evenements(Utilisateur u) {
+        this.u = u;
+    }
     private Collection<CommentaireE> commentaireECollection;
 
     public Evenements() {
+        this.u=Authenticator.getCurrentAuth(); 
     }
 
     public Evenements(Integer id) {
         this.id = id;
     }
 
-    public Evenements(Integer id, String nom, String description, Date date, int nbPlace, String lieu, int prix, String brochure, Date dateF, String adresse, String tel,String type) {
+    public Evenements(Integer id, String nom, String description, Date date, int nbPlace, String lieu, int prix, String brochure, Date dateF, String adresse, String tel,String type , Utilisateur U) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -52,8 +66,13 @@ public class Evenements   {
         this.adresse = adresse;
         this.tel = tel;
         this.type=type ;
+        this.u=new Utilisateur();
+        
     }
 
+    
+    
+    
     public Integer getId() {
         return id;
     }

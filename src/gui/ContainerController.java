@@ -120,7 +120,7 @@ public class ContainerController implements Initializable {
     
         @FXML
     private void blogArction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/rechercherArticle.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/rechercherArticle.fxml"));
 
         AnchorPane parentContent = fxmlLoader.load();
             RechercherArticleController c = (RechercherArticleController) fxmlLoader.getController();

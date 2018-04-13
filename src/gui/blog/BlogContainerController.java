@@ -17,8 +17,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import security.Authenticator;
 import services.ArticleService;
 
 /**
@@ -33,6 +36,10 @@ public class BlogContainerController implements Initializable {
     private AnchorPane contained;
     @FXML
     public AnchorPane blogWidget;
+    @FXML
+    private Button ecrire;
+    @FXML
+    private VBox menu;
 
     
     /**
@@ -40,7 +47,11 @@ public class BlogContainerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        if (!Authenticator.getCurrentAuth().getUsername().equals("admin")) {
+            ecrire.setVisible(false);
+            ecrire.setManaged(false);
+            menu.setPrefHeight(100);
+        }
     }    
 
     @FXML
@@ -52,7 +63,7 @@ public class BlogContainerController implements Initializable {
         ArrayList<Article> list = aS.findAll();
         
 //        System.out.println("BlogContainerController, 52 " + list.size() + "titre " + list.get(0).getTexte());
-        Paginator p = new Paginator(list, 3, c.listeContainer, this);
+        Paginator p = new Paginator(list, 3, c, this);
         c.setPaginatorContainer(p.getPaginator(), this);
         c.setApp(app);
         setNode(childrenContent);

@@ -44,15 +44,19 @@ public class Utilisateur   {
     private Date passwordRequestedAt;
     private String roles;
     private String prenom;
-    private ArrayList<Evenements> evenements;
+
+    private ArrayList<Evenements> evenements ;
+
+    public void setEvenements(ArrayList<Evenements> evenements) {
+        this.evenements = evenements;
+    }
+
+ 
 
     public ArrayList<Evenements> getEvenements() {
         return evenements;
     }
 
-    public void setEvenements(ArrayList<Evenements> evenements) {
-        this.evenements = evenements;
-    }
 
     public String getPrenom() {
         return prenom;

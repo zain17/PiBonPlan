@@ -1,8 +1,12 @@
 package gui;
 
+import Util.RssThread;
+import com.ernieyu.feedparser.Item;
 import entites.Utilisateur;
 import gui.Routers.RoutingBlog;
+import gui.Routers.RoutingEvents;
 import gui.Routers.RoutingGestionProfil;
+import gui.Routers.RoutingPost;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +20,7 @@ import services.UtilisateurService;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,12 +30,23 @@ public class Main extends Application {
     private Utilisateur loggedUser=new Utilisateur();
     private RoutingGestionProfil routGP=new RoutingGestionProfil(this);
     private RoutingBlog routeBlog = new RoutingBlog(this);
+
+
+
+    private  RoutingPost eeee = new RoutingPost(this);
+
+    public List<Item> rssList;
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
             stage = primaryStage;
             stage.setTitle("Bienvenue à Bon Plan");
+            RssThread rs = new RssThread("Rss reader", this);
+            rs.start();
 //            stage.setWidth(500);
+
 //            stage.setHeight(300);
             routGP.gotoLogin();
             primaryStage.show();

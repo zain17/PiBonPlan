@@ -28,9 +28,23 @@ public class RoutingEvents {
         this.main = main;
         this.listEvents = listEvents;
     }
+    
+    
+
+    public RoutingEvents(Main main) {
+this.main=main ;    }
 
     public void fromListToAdd() throws IOException {
         listEvents.getContained().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/Events/AjoutEvents.fxml")));
+    }
+    
+    public void list() throws IOException {
+        try {
+            ListEvents login = (ListEvents) main.replaceSceneContent("/gui/Events/ListEvnts.fxml");
+            login.setApp(main);
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

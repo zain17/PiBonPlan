@@ -19,7 +19,7 @@ public class DataSource {
 	private Connection con;
 	public String user = "root";
 	public String password = "";
-	public String url = "jdbc:mysql://localhost:3306/bonplan";
+	public String url = "jdbc:mysql://127.0.0.1:3306/bonplan";
 	private DataSource() {
 
 		try {
