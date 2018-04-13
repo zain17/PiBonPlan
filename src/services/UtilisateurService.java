@@ -72,7 +72,7 @@ public class UtilisateurService implements IServiceUtilisateur{
 
     @Override
     public void supprimer(int id) {
-        String SQL = "DELETE FROM utilisateur WHERE id = ? ";
+        String SQL = "DELETE FROM utilisateur WHERE id = ?";
         PreparedStatement pre = null;
         try {
             // get a connection and then in your try catch for executing your delete...
@@ -260,6 +260,23 @@ public class UtilisateurService implements IServiceUtilisateur{
             pre.setInt(2, user.getId());
             pre.executeUpdate();
             System.out.println("Utilisateur AFFECTER PAR ETAB avec succés");
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void removeEtab(int id) {
+        System.out.println("delete user");
+        System.out.println(id);
+        String requete="UPDATE utilisateur set etablissement_id = ? where id=?";
+        PreparedStatement pre=null;
+        try {
+            System.out.println("delete user");
+            pre = connection.prepareStatement(requete);
+            pre.setInt(1,Types.NULL);
+            pre.setInt(2,id);
+            pre.executeUpdate();
+            System.out.println("Supprimer etab de l'utilisateur avec succés");
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }

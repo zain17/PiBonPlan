@@ -3,6 +3,7 @@ package gui.profil;
 import com.jfoenix.controls.*;
 import entites.Etablissement;
 import entites.Gouvernorat;
+import entites.Utilisateur;
 import entites.Ville;
 import gui.Main;
 import gui.Routers.RoutingGestionProfilContainer;
@@ -16,9 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import security.Authenticator;
-import services.EtablissementService;
-import services.ServiceGouvernorat;
-import services.ServiceVille;
+import services.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -147,6 +146,14 @@ public class FormEtablissementEditController implements Initializable {
         cmb_type.setItems(typeObser);
     }
 
-    public void onSupprime(ActionEvent actionEvent) {
+    public void onSupprime(ActionEvent actionEvent) throws IOException {
+        EtablissementService ets=new EtablissementService();
+        Etablissement etabTomodif=new Etablissement();
+        etabTomodif=Authenticator.getCurrentAuth().getEtablissement();
+        readFormData(etabTomodif);
+        UtilisateurService usv=new UtilisateurService();
+        usv.removeEtab(Authenticator.getCurrentAuth().getId());
+        ets.supprimer(etabTomodif.getId());
+        routingGestionProfilContainer.returnFromEditEtabVersProfile();
     }
 }

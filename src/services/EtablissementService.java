@@ -81,7 +81,6 @@ public class EtablissementService implements IServiceEtablissement{
         String SQL = "DELETE FROM etablissement WHERE id = ? ";
         PreparedStatement pre = null;
         try {
-            // get a connection and then in your try catch for executing your delete... 
             pre = con.prepareStatement(SQL);
             pre.setInt(1, id);
             pre.executeUpdate();
