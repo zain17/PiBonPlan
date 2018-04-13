@@ -8,12 +8,16 @@ import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MapOptions;
 import entites.Etablissement;
 import gui.Main;
+import gui.Routers.RoutingGestionProfilContainer;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import javafx.scene.Node;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -22,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import services.EtablissementService;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
@@ -29,6 +34,7 @@ import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import static com.lynden.gmapsfx.javascript.object.MapTypeIdEnum.ROADMAP;
 import static javafx.application.Application.launch;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -70,6 +76,14 @@ public class ListetablissementController implements MapComponentInitializedListe
     private Main app;
     private String var_selectedGouv;
     private String var_selectedVille;
+
+    public AnchorPane getAncchild() {
+        return ancchild;
+    }
+
+    public void setAncchild(AnchorPane ancchild) {
+        this.ancchild = ancchild;
+    }
 
     public String getVar_selectedGouv() {
         return var_selectedGouv;
@@ -131,10 +145,11 @@ public class ListetablissementController implements MapComponentInitializedListe
 
     @Override
     public void mapInitialized() {
+        System.out.println(selectedEtab);
         //Set the initial properties of the map.
         MapOptions mapOptions = new MapOptions();
 
-        mapOptions.center(new LatLong(47.6097, -122.3331))
+        mapOptions.center(new LatLong(36.812504, 10.177631))
                 .mapType(ROADMAP)
                 .overviewMapControl(false)
                 .panControl(false)
@@ -149,7 +164,7 @@ public class ListetablissementController implements MapComponentInitializedListe
         //Add a marker to the map
         MarkerOptions markerOptions = new MarkerOptions();
 
-        markerOptions.position( new LatLong(47.6, -122.3) )
+        markerOptions.position( new LatLong(36.8, 10.1) )
                 .visible(Boolean.TRUE)
                 .title("My Marker");
 
@@ -164,9 +179,28 @@ public class ListetablissementController implements MapComponentInitializedListe
         lbl_nbexp.setText(String.valueOf(etabServ.nbExperiences(selectedEtab.getId())));
         lbl_nbRevue.setText(String.valueOf(etabServ.nbRevues(selectedEtab.getId())));
         lbl_note.setText(selectedEtab.getNote().toString());
+        reloadMapOne(selectedEtab);
     }
     @FXML
-    public void gotoEtablissentProfile(ActionEvent actionEvent) {
+    public void gotoEtablissentProfile(ActionEvent actionEvent) throws IOException {
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/profil/profile.fxml"));
+//        AnchorPane parentContent = fxmlLoader.load();
+//        ProfileController cs = (ProfileController) fxmlLoader.getController();
+//        cs.lbl_visiteur.setText(selectedEtab.getId().toString());
+//        cs.setApp(app);
+//        setNode(parentContent);
+    }
+    public void setNode(Node node) {
+        ancchild.getChildren().clear();
+        ancchild.getChildren().add((Node) node);
+
+        FadeTransition ft = new FadeTransition(Duration.millis(1000));
+        ft.setNode(node);
+        ft.setFromValue(0.1);
+        ft.setToValue(1);
+        ft.setCycleCount(1);
+        ft.setAutoReverse(false);
+        ft.play();
     }
     @FXML
     public void loadDataRecherche(ActionEvent mouseEvent) {
@@ -180,6 +214,7 @@ public class ListetablissementController implements MapComponentInitializedListe
             dataToshow=returnFiltredStreamByVille();
         ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
         tableView_listetab.setItems(etablissements);
+        reloadMap(dataToshow);
     }
 
     public void clickRestaurant(ActionEvent actionEvent) {
@@ -189,6 +224,7 @@ public class ListetablissementController implements MapComponentInitializedListe
             dataToshow=etabServ.selectBestByType("restaurant");
         ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
         tableView_listetab.setItems(etablissements);
+        reloadMap(dataToshow);
     }
 
     public void clickCafe(ActionEvent actionEvent) {
@@ -198,6 +234,7 @@ public class ListetablissementController implements MapComponentInitializedListe
         dataToshow=etabServ.selectBestByType("cafe");
         ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
         tableView_listetab.setItems(etablissements);
+        reloadMap(dataToshow);
     }
 
     public void clickShopping(ActionEvent actionEvent) {
@@ -207,6 +244,27 @@ public class ListetablissementController implements MapComponentInitializedListe
         dataToshow=etabServ.selectBestByType("shopping");
         ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
         tableView_listetab.setItems(etablissements);
+        reloadMap(dataToshow);
+    }
+    public void reloadMap(ArrayList<Etablissement>etablissements){
+        for(int i=0;i<etablissements.size();i++){
+            MarkerOptions markerOptions = new MarkerOptions();
+            if(etablissements.get(i).getLatitude()!=0&&etablissements.get(i).getLongitude()!=0&&etablissements.get(i).getNom()!=null)
+            markerOptions.position( new LatLong(etablissements.get(i).getLatitude(), etablissements.get(i).getLongitude()) )
+                    .visible(Boolean.TRUE)
+                    .title(etablissements.get(i).getNom());
+            Marker marker = new Marker( markerOptions );
+            map.addMarker(marker);
+        }
+    }
+    public void reloadMapOne(Etablissement etc){
+        map.clearMarkers();
+            MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position( new LatLong(etc.getLatitude(), etc.getLongitude()) )
+                        .visible(Boolean.TRUE)
+                        .title(etc.getNom());
+            Marker marker = new Marker( markerOptions );
+            map.addMarker(marker);
     }
 
     public void clickLoisirs(ActionEvent actionEvent) {
@@ -216,5 +274,6 @@ public class ListetablissementController implements MapComponentInitializedListe
         dataToshow=etabServ.selectBestByType("loisirs");
         ObservableList<Etablissement> etablissements= FXCollections.observableList(dataToshow);//Selon le filtre
         tableView_listetab.setItems(etablissements);
+        reloadMap(dataToshow);
     }
 }

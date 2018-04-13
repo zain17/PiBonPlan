@@ -56,4 +56,7 @@ public class RoutingGestionProfilContainer {
     public void returnFromEtabVersProfile() throws IOException {
         currentFormEtablissement.getContainer_formEtab().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/profil/profile.fxml")));
     }
+    public void listEtablissementToSelectedEtab()  throws IOException {
+        curreListEtab.getAncchild().getChildren().setAll((AnchorPane)FXMLLoader.load(getClass().getResource("/gui/profil/profile.fxml")));
+    }
 }

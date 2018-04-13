@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="contneurProfil" prefHeight="602.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfileController">
+<AnchorPane fx:id="contneurProfil" prefHeight="602.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.profil.ProfileController">
     <children>
         
 
@@ -33,9 +33,10 @@
       <Label fx:id="lbl_nbExperience" layoutX="452.0" layoutY="210.0" text="12" />
       <Label fx:id="lbl_nbRevue" layoutX="573.0" layoutY="210.0" text="23" />
       <Label fx:id="lbl_nbEvents" layoutX="705.0" layoutY="210.0" text="2" />
-      <Hyperlink fx:id="H_gotoMyEtab" layoutX="594.0" layoutY="149.0" onAction="#voirEtablissement" text="gotomyetabProfil" />
+      <Hyperlink fx:id="H_gotoMyEtab" layoutX="594.0" layoutY="149.0" onAction="#voirEtablissement" text="Voir  établissement" />
       <Button fx:id="experie" layoutX="352.0" layoutY="206.0" mnemonicParsing="false" onAction="#loadexper" prefHeight="25.0" prefWidth="88.0" text="Experiences" />
       <Button fx:id="revuess" layoutX="487.0" layoutY="206.0" mnemonicParsing="false" onAction="#loadrevue" prefHeight="25.0" prefWidth="77.0" text="Revues" />
+      <Label fx:id="lbl_visiteur" layoutX="39.0" layoutY="28.0" text="0" />
      
 
     </children>

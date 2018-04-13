@@ -20,7 +20,7 @@ import services.UtilisateurService;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.net.Authenticator;
+import security.Authenticator;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -39,6 +39,8 @@ import javafx.util.Duration;
 import post.CommentaireExFXMLController;
 
 public class ProfileController implements Initializable {
+
+    public Label lbl_visiteur;
     RoutingGestionProfilContainer routingGestionProfilContainer= new RoutingGestionProfilContainer(this.app,this);
     @FXML
     private AnchorPane contneurProfil;
@@ -65,7 +67,7 @@ public class ProfileController implements Initializable {
     private AnchorPane contained;
     private Main app;
     private Utilisateur userHand;
-
+    private Utilisateur visiteur;
     public ProfileController() throws IOException {
 
     }
@@ -92,9 +94,6 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadUserInfo(security.Authenticator.getCurrentAuth());
-         
-       
-        
     }
     
        public void setNode(Node node) {
@@ -119,7 +118,7 @@ public class ProfileController implements Initializable {
             else
                 H_gotoMyEtab.setText("Créer mon établissement");
         }
-        if(u.getRoles().equals("ROLE_CLIENT")){
+        if((u.getRoles().equals("ROLE_CLIENT")))/*||u.getEtablissement().getId()!=Authenticator.getCurrentAuth().getEtablissement().getId())*/{
             H_gotoMyEtab.setVisible(false);
         }
         lbl_nom.setText(u.getUsername());
