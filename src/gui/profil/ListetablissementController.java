@@ -255,6 +255,8 @@ public class ListetablissementController implements MapComponentInitializedListe
                     .title(etablissements.get(i).getNom());
             Marker marker = new Marker( markerOptions );
             map.addMarker(marker);
+          
+              
         }
     }
     public void reloadMapOne(Etablissement etc){
