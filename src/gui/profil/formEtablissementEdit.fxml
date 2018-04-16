@@ -117,7 +117,7 @@
             <JFXTimePicker fx:id="tpiker_fermer" prefHeight="25.0" prefWidth="308.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <JFXTextField fx:id="txt_nom" GridPane.columnIndex="1" />
             <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <JFXTextField fx:id="photo_frontale" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <JFXTextField fx:id="photo_frontale" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <JFXTextField fx:id="txt_lang" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <JFXTextField fx:id="txt_lat" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <JFXComboBox fx:id="cmb_type" onMouseClicked="#loadTypes" prefHeight="25.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />

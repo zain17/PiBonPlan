@@ -1,40 +1,29 @@
-/*
- * Copyright (C) 2017 Dominik Schadow, dominikschadow@gmail.com
- *
- * This file is part of the Java Security project.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package security;
-
-
 import com.google.common.io.BaseEncoding;
-import com.google.common.primitives.Bytes;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import com.google.common.primitives.Bytes;
+
+
 import java.security.SecureRandom;
 import java.util.Base64;
 
 
 /**
- * FOSJCrypt hashing sample with plain Java. Uses a salt, configures the number of iterations and calculates the hash
- * value.
- * <p/>
- * Uses Google Guava to hex the hash in a readable format.
- * This API  uses the same algorithm of FOSUserBundle(default)
- * @author Zain ELabidine
+ * FOSJCrypt fait le hachage et le cryptage comme le FOSUser(default encoder:Sha512) via application desktop Java.
+ * La génération de salt et comme de FOSUser
+ * La génération de hash et celle que FOSUser 5000 itération sur digester (une avant le boucle pour fusionner le salt avec le password) and ajout les accolades
+ * Conversion
+ * Google Guava utiliser pour convertir le hash en base64 (password column FOSUser contient hash convertit en base64 par cette API
+ * Cette API utilise le même Algorithm par défaut utiliser par FOSUser(voir security.yml encoders{algorithm})
+ * @author Zain ELabidine membre de " The Optimists"
+ * @Email: zainelabidine.bensaleh@esprit.tn
+ *Api à télécharger:
+ * 1) guava-19.0.jar
+ * 2) commons-codec-1.7.jar
+ *
  */
 public class FOSJCrypt {
     private static final String ALGORITHM = "SHA-512";
@@ -47,24 +36,6 @@ public class FOSJCrypt {
      */
     private FOSJCrypt() {
     }
-
-//    public static void main(String[] args) {
-//        String password = "0000";
-//        String gs=generateSalt();
-//        try {
-//
-//            //byte[] salt = generateSalt();
-//            //BaseEncoding.base64().encode(saltfromdatabase)
-//            log.info("Password {}. MyHash algorithm {}, iterations {}, salt {}", password, ALGORITHM, ITERATIONS,
-//                    BaseEncoding.base64().encode(gs.getBytes("UTF-8")));
-//            byte[] hash = encodePassword(password, gs);
-//            boolean correct = verifyPassword(hash, password, gs);
-//
-//            log.info("Entered password is correct: {}", correct);
-//        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
-//            log.error(ex.getMessage(), ex);
-//        }
-//    }
     public static Sha512 crypt(String clairPass) {
         String gs=generateSalt();
         try {
@@ -75,6 +46,14 @@ public class FOSJCrypt {
         }
         return null;
     }
+
+    /**
+     * tgeneri salt kif al yasn3ou fosuser(bel algorrithm par défaut :sh512)
+     * igeneri 32 byte et y7awelhom en base64
+     * ibadel el + bel .
+     * ine7i el char el le5er
+     * @return
+     */
     private static String generateSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_SIZE];
@@ -83,6 +62,17 @@ public class FOSJCrypt {
         String saltPlusDot= saltBase64_encoded.replace("+",".");
         return saltPlusDot.substring(0,saltPlusDot.length()-1);
     }
+
+    /**
+     * 4999 itération dans la boucles une seul avant la boucle
+     * 1ére : fait merge passwrd et sal par méthode
+     * dans la boucle il réutilise le hash précédant pour générer le nouveau message en clair
+     * @param password
+     * @param salt
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException
+     */
     private static byte[] encodePassword(String password,String salt) throws NoSuchAlgorithmException,
             UnsupportedEncodingException {
         String mergedPasswordAndSalt =mergePasswordAndSalt(password, salt);
@@ -93,6 +83,13 @@ public class FOSJCrypt {
         }
         return hash;
     }
+
+    /**
+     * i7ot des accolade mnloul welle5er mta3 salt
+     * @param pass
+     * @param salt
+     * @return
+     */
     private static String mergePasswordAndSalt(String pass, String salt) {
         if (salt == null) {
             return salt;
@@ -100,9 +97,12 @@ public class FOSJCrypt {
         String cg="{";String cd="}";
         return pass+cg+salt+cd;
     }
-    public static   boolean verifyPassword(byte[] originalHash, String password, String salt) throws
+    /*
+     *  paramétre: originalHash el hash ala mel base de donnés mais en byte donc lazem el hash ala en String tetbadel bytes
+     */
+    public static   boolean verifyPassword(byte[] originalHash, String passwordClair, String salt) throws
             NoSuchAlgorithmException, UnsupportedEncodingException {
-        byte[] comparisonHash = encodePassword(password, salt);
+        byte[] comparisonHash = encodePassword(passwordClair, salt);
         return comparePasswords(originalHash, comparisonHash);
     }
     private static Sha512 passwordToPersist(byte[] originalHash, String password, String salt) throws
