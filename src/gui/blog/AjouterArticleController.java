@@ -94,8 +94,9 @@ public class AjouterArticleController implements Initializable {
          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/blog/lireArticle.fxml"));
         AnchorPane forInserting  = (AnchorPane) fxmlLoader.load();
         LireArticleController c = (LireArticleController) fxmlLoader.getController();
-        c.setArticle(a);
+        System.out.println("AjouterArticle" + c.blogController != null);
         c.blogController = blogController;
+        c.setArticle(a);
         blogWidget.getChildren().setAll(forInserting);
        
         

@@ -11,7 +11,7 @@
       <VBox fx:id="rechContainer" layoutX="600.0" prefHeight="600.0" prefWidth="203.0">
          <children>
             <Label text="Rechercher:" />
-            <TextField fx:id="recherche" onKeyPressed="#rechercherArticle" />
+            <TextField fx:id="recherche" onKeyReleased="#rechercherArticle" />
             <VBox fx:id="tags" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tags" />
