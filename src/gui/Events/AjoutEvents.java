@@ -97,7 +97,8 @@ public class AjoutEvents implements Initializable {
             
               if (srcFile != null) {
                 try {
-                    String p = System.getProperty("user.dir")+"/src/images/evenement/"+srcFile.getName();
+                    String p = "C:/wamp64/www/PIDEV - Copy/web/bundles/blog/template/images/" +srcFile.getName();
+                    System.out.println(System.getProperty("user.dir"));
                     copyFile(srcFile, new File(p));
                 } catch (IOException ex) {
                     Logger.getLogger(AjoutEvents.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,6 +145,8 @@ public class AjoutEvents implements Initializable {
         try {
         SimpleDateFormat ymdFormat = new SimpleDateFormat("yyyy-MM-dd");
             String ymd = ymdFormat.format(date);
+            System.out.println(ymd);
+            esav.setDateF(ymd);
           
          
              esav.setDate( convertUtilToSql(ymdFormat.parse(ymd)) );
@@ -199,7 +202,7 @@ public class AjoutEvents implements Initializable {
            
            
            else  { 
-               
+     
     esav.setNom(n.getText());
     esav.setAdresse(a.getText());
     esav.setTel(t.getText());
