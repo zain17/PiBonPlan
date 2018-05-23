@@ -57,7 +57,7 @@ public class Main extends Application {
     
     @Override
     public void stop() {
-        this.rs.stop();
+        this.rs.sem = true;
     }
     public static void main(String[] args) {
         Application.launch(Main.class, (java.lang.String[])null);

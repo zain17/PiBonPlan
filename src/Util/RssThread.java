@@ -26,6 +26,7 @@ import javafx.stage.Modality;
 public class RssThread extends Thread {
 
     public Main app;
+    public boolean sem = false;
  
 
     public RssThread(String str, Main app) {
@@ -39,6 +40,9 @@ public class RssThread extends Thread {
         while (!Thread.currentThread().isInterrupted()) {
             System.out.println("Rss thread beating!");
          
+            if (sem) {
+                return;
+            }
             if (app.rssList != null) {
                 try {
                     List<Item> newI = new RssReader().getStreamElements();
