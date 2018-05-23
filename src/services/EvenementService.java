@@ -33,7 +33,7 @@ public class EvenementService implements EventsInterface<Evenements> {
     @Override
     public void ajouter(Evenements t) 
     {
-        String req="INSERT INTO evenements (nom,description,date,adresse,tel,prix,brochure,lieu,type,utilisateur_id) VALUES(?,?,?,?,?,?,?,?,?,?)" ; 
+            String req="INSERT INTO evenements (nom,description,date,adresse,tel,prix,brochure,lieu,type,utilisateur_id,dateF) VALUES(?,?,?,?,?,?,?,?,?,?,?)" ; 
 		try {
 			pre = con.prepareStatement(req);
                         pre.setString(1, t.getNom());
@@ -46,6 +46,7 @@ public class EvenementService implements EventsInterface<Evenements> {
                         pre.setString(8,t.getLieu());
                         pre.setString(9,t.getType());
                         pre.setInt(10, t.getU().getId());
+                        pre.setString(11,t.getDateF());
                          pre.executeUpdate();
 			
 		
@@ -155,7 +156,7 @@ public class EvenementService implements EventsInterface<Evenements> {
 			e.setAdresse(rs.getString(9));
                         e.setTel(rs.getString(10));
 
-                        e.setDateF(rs.getDate(11));
+                        e.setDateF(rs.getString(11));
                         System.out.println( rs.getInt(12));
                         
                        e.getU().setId(rs.getInt(12));
@@ -261,7 +262,7 @@ public class EvenementService implements EventsInterface<Evenements> {
 			e.setAdresse(rs.getString(9));
                         e.setTel(rs.getString(10));
 
-                        e.setDateF(rs.getDate(11));
+                        e.setDateF(rs.getString(11));
                         System.out.println( rs.getInt(12));
                         
                        e.getU().setId(rs.getInt(12));
@@ -321,7 +322,7 @@ public class EvenementService implements EventsInterface<Evenements> {
 			e.setAdresse(rs.getString(9));
                         e.setTel(rs.getString(10));
 
-                        e.setDateF(rs.getDate(11));
+                        e.setDateF(rs.getString(11));
                         
                        e.getU().setId(rs.getInt(12));
                         e.setType(rs.getString(13));
