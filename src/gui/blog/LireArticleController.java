@@ -26,13 +26,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
@@ -120,28 +123,39 @@ public class LireArticleController implements Initializable {
     private void creerCommentaire(ActionEvent event) throws IOException {
         CommentaireBService cS = new CommentaireBService();
         if (commenT != null && updating && cMTxt != null) {
-            commenT.setText(commentaire.getText());
+            if (commentaire.getText().length() != 0) {
+                commenT.setText(commentaire.getText());
 
-            cS.modifier(commenT);
-           cMTxt.setText(commentaire.getText());
-         
-            commenT = null;
-            updating = false;
-            cMTxt = null;
+                cS.modifier(commenT);
+                cMTxt.setText(commentaire.getText());
 
+                commenT = null;
+                updating = false;
+                cMTxt = null;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Commentaire vide!", ButtonType.OK);
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                alert.show();
+            }
         } else {
-            CommentaireB com = new CommentaireB(commentaire.getText(), Authenticator.getCurrentAuth().getUsername(), Authenticator.getCurrentAuth().getId());
-            com.setArticle(article);
+            if (commentaire.getText().length() != 0) {
+                CommentaireB com = new CommentaireB(commentaire.getText(), Authenticator.getCurrentAuth().getUsername(), Authenticator.getCurrentAuth().getId());
+                com.setArticle(article);
 
-            int cId = cS.ajouter(com);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/blog/commentaire.fxml"));
-            VBox element;
+                int cId = cS.ajouter(com);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/blog/commentaire.fxml"));
+                VBox element;
 
-            element = loader.load();
+                element = loader.load();
 
-            CommentaireController cc = (CommentaireController) loader.getController();
-            cc.setArticle(article, this, cS.find(cId));
-            box.getChildren().add(element);
+                CommentaireController cc = (CommentaireController) loader.getController();
+                cc.setArticle(article, this, cS.find(cId));
+                box.getChildren().add(element);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Commentaire vide!", ButtonType.OK);
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                alert.show();
+            }
         }
         commentaire.clear();
 
@@ -166,21 +180,21 @@ public class LireArticleController implements Initializable {
     private void supprimerArticle(ActionEvent event) throws Exception {
         ArticleService aS = new ArticleService();
         aS.supprimer(article);
-         FXMLLoader fXMlLoader = new FXMLLoader(getClass().getResource("/gui/blog/listeArticles.fxml"));
+        FXMLLoader fXMlLoader = new FXMLLoader(getClass().getResource("/gui/blog/listeArticles.fxml"));
         AnchorPane childrenContent = fXMlLoader.load();
         ListeArticlesController c = (ListeArticlesController) fXMlLoader.getController();
-        
+
         ArrayList<Article> list = aS.findAll();
-        
+
 //        System.out.println("BlogContainerController, 52 " + list.size() + "titre " + list.get(0).getTexte());
         Paginator p = new Paginator(list, 3, c, this.blogController);
         c.setPaginatorContainer(p.getPaginator(), this.blogController);
-       
+
         setNode(childrenContent);
         //this.blogController.listeArticleAction(event);
     }
 
-       public void setNode(Node node) {
+    public void setNode(Node node) {
         blogWidget.getChildren().clear();
         blogWidget.getChildren().add((Node) node);
 
@@ -192,6 +206,7 @@ public class LireArticleController implements Initializable {
         ft.setAutoReverse(false);
         ft.play();
     }
+
     @FXML
     private void exporterPDF(ActionEvent event) {
         try {
@@ -201,8 +216,8 @@ public class LireArticleController implements Initializable {
             chooser.setInitialDirectory(defaultDirectory);
             System.out.println(this.blogController.app != null);
             File selectedDirectory = chooser.showDialog(Main.stage);
-            String html = "<h1>" + this.article.getTitre() + "</h1>"+"<div>"+this.article.getTexte()+"</div>";
-            Html2PDF.convert(html, selectedDirectory.getAbsolutePath() + "/"+LocalDate.now()+".pdf");
+            String html = "<h1>" + this.article.getTitre() + "</h1>" + "<div>" + this.article.getTexte() + "</div>";
+            Html2PDF.convert(html, selectedDirectory.getAbsolutePath() + "/" + LocalDate.now() + ".pdf");
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(LireArticleController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
